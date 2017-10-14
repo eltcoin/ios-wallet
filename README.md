@@ -35,5 +35,8 @@ $ pod install
 
 * Remove unused Dependancies
 * Add etherwallet JS layer
-* Add waller API's
+* Add wallet API's
+* Remove stubbed data
+* Display transactions
+* Send transactions
 
