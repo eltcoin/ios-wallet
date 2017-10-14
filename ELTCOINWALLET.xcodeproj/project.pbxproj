@@ -1,0 +1,861 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4C7B80E7B1CACA161F232D64 /* Pods_ELTCOINWALLET.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6459B38DB322063EBCAA757D /* Pods_ELTCOINWALLET.framework */; };
+		AC9488FA3DDB2E745A337779 /* Pods_ELTCOINWALLETUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0660A24DA67E944B1042E255 /* Pods_ELTCOINWALLETUITests.framework */; };
+		D5285C8C1F8FFFA300F46425 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5285C8B1F8FFFA300F46425 /* ScannerViewController.swift */; };
+		D594522A1F920E38005107A9 /* NewWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59452291F920E38005107A9 /* NewWalletViewController.swift */; };
+		D5A160971F8F93D7007E3EB0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A160961F8F93D7007E3EB0 /* AppDelegate.swift */; };
+		D5A1609C1F8F93D8007E3EB0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5A1609A1F8F93D8007E3EB0 /* Main.storyboard */; };
+		D5A1609E1F8F93D8007E3EB0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5A1609D1F8F93D8007E3EB0 /* Assets.xcassets */; };
+		D5A160A11F8F93D8007E3EB0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5A1609F1F8F93D8007E3EB0 /* LaunchScreen.storyboard */; };
+		D5A160AC1F8F93D8007E3EB0 /* ELTCOINWALLETTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A160AB1F8F93D8007E3EB0 /* ELTCOINWALLETTests.swift */; };
+		D5A160B71F8F93D8007E3EB0 /* ELTCOINWALLETUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A160B61F8F93D8007E3EB0 /* ELTCOINWALLETUITests.swift */; };
+		D5A160C71F8F9677007E3EB0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A160C61F8F9677007E3EB0 /* HomeViewController.swift */; };
+		D5A160CA1F8FA373007E3EB0 /* UIColor+ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A160C91F8FA373007E3EB0 /* UIColor+ex.swift */; };
+		D5A160CD1F8FB085007E3EB0 /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A160CC1F8FB085007E3EB0 /* TransactionTableViewCell.swift */; };
+		D5A160CF1F8FB656007E3EB0 /* WalletTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A160CE1F8FB656007E3EB0 /* WalletTransaction.swift */; };
+		D5A160D21F8FBAA5007E3EB0 /* TransactionsDataStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A160D11F8FBAA5007E3EB0 /* TransactionsDataStub.swift */; };
+		D5A160D41F8FBB07007E3EB0 /* Double+ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A160D31F8FBB07007E3EB0 /* Double+ex.swift */; };
+		D5A160D61F8FC527007E3EB0 /* UIImage+ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A160D51F8FC527007E3EB0 /* UIImage+ex.swift */; };
+		D5A160D81F8FCD02007E3EB0 /* SendCoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A160D71F8FCD02007E3EB0 /* SendCoinViewController.swift */; };
+		D5A160DA1F8FD128007E3EB0 /* PopupNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A160D91F8FD128007E3EB0 /* PopupNavigationController.swift */; };
+		D5A160DD1F8FD357007E3EB0 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A160DC1F8FD357007E3EB0 /* Animator.swift */; };
+		F29E53798D05C5C42BFD6FAA /* Pods_ELTCOINWALLETTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B41A0E7C40B9E6C64780F561 /* Pods_ELTCOINWALLETTests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D5A160A81F8F93D8007E3EB0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5A1608B1F8F93D7007E3EB0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D5A160921F8F93D7007E3EB0;
+			remoteInfo = ELTCOINWALLET;
+		};
+		D5A160B31F8F93D8007E3EB0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5A1608B1F8F93D7007E3EB0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D5A160921F8F93D7007E3EB0;
+			remoteInfo = ELTCOINWALLET;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0660A24DA67E944B1042E255 /* Pods_ELTCOINWALLETUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ELTCOINWALLETUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3059D7A06A014083014AA722 /* Pods-ELTCOINWALLET.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ELTCOINWALLET.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ELTCOINWALLET/Pods-ELTCOINWALLET.debug.xcconfig"; sourceTree = "<group>"; };
+		4599C97CD92F2A3197A31C48 /* Pods-ELTCOINWALLETUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ELTCOINWALLETUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ELTCOINWALLETUITests/Pods-ELTCOINWALLETUITests.release.xcconfig"; sourceTree = "<group>"; };
+		58E4DBAAFDA3383A2C6E7D32 /* Pods-ELTCOINWALLETUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ELTCOINWALLETUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ELTCOINWALLETUITests/Pods-ELTCOINWALLETUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		5C312ED4307E5966F244DD48 /* Pods-ELTCOINWALLETTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ELTCOINWALLETTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ELTCOINWALLETTests/Pods-ELTCOINWALLETTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6459B38DB322063EBCAA757D /* Pods_ELTCOINWALLET.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ELTCOINWALLET.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		72EA67BCBE2808B7802C7D10 /* Pods-ELTCOINWALLETTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ELTCOINWALLETTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ELTCOINWALLETTests/Pods-ELTCOINWALLETTests.release.xcconfig"; sourceTree = "<group>"; };
+		9A98537D74FDC24F207E0813 /* Pods-ELTCOINWALLET.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ELTCOINWALLET.release.xcconfig"; path = "Pods/Target Support Files/Pods-ELTCOINWALLET/Pods-ELTCOINWALLET.release.xcconfig"; sourceTree = "<group>"; };
+		B41A0E7C40B9E6C64780F561 /* Pods_ELTCOINWALLETTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ELTCOINWALLETTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5285C8B1F8FFFA300F46425 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
+		D59452291F920E38005107A9 /* NewWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWalletViewController.swift; sourceTree = "<group>"; };
+		D5A160931F8F93D7007E3EB0 /* ELTCOINWALLET.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ELTCOINWALLET.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5A160961F8F93D7007E3EB0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D5A1609B1F8F93D8007E3EB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D5A1609D1F8F93D8007E3EB0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D5A160A01F8F93D8007E3EB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D5A160A21F8F93D8007E3EB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D5A160A71F8F93D8007E3EB0 /* ELTCOINWALLETTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ELTCOINWALLETTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5A160AB1F8F93D8007E3EB0 /* ELTCOINWALLETTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ELTCOINWALLETTests.swift; sourceTree = "<group>"; };
+		D5A160AD1F8F93D8007E3EB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D5A160B21F8F93D8007E3EB0 /* ELTCOINWALLETUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ELTCOINWALLETUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5A160B61F8F93D8007E3EB0 /* ELTCOINWALLETUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ELTCOINWALLETUITests.swift; sourceTree = "<group>"; };
+		D5A160B81F8F93D8007E3EB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D5A160C61F8F9677007E3EB0 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		D5A160C91F8FA373007E3EB0 /* UIColor+ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+ex.swift"; sourceTree = "<group>"; };
+		D5A160CC1F8FB085007E3EB0 /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
+		D5A160CE1F8FB656007E3EB0 /* WalletTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTransaction.swift; sourceTree = "<group>"; };
+		D5A160D11F8FBAA5007E3EB0 /* TransactionsDataStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsDataStub.swift; sourceTree = "<group>"; };
+		D5A160D31F8FBB07007E3EB0 /* Double+ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+ex.swift"; sourceTree = "<group>"; };
+		D5A160D51F8FC527007E3EB0 /* UIImage+ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+ex.swift"; sourceTree = "<group>"; };
+		D5A160D71F8FCD02007E3EB0 /* SendCoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendCoinViewController.swift; sourceTree = "<group>"; };
+		D5A160D91F8FD128007E3EB0 /* PopupNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupNavigationController.swift; sourceTree = "<group>"; };
+		D5A160DC1F8FD357007E3EB0 /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D5A160901F8F93D7007E3EB0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C7B80E7B1CACA161F232D64 /* Pods_ELTCOINWALLET.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5A160A41F8F93D8007E3EB0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F29E53798D05C5C42BFD6FAA /* Pods_ELTCOINWALLETTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5A160AF1F8F93D8007E3EB0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC9488FA3DDB2E745A337779 /* Pods_ELTCOINWALLETUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		37364DCDA7961E6B6ED84365 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3059D7A06A014083014AA722 /* Pods-ELTCOINWALLET.debug.xcconfig */,
+				9A98537D74FDC24F207E0813 /* Pods-ELTCOINWALLET.release.xcconfig */,
+				5C312ED4307E5966F244DD48 /* Pods-ELTCOINWALLETTests.debug.xcconfig */,
+				72EA67BCBE2808B7802C7D10 /* Pods-ELTCOINWALLETTests.release.xcconfig */,
+				58E4DBAAFDA3383A2C6E7D32 /* Pods-ELTCOINWALLETUITests.debug.xcconfig */,
+				4599C97CD92F2A3197A31C48 /* Pods-ELTCOINWALLETUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		8D6C093FD6131A65153A6F73 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6459B38DB322063EBCAA757D /* Pods_ELTCOINWALLET.framework */,
+				B41A0E7C40B9E6C64780F561 /* Pods_ELTCOINWALLETTests.framework */,
+				0660A24DA67E944B1042E255 /* Pods_ELTCOINWALLETUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D594522B1F926C42005107A9 /* MyEtherWallet */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MyEtherWallet;
+			sourceTree = "<group>";
+		};
+		D5A1608A1F8F93D7007E3EB0 = {
+			isa = PBXGroup;
+			children = (
+				D5A160951F8F93D7007E3EB0 /* ELTCOINWALLET */,
+				D5A160AA1F8F93D8007E3EB0 /* ELTCOINWALLETTests */,
+				D5A160B51F8F93D8007E3EB0 /* ELTCOINWALLETUITests */,
+				D5A160941F8F93D7007E3EB0 /* Products */,
+				37364DCDA7961E6B6ED84365 /* Pods */,
+				8D6C093FD6131A65153A6F73 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		D5A160941F8F93D7007E3EB0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D5A160931F8F93D7007E3EB0 /* ELTCOINWALLET.app */,
+				D5A160A71F8F93D8007E3EB0 /* ELTCOINWALLETTests.xctest */,
+				D5A160B21F8F93D8007E3EB0 /* ELTCOINWALLETUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D5A160951F8F93D7007E3EB0 /* ELTCOINWALLET */ = {
+			isa = PBXGroup;
+			children = (
+				D594522B1F926C42005107A9 /* MyEtherWallet */,
+				D5A160DB1F8FD34D007E3EB0 /* Views */,
+				D5A160D01F8FB81A007E3EB0 /* Stubs */,
+				D5A160CB1F8FB02A007E3EB0 /* Cells */,
+				D5A160C81F8FA364007E3EB0 /* Extensions */,
+				D5A160C51F8F950B007E3EB0 /* Models */,
+				D5A160C41F8F9505007E3EB0 /* ViewControllers */,
+				D5A160961F8F93D7007E3EB0 /* AppDelegate.swift */,
+				D5A1609A1F8F93D8007E3EB0 /* Main.storyboard */,
+				D5A1609D1F8F93D8007E3EB0 /* Assets.xcassets */,
+				D5A1609F1F8F93D8007E3EB0 /* LaunchScreen.storyboard */,
+				D5A160A21F8F93D8007E3EB0 /* Info.plist */,
+			);
+			path = ELTCOINWALLET;
+			sourceTree = "<group>";
+		};
+		D5A160AA1F8F93D8007E3EB0 /* ELTCOINWALLETTests */ = {
+			isa = PBXGroup;
+			children = (
+				D5A160AB1F8F93D8007E3EB0 /* ELTCOINWALLETTests.swift */,
+				D5A160AD1F8F93D8007E3EB0 /* Info.plist */,
+			);
+			path = ELTCOINWALLETTests;
+			sourceTree = "<group>";
+		};
+		D5A160B51F8F93D8007E3EB0 /* ELTCOINWALLETUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D5A160B61F8F93D8007E3EB0 /* ELTCOINWALLETUITests.swift */,
+				D5A160B81F8F93D8007E3EB0 /* Info.plist */,
+			);
+			path = ELTCOINWALLETUITests;
+			sourceTree = "<group>";
+		};
+		D5A160C41F8F9505007E3EB0 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				D5A160C61F8F9677007E3EB0 /* HomeViewController.swift */,
+				D5A160D71F8FCD02007E3EB0 /* SendCoinViewController.swift */,
+				D5A160D91F8FD128007E3EB0 /* PopupNavigationController.swift */,
+				D5285C8B1F8FFFA300F46425 /* ScannerViewController.swift */,
+				D59452291F920E38005107A9 /* NewWalletViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		D5A160C51F8F950B007E3EB0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D5A160CE1F8FB656007E3EB0 /* WalletTransaction.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D5A160C81F8FA364007E3EB0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D5A160C91F8FA373007E3EB0 /* UIColor+ex.swift */,
+				D5A160D31F8FBB07007E3EB0 /* Double+ex.swift */,
+				D5A160D51F8FC527007E3EB0 /* UIImage+ex.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D5A160CB1F8FB02A007E3EB0 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				D5A160CC1F8FB085007E3EB0 /* TransactionTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		D5A160D01F8FB81A007E3EB0 /* Stubs */ = {
+			isa = PBXGroup;
+			children = (
+				D5A160D11F8FBAA5007E3EB0 /* TransactionsDataStub.swift */,
+			);
+			path = Stubs;
+			sourceTree = "<group>";
+		};
+		D5A160DB1F8FD34D007E3EB0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D5A160DC1F8FD357007E3EB0 /* Animator.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D5A160921F8F93D7007E3EB0 /* ELTCOINWALLET */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D5A160BB1F8F93D8007E3EB0 /* Build configuration list for PBXNativeTarget "ELTCOINWALLET" */;
+			buildPhases = (
+				C812E1FAC9BD385E4B0E7662 /* [CP] Check Pods Manifest.lock */,
+				D5A1608F1F8F93D7007E3EB0 /* Sources */,
+				D5A160901F8F93D7007E3EB0 /* Frameworks */,
+				D5A160911F8F93D7007E3EB0 /* Resources */,
+				ACAB41753691F77C627C7BC2 /* [CP] Embed Pods Frameworks */,
+				903ED9B70139A080552BD035 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ELTCOINWALLET;
+			productName = ELTCOINWALLET;
+			productReference = D5A160931F8F93D7007E3EB0 /* ELTCOINWALLET.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D5A160A61F8F93D8007E3EB0 /* ELTCOINWALLETTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D5A160BE1F8F93D8007E3EB0 /* Build configuration list for PBXNativeTarget "ELTCOINWALLETTests" */;
+			buildPhases = (
+				AC96D91D35F469B5DE34992A /* [CP] Check Pods Manifest.lock */,
+				D5A160A31F8F93D8007E3EB0 /* Sources */,
+				D5A160A41F8F93D8007E3EB0 /* Frameworks */,
+				D5A160A51F8F93D8007E3EB0 /* Resources */,
+				EAE3026544DC98AD6F3734BC /* [CP] Embed Pods Frameworks */,
+				578ACFA5D6764C98F501A685 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D5A160A91F8F93D8007E3EB0 /* PBXTargetDependency */,
+			);
+			name = ELTCOINWALLETTests;
+			productName = ELTCOINWALLETTests;
+			productReference = D5A160A71F8F93D8007E3EB0 /* ELTCOINWALLETTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D5A160B11F8F93D8007E3EB0 /* ELTCOINWALLETUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D5A160C11F8F93D8007E3EB0 /* Build configuration list for PBXNativeTarget "ELTCOINWALLETUITests" */;
+			buildPhases = (
+				8037573E0F2D80C61E86D95D /* [CP] Check Pods Manifest.lock */,
+				D5A160AE1F8F93D8007E3EB0 /* Sources */,
+				D5A160AF1F8F93D8007E3EB0 /* Frameworks */,
+				D5A160B01F8F93D8007E3EB0 /* Resources */,
+				AA483C68EDCD0B35955F9AD4 /* [CP] Embed Pods Frameworks */,
+				75BFE1C3BEC5DEDEEC03B8C8 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D5A160B41F8F93D8007E3EB0 /* PBXTargetDependency */,
+			);
+			name = ELTCOINWALLETUITests;
+			productName = ELTCOINWALLETUITests;
+			productReference = D5A160B21F8F93D8007E3EB0 /* ELTCOINWALLETUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D5A1608B1F8F93D7007E3EB0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0900;
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = ELTCOIN;
+				TargetAttributes = {
+					D5A160921F8F93D7007E3EB0 = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+					};
+					D5A160A61F8F93D8007E3EB0 = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = D5A160921F8F93D7007E3EB0;
+					};
+					D5A160B11F8F93D8007E3EB0 = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = D5A160921F8F93D7007E3EB0;
+					};
+				};
+			};
+			buildConfigurationList = D5A1608E1F8F93D7007E3EB0 /* Build configuration list for PBXProject "ELTCOINWALLET" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D5A1608A1F8F93D7007E3EB0;
+			productRefGroup = D5A160941F8F93D7007E3EB0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D5A160921F8F93D7007E3EB0 /* ELTCOINWALLET */,
+				D5A160A61F8F93D8007E3EB0 /* ELTCOINWALLETTests */,
+				D5A160B11F8F93D8007E3EB0 /* ELTCOINWALLETUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D5A160911F8F93D7007E3EB0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5A160A11F8F93D8007E3EB0 /* LaunchScreen.storyboard in Resources */,
+				D5A1609E1F8F93D8007E3EB0 /* Assets.xcassets in Resources */,
+				D5A1609C1F8F93D8007E3EB0 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5A160A51F8F93D8007E3EB0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5A160B01F8F93D8007E3EB0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		578ACFA5D6764C98F501A685 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ELTCOINWALLETTests/Pods-ELTCOINWALLETTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		75BFE1C3BEC5DEDEEC03B8C8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ELTCOINWALLETUITests/Pods-ELTCOINWALLETUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8037573E0F2D80C61E86D95D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		903ED9B70139A080552BD035 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ELTCOINWALLET/Pods-ELTCOINWALLET-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AA483C68EDCD0B35955F9AD4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ELTCOINWALLETUITests/Pods-ELTCOINWALLETUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AC96D91D35F469B5DE34992A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		ACAB41753691F77C627C7BC2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ELTCOINWALLET/Pods-ELTCOINWALLET-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C812E1FAC9BD385E4B0E7662 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EAE3026544DC98AD6F3734BC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ELTCOINWALLETTests/Pods-ELTCOINWALLETTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D5A1608F1F8F93D7007E3EB0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5A160D81F8FCD02007E3EB0 /* SendCoinViewController.swift in Sources */,
+				D5A160971F8F93D7007E3EB0 /* AppDelegate.swift in Sources */,
+				D5A160DA1F8FD128007E3EB0 /* PopupNavigationController.swift in Sources */,
+				D5A160C71F8F9677007E3EB0 /* HomeViewController.swift in Sources */,
+				D5A160D21F8FBAA5007E3EB0 /* TransactionsDataStub.swift in Sources */,
+				D5A160CD1F8FB085007E3EB0 /* TransactionTableViewCell.swift in Sources */,
+				D594522A1F920E38005107A9 /* NewWalletViewController.swift in Sources */,
+				D5A160D61F8FC527007E3EB0 /* UIImage+ex.swift in Sources */,
+				D5285C8C1F8FFFA300F46425 /* ScannerViewController.swift in Sources */,
+				D5A160CF1F8FB656007E3EB0 /* WalletTransaction.swift in Sources */,
+				D5A160CA1F8FA373007E3EB0 /* UIColor+ex.swift in Sources */,
+				D5A160DD1F8FD357007E3EB0 /* Animator.swift in Sources */,
+				D5A160D41F8FBB07007E3EB0 /* Double+ex.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5A160A31F8F93D8007E3EB0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5A160AC1F8F93D8007E3EB0 /* ELTCOINWALLETTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5A160AE1F8F93D8007E3EB0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5A160B71F8F93D8007E3EB0 /* ELTCOINWALLETUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D5A160A91F8F93D8007E3EB0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D5A160921F8F93D7007E3EB0 /* ELTCOINWALLET */;
+			targetProxy = D5A160A81F8F93D8007E3EB0 /* PBXContainerItemProxy */;
+		};
+		D5A160B41F8F93D8007E3EB0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D5A160921F8F93D7007E3EB0 /* ELTCOINWALLET */;
+			targetProxy = D5A160B31F8F93D8007E3EB0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D5A1609A1F8F93D8007E3EB0 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D5A1609B1F8F93D8007E3EB0 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D5A1609F1F8F93D8007E3EB0 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D5A160A01F8F93D8007E3EB0 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D5A160B91F8F93D8007E3EB0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D5A160BA1F8F93D8007E3EB0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D5A160BC1F8F93D8007E3EB0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3059D7A06A014083014AA722 /* Pods-ELTCOINWALLET.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DFS786VR7V;
+				INFOPLIST_FILE = ELTCOINWALLET/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ELTCOIN.ELTCOINWALLET;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D5A160BD1F8F93D8007E3EB0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A98537D74FDC24F207E0813 /* Pods-ELTCOINWALLET.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DFS786VR7V;
+				INFOPLIST_FILE = ELTCOINWALLET/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ELTCOIN.ELTCOINWALLET;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D5A160BF1F8F93D8007E3EB0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5C312ED4307E5966F244DD48 /* Pods-ELTCOINWALLETTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DFS786VR7V;
+				INFOPLIST_FILE = ELTCOINWALLETTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ELTCOIN.ELTCOINWALLETTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ELTCOINWALLET.app/ELTCOINWALLET";
+			};
+			name = Debug;
+		};
+		D5A160C01F8F93D8007E3EB0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 72EA67BCBE2808B7802C7D10 /* Pods-ELTCOINWALLETTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DFS786VR7V;
+				INFOPLIST_FILE = ELTCOINWALLETTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ELTCOIN.ELTCOINWALLETTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ELTCOINWALLET.app/ELTCOINWALLET";
+			};
+			name = Release;
+		};
+		D5A160C21F8F93D8007E3EB0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 58E4DBAAFDA3383A2C6E7D32 /* Pods-ELTCOINWALLETUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DFS786VR7V;
+				INFOPLIST_FILE = ELTCOINWALLETUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ELTCOIN.ELTCOINWALLETUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ELTCOINWALLET;
+			};
+			name = Debug;
+		};
+		D5A160C31F8F93D8007E3EB0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4599C97CD92F2A3197A31C48 /* Pods-ELTCOINWALLETUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DFS786VR7V;
+				INFOPLIST_FILE = ELTCOINWALLETUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ELTCOIN.ELTCOINWALLETUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ELTCOINWALLET;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D5A1608E1F8F93D7007E3EB0 /* Build configuration list for PBXProject "ELTCOINWALLET" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5A160B91F8F93D8007E3EB0 /* Debug */,
+				D5A160BA1F8F93D8007E3EB0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D5A160BB1F8F93D8007E3EB0 /* Build configuration list for PBXNativeTarget "ELTCOINWALLET" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5A160BC1F8F93D8007E3EB0 /* Debug */,
+				D5A160BD1F8F93D8007E3EB0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D5A160BE1F8F93D8007E3EB0 /* Build configuration list for PBXNativeTarget "ELTCOINWALLETTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5A160BF1F8F93D8007E3EB0 /* Debug */,
+				D5A160C01F8F93D8007E3EB0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D5A160C11F8F93D8007E3EB0 /* Build configuration list for PBXNativeTarget "ELTCOINWALLETUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5A160C21F8F93D8007E3EB0 /* Debug */,
+				D5A160C31F8F93D8007E3EB0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D5A1608B1F8F93D7007E3EB0 /* Project object */;
+}
