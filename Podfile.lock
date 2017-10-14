@@ -1,41 +1,9 @@
 PODS:
-  - Alamofire (4.5.1)
-  - AlamofireImage (3.3.0):
-    - Alamofire (~> 4.5)
-  - AlamofireNetworkActivityIndicator (2.2.0):
-    - Alamofire (~> 4.5)
   - Crashlytics (3.9.0):
     - Fabric (~> 1.7.0)
   - Fabric (1.7.0)
   - FCAlertView (1.4.0)
-  - Firebase/Core (4.3.0):
-    - FirebaseAnalytics (= 4.0.4)
-    - FirebaseCore (= 4.0.8)
-  - Firebase/Messaging (4.3.0):
-    - Firebase/Core
-    - FirebaseMessaging (= 2.0.4)
-  - FirebaseAnalytics (4.0.4):
-    - FirebaseCore (~> 4.0)
-    - FirebaseInstanceID (~> 2.0)
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-    - nanopb (~> 0.3)
-  - FirebaseCore (4.0.8):
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-    - nanopb (~> 0.3)
-  - FirebaseInstanceID (2.0.4)
-  - FirebaseMessaging (2.0.4):
-    - FirebaseAnalytics (~> 4.0)
-    - FirebaseCore (~> 4.0)
-    - FirebaseInstanceID (~> 2.0)
-    - GoogleToolboxForMac/Logger (~> 2.1)
-    - Protobuf (~> 3.1)
-  - GoogleToolboxForMac/Defines (2.1.3)
-  - GoogleToolboxForMac/Logger (2.1.3):
-    - GoogleToolboxForMac/Defines (= 2.1.3)
-  - GoogleToolboxForMac/NSData+zlib (2.1.3):
-    - GoogleToolboxForMac/Defines (= 2.1.3)
   - InputMask (2.2.6)
-  - JVFloatLabeledTextField (1.2.1)
   - Material (2.11.4):
     - Material/Core (= 2.11.4)
   - Material/Core (2.11.4):
@@ -43,98 +11,36 @@ PODS:
   - Motion (1.2.2):
     - Motion/Core (= 1.2.2)
   - Motion/Core (1.2.2)
-  - nanopb (0.3.8):
-    - nanopb/decode (= 0.3.8)
-    - nanopb/encode (= 0.3.8)
-  - nanopb/decode (0.3.8)
-  - nanopb/encode (0.3.8)
   - NVActivityIndicatorView (4.0.0):
     - NVActivityIndicatorView/Presenter (= 4.0.0)
   - NVActivityIndicatorView/Presenter (4.0.0)
-  - ObjectMapper (3.0.0)
-  - PhoneNumberKit (2.0.0):
-    - PhoneNumberKit/PhoneNumberKitCore (= 2.0.0)
-    - PhoneNumberKit/UIKit (= 2.0.0)
-  - PhoneNumberKit/PhoneNumberKitCore (2.0.0)
-  - PhoneNumberKit/UIKit (2.0.0):
-    - PhoneNumberKit/PhoneNumberKitCore
-  - PopupDialog (0.6.0)
-  - Protobuf (3.4.0)
   - ReachabilitySwift (3)
-  - Realm (2.10.2):
-    - Realm/Headers (= 2.10.2)
-  - Realm/Headers (2.10.2)
-  - RealmSwift (2.10.2):
-    - Realm (= 2.10.2)
   - SkyFloatingLabelTextField (3.2.1)
   - SnapKit (4.0.0)
-  - SwiftDate (4.4.1)
-  - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.5)
-  - AlamofireImage (~> 3.1)
-  - AlamofireNetworkActivityIndicator (~> 2.2)
   - Crashlytics
   - Fabric
   - FCAlertView
-  - Firebase/Core
-  - Firebase/Messaging
   - InputMask
-  - JVFloatLabeledTextField
   - Material
   - NVActivityIndicatorView
-  - ObjectMapper (from `https://github.com/Hearst-DD/ObjectMapper.git`, branch `swift-4`)
-  - PhoneNumberKit
-  - PopupDialog (~> 0.5)
   - ReachabilitySwift (~> 3)
-  - RealmSwift
   - SkyFloatingLabelTextField (~> 3.0)
   - SnapKit
-  - SwiftDate (~> 4.0)
-  - SwiftyJSON
-
-EXTERNAL SOURCES:
-  ObjectMapper:
-    :branch: swift-4
-    :git: https://github.com/Hearst-DD/ObjectMapper.git
-
-CHECKOUT OPTIONS:
-  ObjectMapper:
-    :commit: 18051553fc44e98ffb1b7e93fa94cd184283d993
-    :git: https://github.com/Hearst-DD/ObjectMapper.git
 
 SPEC CHECKSUMS:
-  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
-  AlamofireImage: 2e784dc5d00f04903a52c1d169181469c805c3df
-  AlamofireNetworkActivityIndicator: 81e1630e7cfed22a4e4e82a174c59e651dc4f8ca
   Crashlytics: 64aad5dd97249dd3ff94b979fea140144590cdd3
   Fabric: e6be012366472553807dada21243c5ab8d904151
   FCAlertView: fdddd63381898c1d1a5a20c9f084fbd2c6d12f8b
-  Firebase: 83283761a1ef6dc9846e03d08059f51421afbd65
-  FirebaseAnalytics: 722b53c7b32bfc7806b06e0093a2f5180d4f2c5a
-  FirebaseCore: 69b1a5ac5f857ba6d5fd9d5fe794f4786dd5e579
-  FirebaseInstanceID: 70c2b877e9338971b2429ea5a4293df6961aa44e
-  FirebaseMessaging: 3dd86bfda2acb680b05c97f3f8ac566e9bb87b2a
-  GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
   InputMask: 756ffc515121d07a9c81a605fa5c44e5ac5bde13
-  JVFloatLabeledTextField: cfc44e3c4d493b2ed92ede8035e8e89c2912ba64
   Material: a1e1ec7789ffab391f8179047926f1736865eb7e
   Motion: 532cc6bb5d6777c58a20f71c26c5825173017f60
-  nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   NVActivityIndicatorView: 54c9b93b6f25a4f467512680c0c90c09a1095cf2
-  ObjectMapper: 739e5530df22248823f6cc7ed9e016ebf2c26a27
-  PhoneNumberKit: 073b3cef30c2a64ddcd623ea5953bc84bb5b3fc4
-  PopupDialog: 687af43af0f7b89948cd411ac701865f931bd6dc
-  Protobuf: 03eef2ee0b674770735cf79d9c4d3659cf6908e8
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
-  Realm: 0ef72b837fb67e9f4b098bac771ddd72c7fdbb69
-  RealmSwift: 07a9ae0505091eda6b2ee7c190c3786d6e90a7b0
   SkyFloatingLabelTextField: 71d28906024e7d7e4460099b342f3ca7036a2e24
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
-  SwiftDate: a70a534d4feed03b2a2b575e36bef82dc2286a8d
-  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 87a063ff69d830bbfdb58a161633a2b60b3c64f9
+PODFILE CHECKSUM: 53b5729e655c51758732a145a150f520522b086a
 
 COCOAPODS: 1.2.1

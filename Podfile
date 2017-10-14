@@ -6,26 +6,14 @@ target 'ELTCOINWALLET' do
   use_frameworks!
 
   # Pods for ELTCOINWALLET
-  pod 'Alamofire', '~> 4.5'
-  pod 'AlamofireNetworkActivityIndicator', '~> 2.2'
-  pod 'AlamofireImage', '~> 3.1'
-  pod 'ObjectMapper', :git => 'https://github.com/Hearst-DD/ObjectMapper.git', :branch => 'swift-4'
-  pod 'SwiftyJSON'
-  pod 'RealmSwift'
-  pod 'SwiftDate', '~> 4.0'
   pod 'Fabric'
   pod 'Crashlytics'
   pod 'ReachabilitySwift', '~> 3'
-  pod 'Firebase/Core'
-  pod 'Firebase/Messaging'
-  pod 'JVFloatLabeledTextField' #not swift
   pod 'SnapKit'
-  pod 'SkyFloatingLabelTextField', '~> 3.0' #skyscanner
+  pod 'SkyFloatingLabelTextField', '~> 3.0'
   pod 'InputMask' #input masks for textfield
-  pod 'PopupDialog', '~> 0.5' #https://github.com/Orderella/PopupDialog
   pod 'NVActivityIndicatorView'
   pod 'FCAlertView'
-  pod 'PhoneNumberKit'
   pod 'Material'
 
   target 'ELTCOINWALLETTests' do
