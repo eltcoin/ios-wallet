@@ -32,6 +32,7 @@ class NewWalletViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.CustomColor.White.offwhite
         setupViews()
+        setupWebView()
     }
     
     func setupWebView(){
@@ -50,8 +51,12 @@ class NewWalletViewController: UIViewController {
         
         let config = WKWebViewConfiguration()
         config.userContentController = contentController
-        
+        webView.navigationDelegate = self
         webView.allowsBackForwardNavigationGestures = false
+        
+        let url = Bundle.main.url(forResource: "dist/index", withExtension: "html")
+        webView.load(URLRequest(url: url!))
+        
     }
     
     func setupViews(){
@@ -146,22 +151,19 @@ extension NewWalletViewController: WKScriptMessageHandler {
                 print(parsedData)
 
             }
-            
         }
     }
 }
 
-extension NewWalletViewController : UIWebViewDelegate {
-    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
-        print("Webview fail with error \(error)");
+//MARK: Webview navigation
+
+extension NewWalletViewController: WKNavigationDelegate {
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        print("Navigated to: " + (webView.url?.absoluteString)!)
     }
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        return true;
-    }
-    func webViewDidStartLoad(_ webView: UIWebView) {
-        print("Webview started Loading")
-    }
-    func webViewDidFinishLoad(_ webView: UIWebView) {
-        print("Webview did finish load")
-    }
+}
+
+//MARK: JS Injection steps
+extension NewWalletViewController {
+    
 }

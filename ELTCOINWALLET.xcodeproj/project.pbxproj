@@ -11,7 +11,7 @@
 		AC9488FA3DDB2E745A337779 /* Pods_ELTCOINWALLETUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0660A24DA67E944B1042E255 /* Pods_ELTCOINWALLETUITests.framework */; };
 		D5285C8C1F8FFFA300F46425 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5285C8B1F8FFFA300F46425 /* ScannerViewController.swift */; };
 		D594522A1F920E38005107A9 /* NewWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59452291F920E38005107A9 /* NewWalletViewController.swift */; };
-		D594522D1F935544005107A9 /* etherwallet in Resources */ = {isa = PBXBuildFile; fileRef = D594522C1F9354CC005107A9 /* etherwallet */; };
+		D59452301F936DBD005107A9 /* dist in Resources */ = {isa = PBXBuildFile; fileRef = D594522F1F936DB8005107A9 /* dist */; };
 		D5A160971F8F93D7007E3EB0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A160961F8F93D7007E3EB0 /* AppDelegate.swift */; };
 		D5A1609C1F8F93D8007E3EB0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5A1609A1F8F93D8007E3EB0 /* Main.storyboard */; };
 		D5A1609E1F8F93D8007E3EB0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5A1609D1F8F93D8007E3EB0 /* Assets.xcassets */; };
@@ -60,7 +60,7 @@
 		B41A0E7C40B9E6C64780F561 /* Pods_ELTCOINWALLETTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ELTCOINWALLETTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5285C8B1F8FFFA300F46425 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		D59452291F920E38005107A9 /* NewWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWalletViewController.swift; sourceTree = "<group>"; };
-		D594522C1F9354CC005107A9 /* etherwallet */ = {isa = PBXFileReference; lastKnownFileType = folder; path = etherwallet; sourceTree = "<group>"; };
+		D594522F1F936DB8005107A9 /* dist */ = {isa = PBXFileReference; lastKnownFileType = folder; name = dist; path = etherwallet/dist; sourceTree = "<group>"; };
 		D5A160931F8F93D7007E3EB0 /* ELTCOINWALLET.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ELTCOINWALLET.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5A160961F8F93D7007E3EB0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D5A1609B1F8F93D8007E3EB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -139,7 +139,7 @@
 		D5A1608A1F8F93D7007E3EB0 = {
 			isa = PBXGroup;
 			children = (
-				D594522C1F9354CC005107A9 /* etherwallet */,
+				D594522F1F936DB8005107A9 /* dist */,
 				D5A160951F8F93D7007E3EB0 /* ELTCOINWALLET */,
 				D5A160AA1F8F93D8007E3EB0 /* ELTCOINWALLETTests */,
 				D5A160B51F8F93D8007E3EB0 /* ELTCOINWALLETUITests */,
@@ -365,7 +365,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D594522D1F935544005107A9 /* etherwallet in Resources */,
+				D59452301F936DBD005107A9 /* dist in Resources */,
 				D5A160A11F8F93D8007E3EB0 /* LaunchScreen.storyboard in Resources */,
 				D5A1609E1F8F93D8007E3EB0 /* Assets.xcassets in Resources */,
 				D5A1609C1F8F93D8007E3EB0 /* Main.storyboard in Resources */,
