@@ -11,6 +11,7 @@ import Foundation
 import UIKit
 import SnapKit
 import SkyFloatingLabelTextField
+import WebKit
 
 class NewWalletViewController: UIViewController {
     
