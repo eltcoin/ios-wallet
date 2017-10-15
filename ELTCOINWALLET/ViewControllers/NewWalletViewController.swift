@@ -25,10 +25,33 @@ class NewWalletViewController: UIViewController {
     let createWalletButton = UIButton()
     let importWalletButton = UIButton()
     
+    // Webview for MyEtherWallet
+    var webView = WKWebView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.CustomColor.White.offwhite
         setupViews()
+    }
+    
+    func setupWebView(){
+        
+        let contentController = WKUserContentController();
+        let userScript = WKUserScript(
+            source: "redHeader()",
+            injectionTime: WKUserScriptInjectionTime.atDocumentEnd,
+            forMainFrameOnly: true
+        )
+        contentController.addUserScript(userScript)
+        contentController.add(
+            self,
+            name: "callbackHandler"
+        )
+        
+        let config = WKWebViewConfiguration()
+        config.userContentController = contentController
+        
+        webView.allowsBackForwardNavigationGestures = false
     }
     
     func setupViews(){
@@ -108,5 +131,37 @@ class NewWalletViewController: UIViewController {
     
     @objc func closeButtonPressed(){
         self.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension NewWalletViewController: WKScriptMessageHandler {
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        if(message.name == "callbackHandler") {
+            
+            print("JavaScript is sending a message: \(message.body)")
+            
+            let str =  message.body as? String ?? ""
+            
+            if let parsedData = try? JSONSerialization.jsonObject(with: str.data(using: .utf8)!) as! [String:Any] {
+                print(parsedData)
+
+            }
+            
+        }
+    }
+}
+
+extension NewWalletViewController : UIWebViewDelegate {
+    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
+        print("Webview fail with error \(error)");
+    }
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        return true;
+    }
+    func webViewDidStartLoad(_ webView: UIWebView) {
+        print("Webview started Loading")
+    }
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        print("Webview did finish load")
     }
 }
