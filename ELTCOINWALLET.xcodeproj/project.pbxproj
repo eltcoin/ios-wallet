@@ -9,9 +9,19 @@
 /* Begin PBXBuildFile section */
 		4C7B80E7B1CACA161F232D64 /* Pods_ELTCOINWALLET.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6459B38DB322063EBCAA757D /* Pods_ELTCOINWALLET.framework */; };
 		AC9488FA3DDB2E745A337779 /* Pods_ELTCOINWALLETUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0660A24DA67E944B1042E255 /* Pods_ELTCOINWALLETUITests.framework */; };
+		D51504841F950BB0006013E2 /* WalletEncryptedJSAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51504831F950BB0006013E2 /* WalletEncryptedJSAPIResponse.swift */; };
 		D5285C8C1F8FFFA300F46425 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5285C8B1F8FFFA300F46425 /* ScannerViewController.swift */; };
 		D594522A1F920E38005107A9 /* NewWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59452291F920E38005107A9 /* NewWalletViewController.swift */; };
 		D59452301F936DBD005107A9 /* dist in Resources */ = {isa = PBXBuildFile; fileRef = D594522F1F936DB8005107A9 /* dist */; };
+		D59452321F94BA1D005107A9 /* WalletCreatedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59452311F94BA1D005107A9 /* WalletCreatedViewController.swift */; };
+		D59452351F94C947005107A9 /* WalletManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59452341F94C947005107A9 /* WalletManager.swift */; };
+		D59452371F94C98E005107A9 /* WalletEncrypted.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59452361F94C98E005107A9 /* WalletEncrypted.swift */; };
+		D594523B1F94C9F2005107A9 /* NetworkTaskReponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D594523A1F94C9F2005107A9 /* NetworkTaskReponse.swift */; };
+		D594523E1F94CD9C005107A9 /* WalletCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = D594523D1F94CD9C005107A9 /* WalletCrypto.swift */; };
+		D59452401F94CE01005107A9 /* WalletCipherParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = D594523F1F94CE01005107A9 /* WalletCipherParams.swift */; };
+		D59452421F94CE5D005107A9 /* WalletKDFParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59452411F94CE5D005107A9 /* WalletKDFParams.swift */; };
+		D59452441F94D1A8005107A9 /* WalletUnEncrypted.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59452431F94D1A8005107A9 /* WalletUnEncrypted.swift */; };
+		D59452461F94E45A005107A9 /* WalletUnEncryptedJSAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59452451F94E45A005107A9 /* WalletUnEncryptedJSAPIResponse.swift */; };
 		D5A160971F8F93D7007E3EB0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A160961F8F93D7007E3EB0 /* AppDelegate.swift */; };
 		D5A1609C1F8F93D8007E3EB0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5A1609A1F8F93D8007E3EB0 /* Main.storyboard */; };
 		D5A1609E1F8F93D8007E3EB0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5A1609D1F8F93D8007E3EB0 /* Assets.xcassets */; };
@@ -58,9 +68,19 @@
 		72EA67BCBE2808B7802C7D10 /* Pods-ELTCOINWALLETTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ELTCOINWALLETTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ELTCOINWALLETTests/Pods-ELTCOINWALLETTests.release.xcconfig"; sourceTree = "<group>"; };
 		9A98537D74FDC24F207E0813 /* Pods-ELTCOINWALLET.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ELTCOINWALLET.release.xcconfig"; path = "Pods/Target Support Files/Pods-ELTCOINWALLET/Pods-ELTCOINWALLET.release.xcconfig"; sourceTree = "<group>"; };
 		B41A0E7C40B9E6C64780F561 /* Pods_ELTCOINWALLETTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ELTCOINWALLETTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D51504831F950BB0006013E2 /* WalletEncryptedJSAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletEncryptedJSAPIResponse.swift; sourceTree = "<group>"; };
 		D5285C8B1F8FFFA300F46425 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		D59452291F920E38005107A9 /* NewWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWalletViewController.swift; sourceTree = "<group>"; };
 		D594522F1F936DB8005107A9 /* dist */ = {isa = PBXFileReference; lastKnownFileType = folder; name = dist; path = etherwallet/dist; sourceTree = "<group>"; };
+		D59452311F94BA1D005107A9 /* WalletCreatedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCreatedViewController.swift; sourceTree = "<group>"; };
+		D59452341F94C947005107A9 /* WalletManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletManager.swift; sourceTree = "<group>"; };
+		D59452361F94C98E005107A9 /* WalletEncrypted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletEncrypted.swift; sourceTree = "<group>"; };
+		D594523A1F94C9F2005107A9 /* NetworkTaskReponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTaskReponse.swift; sourceTree = "<group>"; };
+		D594523D1F94CD9C005107A9 /* WalletCrypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCrypto.swift; sourceTree = "<group>"; };
+		D594523F1F94CE01005107A9 /* WalletCipherParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCipherParams.swift; sourceTree = "<group>"; };
+		D59452411F94CE5D005107A9 /* WalletKDFParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletKDFParams.swift; sourceTree = "<group>"; };
+		D59452431F94D1A8005107A9 /* WalletUnEncrypted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletUnEncrypted.swift; sourceTree = "<group>"; };
+		D59452451F94E45A005107A9 /* WalletUnEncryptedJSAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletUnEncryptedJSAPIResponse.swift; sourceTree = "<group>"; };
 		D5A160931F8F93D7007E3EB0 /* ELTCOINWALLET.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ELTCOINWALLET.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5A160961F8F93D7007E3EB0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D5A1609B1F8F93D8007E3EB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -136,6 +156,34 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D59452331F94C93B005107A9 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				D59452341F94C947005107A9 /* WalletManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		D59452381F94C9AF005107A9 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				D594523A1F94C9F2005107A9 /* NetworkTaskReponse.swift */,
+				D59452451F94E45A005107A9 /* WalletUnEncryptedJSAPIResponse.swift */,
+				D51504831F950BB0006013E2 /* WalletEncryptedJSAPIResponse.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		D594523C1F94CD8F005107A9 /* WalletEnc */ = {
+			isa = PBXGroup;
+			children = (
+				D594523D1F94CD9C005107A9 /* WalletCrypto.swift */,
+				D594523F1F94CE01005107A9 /* WalletCipherParams.swift */,
+				D59452411F94CE5D005107A9 /* WalletKDFParams.swift */,
+			);
+			path = WalletEnc;
+			sourceTree = "<group>";
+		};
 		D5A1608A1F8F93D7007E3EB0 = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +210,8 @@
 		D5A160951F8F93D7007E3EB0 /* ELTCOINWALLET */ = {
 			isa = PBXGroup;
 			children = (
+				D59452381F94C9AF005107A9 /* Networking */,
+				D59452331F94C93B005107A9 /* Manager */,
 				D5A160DB1F8FD34D007E3EB0 /* Views */,
 				D5A160D01F8FB81A007E3EB0 /* Stubs */,
 				D5A160CB1F8FB02A007E3EB0 /* Cells */,
@@ -203,6 +253,7 @@
 				D5A160D91F8FD128007E3EB0 /* PopupNavigationController.swift */,
 				D5285C8B1F8FFFA300F46425 /* ScannerViewController.swift */,
 				D59452291F920E38005107A9 /* NewWalletViewController.swift */,
+				D59452311F94BA1D005107A9 /* WalletCreatedViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -210,7 +261,10 @@
 		D5A160C51F8F950B007E3EB0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D594523C1F94CD8F005107A9 /* WalletEnc */,
 				D5A160CE1F8FB656007E3EB0 /* WalletTransaction.swift */,
+				D59452361F94C98E005107A9 /* WalletEncrypted.swift */,
+				D59452431F94D1A8005107A9 /* WalletUnEncrypted.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -531,18 +585,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D59452441F94D1A8005107A9 /* WalletUnEncrypted.swift in Sources */,
+				D59452371F94C98E005107A9 /* WalletEncrypted.swift in Sources */,
+				D59452461F94E45A005107A9 /* WalletUnEncryptedJSAPIResponse.swift in Sources */,
+				D59452351F94C947005107A9 /* WalletManager.swift in Sources */,
 				D5A160D81F8FCD02007E3EB0 /* SendCoinViewController.swift in Sources */,
 				D5A160971F8F93D7007E3EB0 /* AppDelegate.swift in Sources */,
+				D59452321F94BA1D005107A9 /* WalletCreatedViewController.swift in Sources */,
 				D5A160DA1F8FD128007E3EB0 /* PopupNavigationController.swift in Sources */,
+				D59452401F94CE01005107A9 /* WalletCipherParams.swift in Sources */,
+				D594523B1F94C9F2005107A9 /* NetworkTaskReponse.swift in Sources */,
 				D5A160C71F8F9677007E3EB0 /* HomeViewController.swift in Sources */,
 				D5A160D21F8FBAA5007E3EB0 /* TransactionsDataStub.swift in Sources */,
 				D5A160CD1F8FB085007E3EB0 /* TransactionTableViewCell.swift in Sources */,
 				D594522A1F920E38005107A9 /* NewWalletViewController.swift in Sources */,
 				D5A160D61F8FC527007E3EB0 /* UIImage+ex.swift in Sources */,
+				D594523E1F94CD9C005107A9 /* WalletCrypto.swift in Sources */,
+				D51504841F950BB0006013E2 /* WalletEncryptedJSAPIResponse.swift in Sources */,
 				D5285C8C1F8FFFA300F46425 /* ScannerViewController.swift in Sources */,
 				D5A160CF1F8FB656007E3EB0 /* WalletTransaction.swift in Sources */,
 				D5A160CA1F8FA373007E3EB0 /* UIColor+ex.swift in Sources */,
 				D5A160DD1F8FD357007E3EB0 /* Animator.swift in Sources */,
+				D59452421F94CE5D005107A9 /* WalletKDFParams.swift in Sources */,
 				D5A160D41F8FBB07007E3EB0 /* Double+ex.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

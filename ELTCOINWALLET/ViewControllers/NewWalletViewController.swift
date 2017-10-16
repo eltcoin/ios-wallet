@@ -15,13 +15,21 @@ import WebKit
 
 class NewWalletViewController: UIViewController {
     
+    enum WALLET_EVENTS : String {
+        case NEW_WALLET_ERR = "NEW_WALLET_ERR",
+        NEW_WALLET = "NEW_WALLET",
+        NEW_WALLET_ENC = "NEW_WALLET_ENC"
+    }
+    
     // TOP BAR
     var topBarBackgroundView = UIView()
     var topBarTitleLabel = UILabel()
     var topBarBackgroundLineView = UIView()
     var topBarCloseButton = UIButton()
     
-    // CTA Buttons
+    // Form Items
+    let passwordTextView = SkyFloatingLabelTextField()
+    let orLabel = UILabel()
     let createWalletButton = UIButton()
     let importWalletButton = UIButton()
     
@@ -51,8 +59,13 @@ class NewWalletViewController: UIViewController {
         
         let config = WKWebViewConfiguration()
         config.userContentController = contentController
+        
+        webView = WKWebView(frame: CGRect(), configuration: config)
         webView.navigationDelegate = self
         webView.allowsBackForwardNavigationGestures = false
+        
+        // Disable UI until webview is ready:
+        createWalletButton.isEnabled = false
         
         let url = Bundle.main.url(forResource: "dist/index", withExtension: "html")
         webView.load(URLRequest(url: url!))
@@ -101,42 +114,62 @@ class NewWalletViewController: UIViewController {
         
         // CTA Buttons
         
-        view.addSubview(createWalletButton)
-        createWalletButton.setTitle("Create Wallet", for: .normal)
-        createWalletButton.titleLabel?.textColor = UIColor.CustomColor.Black.DeepCharcoal
-        createWalletButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 23.0)
-        createWalletButton.snp.makeConstraints { (make) -> Void in
-            make.width.equalTo(100)
-            make.height.equalTo(40)
+        view.addSubview(passwordTextView)
+        passwordTextView.placeholder = "Password"
+        passwordTextView.title = "Secure Wallet With Password"
+        //passwordTextView.delegate = self
+        passwordTextView.setTitleVisible(true)
+        passwordTextView.returnKeyType = .go
+        passwordTextView.tintColor = UIColor.CustomColor.Black.DeepCharcoal
+        passwordTextView.selectedTitleColor = UIColor.CustomColor.Grey.midGrey
+        passwordTextView.selectedLineColor = UIColor.CustomColor.Grey.midGrey
+        passwordTextView.autocapitalizationType = .none
+        passwordTextView.keyboardType = UIKeyboardType.default
+        passwordTextView.isSecureTextEntry = true
+        passwordTextView.font = UIFont(name: "HelveticaNeue-Light", size: 15.0)
+        passwordTextView.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(view.snp.leftMargin).offset(20)
+            make.right.equalTo(view.snp.rightMargin).offset(-20)
             make.centerX.equalTo(view)
-            make.top.equalTo(topBarBackgroundLineView.snp.bottom).offset(50)
+            make.top.equalTo(topBarBackgroundView.snp.bottom).offset(20)
         }
         
-        view.addSubview(importWalletButton)
-        importWalletButton.setTitle("Import Wallet", for: .normal)
-        importWalletButton.titleLabel?.textColor = UIColor.CustomColor.Black.DeepCharcoal
-        importWalletButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 23.0)
-        importWalletButton.snp.makeConstraints { (make) -> Void in
-            make.width.equalTo(100)
+        view.addSubview(createWalletButton)
+        createWalletButton.setTitle("Create Wallet", for: .normal)
+        createWalletButton.backgroundColor = UIColor.CustomColor.Black.DeepCharcoal
+        createWalletButton.layer.cornerRadius = 4.0
+        createWalletButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 23.0)
+        createWalletButton.snp.makeConstraints { (make) -> Void in
+            make.width.equalTo(200)
             make.height.equalTo(40)
+            make.centerX.equalTo(view)
+            make.top.equalTo(passwordTextView.snp.bottom).offset(20)
+        }
+        createWalletButton.addTarget(self, action: #selector(NewWalletViewController.createWalletButtonPressed), for: .touchUpInside)
+        
+        view.addSubview(orLabel)
+        orLabel.text = "-or-"
+        orLabel.font = UIFont(name: "HelveticaNeue-Light", size: 14.0)
+        orLabel.snp.makeConstraints { (make) -> Void in
             make.centerX.equalTo(view)
             make.top.equalTo(createWalletButton.snp.bottom).offset(10)
         }
         
+        view.addSubview(importWalletButton)
+        importWalletButton.setTitle("Import Wallet", for: .normal)
+        importWalletButton.setTitleColor(UIColor.CustomColor.Black.DeepCharcoal, for: .normal)
+        importWalletButton.layer.cornerRadius = 4.0
+        importWalletButton.titleLabel?.textColor = UIColor.CustomColor.Black.DeepCharcoal
+        importWalletButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 23.0)
+        importWalletButton.snp.makeConstraints { (make) -> Void in
+            make.width.equalTo(200)
+            make.height.equalTo(40)
+            make.centerX.equalTo(view)
+            make.top.equalTo(orLabel.snp.bottom).offset(10)
+        }
+        
     }
-    
-    @objc func createButtonPressed(){
-        let nv = UINavigationController(rootViewController: ScannerViewController())
-        self.present( nv, animated: true, completion: nil)
-    }
-    
-    @objc func importButtonPressed(){
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    @objc func closeButtonPressed(){
-        self.dismiss(animated: true, completion: nil)
-    }
+
 }
 
 extension NewWalletViewController: WKScriptMessageHandler {
@@ -144,12 +177,36 @@ extension NewWalletViewController: WKScriptMessageHandler {
         if(message.name == "callbackHandler") {
             
             print("JavaScript is sending a message: \(message.body)")
-            
             let str =  message.body as? String ?? ""
             
             if let parsedData = try? JSONSerialization.jsonObject(with: str.data(using: .utf8)!) as! [String:Any] {
                 print(parsedData)
+                
+                if let tag: String = parsedData["tag"] as? String{
+                    switch tag {
+                    case WALLET_EVENTS.NEW_WALLET_ERR.rawValue: break
+                    case WALLET_EVENTS.NEW_WALLET.rawValue:
+                        
+                        if let walletUnEncryptedJSAPIResponse = WalletUnEncryptedJSAPIResponse(JSONString: str) {
+                            WalletManager.sharedInstance.setWalletUnEncrypted(wallet: walletUnEncryptedJSAPIResponse.payload)
+                        }
 
+                    case WALLET_EVENTS.NEW_WALLET_ENC.rawValue:
+                        
+                        if let walletEncryptedJSAPIResponse = WalletEncryptedJSAPIResponse(JSONString: str) {
+                            WalletManager.sharedInstance.setWalletEncrypted(wallet: walletEncryptedJSAPIResponse.payload)
+                        }
+                        
+                        self.navigationController?.pushViewController(WalletCreatedViewController(), animated: true)
+
+                    default:
+                        let alertController = UIAlertController(title: "New Wallet Error", message:
+                            "Sorry, there was a problem creating your wallet", preferredStyle: UIAlertControllerStyle.alert)
+                        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,handler: nil))
+                        
+                        self.present(alertController, animated: true, completion: nil)
+                    }
+                }
             }
         }
     }
@@ -160,10 +217,31 @@ extension NewWalletViewController: WKScriptMessageHandler {
 extension NewWalletViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         print("Navigated to: " + (webView.url?.absoluteString)!)
+        createWalletButton.isEnabled = true
     }
 }
 
-//MARK: JS Injection steps
+//MARK: Wallet Functions
 extension NewWalletViewController {
     
+}
+
+//MARK: Actions
+extension NewWalletViewController {
+    
+    @objc func createWalletButtonPressed(){
+        if let password = passwordTextView.text?.trimmingCharacters(in: .whitespacesAndNewlines){
+            if webView.url?.absoluteString.range(of:"index.html") != nil {
+                webView.evaluateJavaScript("externalGenerateWallet('\(password)')", completionHandler: nil)
+            }
+        }
+    }
+    
+    @objc func importButtonPressed(){
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func closeButtonPressed(){
+        self.dismiss(animated: true, completion: nil)
+    }
 }

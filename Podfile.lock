@@ -14,6 +14,7 @@ PODS:
   - NVActivityIndicatorView (4.0.0):
     - NVActivityIndicatorView/Presenter (= 4.0.0)
   - NVActivityIndicatorView/Presenter (4.0.0)
+  - ObjectMapper (3.0.0)
   - ReachabilitySwift (3)
   - SkyFloatingLabelTextField (3.2.1)
   - SnapKit (4.0.0)
@@ -25,6 +26,7 @@ DEPENDENCIES:
   - InputMask
   - Material
   - NVActivityIndicatorView
+  - ObjectMapper
   - ReachabilitySwift (~> 3)
   - SkyFloatingLabelTextField (~> 3.0)
   - SnapKit
@@ -37,10 +39,11 @@ SPEC CHECKSUMS:
   Material: a1e1ec7789ffab391f8179047926f1736865eb7e
   Motion: 532cc6bb5d6777c58a20f71c26c5825173017f60
   NVActivityIndicatorView: 54c9b93b6f25a4f467512680c0c90c09a1095cf2
+  ObjectMapper: 92230db59bf8f341a5c3a3cf0b9fbdde3cf0d87f
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   SkyFloatingLabelTextField: 71d28906024e7d7e4460099b342f3ca7036a2e24
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
 
-PODFILE CHECKSUM: 53b5729e655c51758732a145a150f520522b086a
+PODFILE CHECKSUM: 90454d81c65c2c0b88dc38484f030cfa88ffb7e4
 
 COCOAPODS: 1.2.1

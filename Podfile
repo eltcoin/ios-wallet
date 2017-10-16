@@ -15,6 +15,7 @@ target 'ELTCOINWALLET' do
   pod 'NVActivityIndicatorView'
   pod 'FCAlertView'
   pod 'Material'
+  pod 'ObjectMapper'
 
   target 'ELTCOINWALLETTests' do
     inherit! :search_paths
