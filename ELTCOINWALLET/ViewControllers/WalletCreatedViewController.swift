@@ -89,7 +89,8 @@ class WalletCreatedViewController: UIViewController {
             make.centerX.equalTo(view)
             make.top.equalTo(walletAddressTextField.snp.bottom).offset(20)
         }
-        
+        continueButton.addTarget(self, action: #selector(continueButtonPressed), for: .touchUpInside)
+
         view.addSubview(exportButton)
         exportButton.setTitle("Export Wallet", for: .normal)
         exportButton.setTitleColor(UIColor.CustomColor.Black.DeepCharcoal, for: .normal)
@@ -103,6 +104,13 @@ class WalletCreatedViewController: UIViewController {
             make.top.equalTo(continueButton.snp.bottom).offset(10)
         }
         exportButton.addTarget(self, action: #selector(exportButtonPressed), for: .touchUpInside)
+    }
+    
+    @objc func continueButtonPressed(){
+        
+        // TODO: getBlockie image
+        // globalFuncs.getBlockie = function(address)
+        self.navigationController?.dismiss(animated: true, completion: nil)
     }
     
     @objc func exportButtonPressed(){

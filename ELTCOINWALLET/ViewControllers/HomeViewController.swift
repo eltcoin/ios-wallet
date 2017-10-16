@@ -34,6 +34,30 @@ class HomeViewController: UIViewController {
     // Transaction List
     var transactionsTableView = UITableView()
 
+    func checkIfWalletSetup(){
+        if let wallet = WalletManager.sharedInstance.getWalletUnEncrypted(){
+            if wallet.address.count == 0 {
+                attachWallet()
+            }
+        }else{
+            attachWallet()
+        }
+    }
+    
+    func setupWalletUI(){
+        if let wallet = WalletManager.sharedInstance.getWalletUnEncrypted(){
+            walletAddressLabel.text = wallet.address
+            walletBalanceLabel.text = String(format:"%.8f ELT", wallet.getCurrentBalanceELTCOIN())
+            walletFiatBalanceLabel.text = String(format:"%.2f USD", wallet.getCurrentBalanceUSD())
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        checkIfWalletSetup()
+        setupWalletUI()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -106,7 +130,7 @@ class HomeViewController: UIViewController {
         walletSummaryBackgroundView.addSubview(walletAddressLabel)
         walletAddressLabel.textAlignment = .center
         walletAddressLabel.font = UIFont.systemFont(ofSize: 12)
-        walletAddressLabel.text = "0x93a408E47dBD8F1566316BFdE3BCC7DFe5FD8224"
+        walletAddressLabel.text = ""
         walletAddressLabel.textColor = UIColor.CustomColor.Grey.midGrey
         walletAddressLabel.snp.makeConstraints { (make) in
             make.top.equalTo(walletAvatarButton.snp.bottom).offset(10)
@@ -117,7 +141,7 @@ class HomeViewController: UIViewController {
         walletSummaryBackgroundView.addSubview(walletBalanceLabel)
         walletBalanceLabel.textAlignment = .center
         walletBalanceLabel.font = UIFont.systemFont(ofSize: 36, weight: UIFont.Weight.bold)
-        walletBalanceLabel.text = "12.36893689"
+        walletBalanceLabel.text = ""
         walletBalanceLabel.textColor = UIColor.black
         walletBalanceLabel.snp.makeConstraints { (make) in
             make.top.equalTo(walletAddressLabel.snp.bottom).offset(5)
