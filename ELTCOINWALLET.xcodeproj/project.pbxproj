@@ -14,6 +14,7 @@
 		D515048F1F96963A006013E2 /* WalletSendTokensManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D515048E1F96963A006013E2 /* WalletSendTokensManager.swift */; };
 		D51504911F9743B7006013E2 /* ImportWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51504901F9743B7006013E2 /* ImportWalletViewController.swift */; };
 		D51504931F9748EB006013E2 /* WalletImportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51504921F9748EB006013E2 /* WalletImportManager.swift */; };
+		D515049E1F97F0BC006013E2 /* WalletCreationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D515049D1F97F0BC006013E2 /* WalletCreationManager.swift */; };
 		D5285C8C1F8FFFA300F46425 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5285C8B1F8FFFA300F46425 /* ScannerViewController.swift */; };
 		D594522A1F920E38005107A9 /* NewWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59452291F920E38005107A9 /* NewWalletViewController.swift */; };
 		D59452301F936DBD005107A9 /* dist in Resources */ = {isa = PBXBuildFile; fileRef = D594522F1F936DB8005107A9 /* dist */; };
@@ -77,6 +78,7 @@
 		D515048E1F96963A006013E2 /* WalletSendTokensManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletSendTokensManager.swift; sourceTree = "<group>"; };
 		D51504901F9743B7006013E2 /* ImportWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportWalletViewController.swift; sourceTree = "<group>"; };
 		D51504921F9748EB006013E2 /* WalletImportManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletImportManager.swift; sourceTree = "<group>"; };
+		D515049D1F97F0BC006013E2 /* WalletCreationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCreationManager.swift; sourceTree = "<group>"; };
 		D5285C8B1F8FFFA300F46425 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		D59452291F920E38005107A9 /* NewWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWalletViewController.swift; sourceTree = "<group>"; };
 		D594522F1F936DB8005107A9 /* dist */ = {isa = PBXFileReference; lastKnownFileType = folder; name = dist; path = etherwallet/dist; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				D515048C1F9695E9006013E2 /* WalletTransactionsManager.swift */,
 				D515048E1F96963A006013E2 /* WalletSendTokensManager.swift */,
 				D51504921F9748EB006013E2 /* WalletImportManager.swift */,
+				D515049D1F97F0BC006013E2 /* WalletCreationManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -624,6 +627,7 @@
 				D5A160DD1F8FD357007E3EB0 /* Animator.swift in Sources */,
 				D59452421F94CE5D005107A9 /* WalletKDFParams.swift in Sources */,
 				D5A160D41F8FBB07007E3EB0 /* Double+ex.swift in Sources */,
+				D515049E1F97F0BC006013E2 /* WalletCreationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
