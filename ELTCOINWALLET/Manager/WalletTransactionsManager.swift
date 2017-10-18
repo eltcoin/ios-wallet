@@ -7,3 +7,15 @@
 //
 
 import Foundation
+
+class WalletTransactionsManager {
+    static let sharedInstance = WalletTransactionsManager()
+    private init() {}
+    
+    let walletTransactionsBrowserURL = "/dist/index.html#view-wallet-info"
+}
+
+extension WalletTransactionsManager {
+    
+}
+

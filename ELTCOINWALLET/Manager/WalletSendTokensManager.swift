@@ -7,3 +7,14 @@
 //
 
 import Foundation
+
+class WalletSendTokensManager {
+    static let sharedInstance = WalletSendTokensManager()
+    private init() {}
+    
+    let walletSendTokenBrowserURL = "/dist/index.html#view-wallet-info"
+}
+
+extension WalletSendTokensManager {
+    
+}
