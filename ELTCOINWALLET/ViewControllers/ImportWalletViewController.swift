@@ -18,6 +18,10 @@ class ImportWalletViewController: UIViewController {
     var topBarBackgroundLineView = UIView()
     var topBarCloseButton = UIButton()
     
+    // Import Wallet Options - Buttons
+    let selectKeystoreFileButton = UIButton()
+    let inputPrivateKeyButton = UIButton()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -62,10 +66,48 @@ class ImportWalletViewController: UIViewController {
             make.top.equalTo(topBarBackgroundView).offset(25)
             make.left.equalTo(topBarBackgroundView.snp.left).offset(10)
         }
+        
+        // Button Options
+        
+        view.addSubview(selectKeystoreFileButton)
+        selectKeystoreFileButton.setTitle("Select Keystore File", for: .normal)
+        selectKeystoreFileButton.backgroundColor = UIColor.CustomColor.Black.DeepCharcoal
+        selectKeystoreFileButton.layer.cornerRadius = 4.0
+        selectKeystoreFileButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 23.0)
+        selectKeystoreFileButton.snp.makeConstraints { (make) -> Void in
+            make.width.equalTo(250)
+            make.height.equalTo(40)
+            make.centerX.equalTo(view)
+            make.top.equalTo(topBarBackgroundLineView.snp.bottom).offset(50)
+        }
+        selectKeystoreFileButton.addTarget(self, action: #selector(ImportWalletViewController.selectKeystoreButtonPressed), for: .touchUpInside)
+        
+        view.addSubview(inputPrivateKeyButton)
+        inputPrivateKeyButton.setTitle("Input Private Key", for: .normal)
+        inputPrivateKeyButton.backgroundColor = UIColor.CustomColor.Black.DeepCharcoal
+        inputPrivateKeyButton.layer.cornerRadius = 4.0
+        inputPrivateKeyButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 23.0)
+        inputPrivateKeyButton.snp.makeConstraints { (make) -> Void in
+            make.width.equalTo(250)
+            make.height.equalTo(40)
+            make.centerX.equalTo(view)
+            make.top.equalTo(selectKeystoreFileButton.snp.bottom).offset(20)
+        }
+        selectKeystoreFileButton.addTarget(self, action: #selector(ImportWalletViewController.inputPrivateKeyButtonPressed), for: .touchUpInside)
+        
     }
 }
 
 extension ImportWalletViewController {
+    
+    @objc func inputPrivateKeyButtonPressed(){
+        
+    }
+    
+    @objc func selectKeystoreButtonPressed(){
+        
+    }
+    
     @objc func closeButtonPressed(){
         self.dismiss(animated: true, completion: nil)
     }
