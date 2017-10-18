@@ -105,7 +105,7 @@ class NewWalletViewController: UIViewController {
         
         topBarBackgroundView.addSubview(topBarCloseButton)
         topBarCloseButton.setBackgroundImage(UIImage(imageLiteralResourceName: "closeIcon"), for: UIControlState.normal);
-        topBarCloseButton.addTarget(self, action: #selector(SendCoinViewController.closeButtonPressed), for: .touchUpInside)
+        topBarCloseButton.addTarget(self, action: #selector(SendTokensViewController.closeButtonPressed), for: .touchUpInside)
         topBarCloseButton.snp.makeConstraints { (make) in
             make.width.height.equalTo(28)
             make.top.equalTo(topBarBackgroundView).offset(25)

@@ -199,7 +199,7 @@ class HomeViewController: UIViewController {
     
     @objc func openSendModel(){
         
-        let sendCoinViewController = SendCoinViewController()
+        let sendCoinViewController = SendTokensViewController()
         sendCoinViewController.hidesBottomBarWhenPushed = true
 
         let navController = PopupNavigationController(rootViewController: sendCoinViewController)
