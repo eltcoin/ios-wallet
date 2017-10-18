@@ -52,9 +52,9 @@ class WalletUnEncrypted : NetworkTaskResponse {
 
 extension WalletUnEncrypted {
     func getCurrentBalanceUSD() -> Double {
-        return 367.89
+        return 0.0
     }
     func getCurrentBalanceELTCOIN() -> Double {
-        return 367.89260350
+        return 0.0
     }
 }

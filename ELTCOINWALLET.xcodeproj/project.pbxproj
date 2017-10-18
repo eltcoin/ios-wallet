@@ -12,6 +12,7 @@
 		D51504841F950BB0006013E2 /* WalletEncryptedJSAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51504831F950BB0006013E2 /* WalletEncryptedJSAPIResponse.swift */; };
 		D515048D1F9695E9006013E2 /* WalletTransactionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D515048C1F9695E9006013E2 /* WalletTransactionsManager.swift */; };
 		D515048F1F96963A006013E2 /* WalletSendTokensManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D515048E1F96963A006013E2 /* WalletSendTokensManager.swift */; };
+		D51504911F9743B7006013E2 /* ImportWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51504901F9743B7006013E2 /* ImportWalletViewController.swift */; };
 		D5285C8C1F8FFFA300F46425 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5285C8B1F8FFFA300F46425 /* ScannerViewController.swift */; };
 		D594522A1F920E38005107A9 /* NewWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59452291F920E38005107A9 /* NewWalletViewController.swift */; };
 		D59452301F936DBD005107A9 /* dist in Resources */ = {isa = PBXBuildFile; fileRef = D594522F1F936DB8005107A9 /* dist */; };
@@ -73,6 +74,7 @@
 		D51504831F950BB0006013E2 /* WalletEncryptedJSAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletEncryptedJSAPIResponse.swift; sourceTree = "<group>"; };
 		D515048C1F9695E9006013E2 /* WalletTransactionsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTransactionsManager.swift; sourceTree = "<group>"; };
 		D515048E1F96963A006013E2 /* WalletSendTokensManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletSendTokensManager.swift; sourceTree = "<group>"; };
+		D51504901F9743B7006013E2 /* ImportWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportWalletViewController.swift; sourceTree = "<group>"; };
 		D5285C8B1F8FFFA300F46425 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		D59452291F920E38005107A9 /* NewWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWalletViewController.swift; sourceTree = "<group>"; };
 		D594522F1F936DB8005107A9 /* dist */ = {isa = PBXFileReference; lastKnownFileType = folder; name = dist; path = etherwallet/dist; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 				D5285C8B1F8FFFA300F46425 /* ScannerViewController.swift */,
 				D59452291F920E38005107A9 /* NewWalletViewController.swift */,
 				D59452311F94BA1D005107A9 /* WalletCreatedViewController.swift */,
+				D51504901F9743B7006013E2 /* ImportWalletViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -611,6 +614,7 @@
 				D594523E1F94CD9C005107A9 /* WalletCrypto.swift in Sources */,
 				D51504841F950BB0006013E2 /* WalletEncryptedJSAPIResponse.swift in Sources */,
 				D5285C8C1F8FFFA300F46425 /* ScannerViewController.swift in Sources */,
+				D51504911F9743B7006013E2 /* ImportWalletViewController.swift in Sources */,
 				D5A160CF1F8FB656007E3EB0 /* WalletTransaction.swift in Sources */,
 				D5A160CA1F8FA373007E3EB0 /* UIColor+ex.swift in Sources */,
 				D5A160DD1F8FD357007E3EB0 /* Animator.swift in Sources */,

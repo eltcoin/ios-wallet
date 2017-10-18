@@ -19,7 +19,7 @@ class HomeViewController: UIViewController {
     // TOP BAR
     var topBarBackgroundView = UIView()
     var topBarLogoImageView = UIImageView()
-    var topBarSettingsButton = UIButton()
+    var topBarShareButton = UIButton()
     var topBarSendButton = UIButton()
     var topBarBackgroundLineView = UIView()
     
@@ -90,9 +90,10 @@ class HomeViewController: UIViewController {
             make.height.equalTo(1)
         }
         
-        topBarBackgroundView.addSubview(topBarSettingsButton)
-        topBarSettingsButton.setBackgroundImage(UIImage(imageLiteralResourceName: "settingIcon"), for: UIControlState.normal);
-        topBarSettingsButton.snp.makeConstraints { (make) in
+        topBarBackgroundView.addSubview(topBarShareButton)
+        topBarShareButton.setBackgroundImage(UIImage(imageLiteralResourceName: "shareIcon"), for: UIControlState.normal);
+        topBarShareButton.addTarget(self, action: #selector(HomeViewController.shareButtonPressed), for: .touchUpInside)
+        topBarShareButton.snp.makeConstraints { (make) in
             make.width.height.equalTo(28)
             make.top.equalTo(topBarBackgroundView).offset(25)
             make.right.equalTo(topBarBackgroundView.snp.right).offset(-10)
@@ -208,6 +209,30 @@ class HomeViewController: UIViewController {
         navController.modalPresentationStyle = .custom
  
         self.present(navController, animated: true)
+    }
+    
+    @objc func shareButtonPressed(){
+        let wallet = WalletManager.sharedInstance.getWalletEncrypted()
+        
+        let file = "wallet-\(UUID().uuidString).json"
+        let text = wallet?.toJSONString(prettyPrint: true)
+        
+        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            
+            let fileURL = dir.appendingPathComponent(file)
+            
+            do {
+                try text?.write(to: fileURL, atomically: false, encoding: .utf8)
+            }
+            catch {
+                print("Error writing wallet")
+            }
+            
+            let activityItem:NSURL = NSURL(fileURLWithPath: fileURL.path)
+            
+            let activityVC = UIActivityViewController(activityItems: [activityItem], applicationActivities: nil)
+            self.present(activityVC, animated: true, completion: nil)
+        }
     }
 }
 

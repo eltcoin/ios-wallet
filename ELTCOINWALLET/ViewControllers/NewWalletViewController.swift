@@ -167,7 +167,8 @@ class NewWalletViewController: UIViewController {
             make.centerX.equalTo(view)
             make.top.equalTo(orLabel.snp.bottom).offset(10)
         }
-        
+        importWalletButton.addTarget(self, action: #selector(NewWalletViewController.importWalletButtonPressed), for: .touchUpInside)
+
     }
 
 }
@@ -237,8 +238,8 @@ extension NewWalletViewController {
         }
     }
     
-    @objc func importButtonPressed(){
-        self.dismiss(animated: true, completion: nil)
+    @objc func importWalletButtonPressed(){
+        self.navigationController?.pushViewController(ImportWalletViewController(), animated: true)
     }
     
     @objc func closeButtonPressed(){
