@@ -18,10 +18,19 @@ class WalletCreationManager : NSObject {
         NEW_WALLET_ENC = "NEW_WALLET_ENC"
     }
     
-    // Webview for MyEtherWallet
-    var webView = WKWebView()
+    private var webView = WKWebView()
+    private var walletPassword = ""
+    private var walletEncrypted :WalletEncrypted?
+    private var walletUnEncrypted :WalletUnEncrypted?
+
+    public var walletCreationCompleted: ((WalletEncrypted, WalletUnEncrypted)->Void)?
+
+    init(walletCreationCompleted: @escaping ((WalletEncrypted, WalletUnEncrypted)->Void)) {
+        super.init()
+        self.walletCreationCompleted = walletCreationCompleted
+    }
     
-    func setupWebView(){
+    func initiateNewWalletWebview(){
         
         let contentController = WKUserContentController();
         let userScript = WKUserScript(
@@ -50,12 +59,9 @@ class WalletCreationManager : NSObject {
 
 //MARK: Actions
 extension WalletCreationManager {
-    
     @objc func createWallet(password: String){
-        let trimmedPassword = password.trimmingCharacters(in: .whitespacesAndNewlines)
-        if webView.url?.absoluteString.range(of:"index.html") != nil {
-            webView.evaluateJavaScript("externalGenerateWallet('\(trimmedPassword)')", completionHandler: nil)
-        }
+        initiateNewWalletWebview();
+        self.walletPassword = password.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 }
 
@@ -64,6 +70,10 @@ extension WalletCreationManager {
 extension WalletCreationManager: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         print("Navigated to: " + (webView.url?.absoluteString)!)
+        
+        if webView.url?.absoluteString.range(of:"index.html") != nil {
+            webView.evaluateJavaScript("externalGenerateWallet('\(self.walletPassword)')", completionHandler: nil)
+        }
     }
 }
 
@@ -83,13 +93,14 @@ extension WalletCreationManager: WKScriptMessageHandler {
                     case WALLET_EVENTS.NEW_WALLET.rawValue:
                         
                         if let walletUnEncryptedJSAPIResponse = WalletUnEncryptedJSAPIResponse(JSONString: str) {
+                            self.walletUnEncrypted = walletUnEncryptedJSAPIResponse.payload
                             WalletManager.sharedInstance.setWalletUnEncrypted(wallet: walletUnEncryptedJSAPIResponse.payload)
                         }
                         
-                        // TODO: Callback to code block
                     case WALLET_EVENTS.NEW_WALLET_ENC.rawValue:
                         
                         if let walletEncryptedJSAPIResponse = WalletEncryptedJSAPIResponse(JSONString: str) {
+                            self.walletEncrypted = walletEncryptedJSAPIResponse.payload
                             WalletManager.sharedInstance.setWalletEncrypted(wallet: walletEncryptedJSAPIResponse.payload)
                         }
                         
@@ -101,6 +112,10 @@ extension WalletCreationManager: WKScriptMessageHandler {
                         
                         // TODO: Callback to code block
                     }
+                }
+                
+                if self.walletUnEncrypted != nil && self.walletEncrypted  != nil {
+                    self.walletCreationCompleted!(self.walletEncrypted!, self.walletUnEncrypted!)
                 }
             }
         }
