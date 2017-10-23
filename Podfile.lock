@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (4.5.1)
   - Crashlytics (3.9.0):
     - Fabric (~> 1.7.0)
   - Fabric (1.7.0)
@@ -18,8 +19,10 @@ PODS:
   - ReachabilitySwift (3)
   - SkyFloatingLabelTextField (3.2.1)
   - SnapKit (4.0.0)
+  - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
+  - Alamofire (~> 4.5)
   - Crashlytics
   - Fabric
   - FCAlertView
@@ -30,8 +33,10 @@ DEPENDENCIES:
   - ReachabilitySwift (~> 3)
   - SkyFloatingLabelTextField (~> 3.0)
   - SnapKit
+  - SwiftyJSON
 
 SPEC CHECKSUMS:
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   Crashlytics: 64aad5dd97249dd3ff94b979fea140144590cdd3
   Fabric: e6be012366472553807dada21243c5ab8d904151
   FCAlertView: fdddd63381898c1d1a5a20c9f084fbd2c6d12f8b
@@ -43,7 +48,8 @@ SPEC CHECKSUMS:
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   SkyFloatingLabelTextField: 71d28906024e7d7e4460099b342f3ca7036a2e24
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 90454d81c65c2c0b88dc38484f030cfa88ffb7e4
+PODFILE CHECKSUM: 06916409afc581fdce1e8e2b82d471ff858fb357
 
 COCOAPODS: 1.2.1

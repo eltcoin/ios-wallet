@@ -112,7 +112,7 @@ class NewWalletViewController: UIViewController {
             make.left.equalTo(topBarBackgroundView.snp.left).offset(10)
         }
         
-        // CTA Buttons
+        // Form inputs
         
         view.addSubview(passwordTextView)
         passwordTextView.placeholder = "Password"

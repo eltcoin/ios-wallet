@@ -16,6 +16,8 @@ target 'ELTCOINWALLET' do
   pod 'FCAlertView'
   pod 'Material'
   pod 'ObjectMapper'
+  
+  pod 'Alamofire', '~> 4.5'
 
   target 'ELTCOINWALLETTests' do
     inherit! :search_paths

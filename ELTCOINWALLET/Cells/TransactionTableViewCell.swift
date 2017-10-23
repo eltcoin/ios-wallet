@@ -33,7 +33,7 @@ class TransactionTableViewCell: UITableViewCell {
     func setupCell(transaction: WalletTransaction){
         
         cellTitleLabel.text = transaction.description()
-        cellTimeLabel.text = transaction.walletAddress
+        cellTimeLabel.text = transaction.from
         cellAmountLabel.text = "\(transaction.value)"
         
         if transaction.type == .sent {

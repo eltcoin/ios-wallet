@@ -44,22 +44,62 @@ class HomeViewController: UIViewController {
         }
     }
     
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(HomeViewController.handleRefresh), for: UIControlEvents.valueChanged)
+        
+        return refreshControl
+    }()
+    
+    @objc func handleRefresh(refreshControl: UIRefreshControl) {
+        let walletManager = WalletTransactionsManager()
+
+        walletManager.getBalance(balanceImportCompleted: { (balanceValue) in
+            self.walletBalanceLabel.text = String(format:"%f ETH", balanceValue)
+        })
+        
+        walletManager.getTransactions(transactionsImportCompleted: { (transactions) in
+            self.walletTransactions = transactions
+            self.transactionsTableView.reloadData()
+            refreshControl.endRefreshing()
+        })
+    }
+    
     func setupWalletUI(){
         if let wallet = WalletManager.sharedInstance.getWalletUnEncrypted(){
             walletAddressLabel.text = wallet.address
             walletBalanceLabel.text = String(format:"%.8f ELT", wallet.getCurrentBalanceELTCOIN())
             walletFiatBalanceLabel.text = String(format:"%.2f USD", wallet.getCurrentBalanceUSD())
+            
+            let walletManager = WalletTransactionsManager()
+            
+            walletManager.getBalance(balanceImportCompleted: { (balanceValue) in
+                self.walletBalanceLabel.text = String(format:"%f ETH", balanceValue)
+            })
+            
+            walletManager.getTransactions(transactionsImportCompleted: { (transactions) in
+                self.walletTransactions = transactions
+                self.transactionsTableView.reloadData()
+            })
         }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         checkIfWalletSetup()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setupWalletUI()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.transactionsTableView.addSubview(self.refreshControl)
+        
+        self.transactionsTableView.refreshControl?.addTarget(self, action: #selector(HomeViewController.handleRefresh), for: UIControlEvents.valueChanged)
         
         self.navigationController?.isNavigationBarHidden = true
 
@@ -182,7 +222,6 @@ class HomeViewController: UIViewController {
             make.width.bottom.equalTo(view)
             //make.centerX.equalTo(view)
         }
-        
     }
     
     @objc func attachWallet(){

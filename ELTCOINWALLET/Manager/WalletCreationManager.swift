@@ -12,12 +12,6 @@ import WebKit
 
 class WalletCreationManager : NSObject {
     
-    enum WALLET_EVENTS : String {
-        case NEW_WALLET_ERR = "NEW_WALLET_ERR",
-        NEW_WALLET = "NEW_WALLET",
-        NEW_WALLET_ENC = "NEW_WALLET_ENC"
-    }
-    
     private var webView = WKWebView()
     private var walletPassword = ""
     private var walletEncrypted :WalletEncrypted?
@@ -89,15 +83,15 @@ extension WalletCreationManager: WKScriptMessageHandler {
                 
                 if let tag: String = parsedData["tag"] as? String{
                     switch tag {
-                    case WALLET_EVENTS.NEW_WALLET_ERR.rawValue: break
-                    case WALLET_EVENTS.NEW_WALLET.rawValue:
+                    case WalletManager.WALLET_EVENTS.NEW_WALLET_ERR.rawValue: break
+                    case WalletManager.WALLET_EVENTS.NEW_WALLET.rawValue:
                         
                         if let walletUnEncryptedJSAPIResponse = WalletUnEncryptedJSAPIResponse(JSONString: str) {
                             self.walletUnEncrypted = walletUnEncryptedJSAPIResponse.payload
                             WalletManager.sharedInstance.setWalletUnEncrypted(wallet: walletUnEncryptedJSAPIResponse.payload)
                         }
                         
-                    case WALLET_EVENTS.NEW_WALLET_ENC.rawValue:
+                    case WalletManager.WALLET_EVENTS.NEW_WALLET_ENC.rawValue:
                         
                         if let walletEncryptedJSAPIResponse = WalletEncryptedJSAPIResponse(JSONString: str) {
                             self.walletEncrypted = walletEncryptedJSAPIResponse.payload

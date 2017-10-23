@@ -83,7 +83,7 @@ class ImportWalletViewController: UIViewController {
         selectKeystoreFileButton.addTarget(self, action: #selector(ImportWalletViewController.selectKeystoreButtonPressed), for: .touchUpInside)
         
         view.addSubview(inputPrivateKeyButton)
-        inputPrivateKeyButton.setTitle("Input Private Key", for: .normal)
+        inputPrivateKeyButton.setTitle("Enter Private Key", for: .normal)
         inputPrivateKeyButton.backgroundColor = UIColor.CustomColor.Black.DeepCharcoal
         inputPrivateKeyButton.layer.cornerRadius = 4.0
         inputPrivateKeyButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 23.0)
@@ -93,7 +93,7 @@ class ImportWalletViewController: UIViewController {
             make.centerX.equalTo(view)
             make.top.equalTo(selectKeystoreFileButton.snp.bottom).offset(20)
         }
-        selectKeystoreFileButton.addTarget(self, action: #selector(ImportWalletViewController.inputPrivateKeyButtonPressed), for: .touchUpInside)
+        inputPrivateKeyButton.addTarget(self, action: #selector(ImportWalletViewController.inputPrivateKeyButtonPressed), for: .touchUpInside)
         
     }
 }
@@ -101,7 +101,7 @@ class ImportWalletViewController: UIViewController {
 extension ImportWalletViewController {
     
     @objc func inputPrivateKeyButtonPressed(){
-        
+        self.navigationController?.pushViewController(ImportWalletPKViewController(), animated: true)
     }
     
     @objc func selectKeystoreButtonPressed(){

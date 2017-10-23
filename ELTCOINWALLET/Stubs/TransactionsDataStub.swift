@@ -37,7 +37,12 @@ class TransactionsDataStub {
         
         y = (type == .recieved) ? y : y * (-1)
         
-        return WalletTransaction(type: type, value: y, walletAddress: sampleAddresses[randomIntFrom(0, to: 5)])
+        let transaction = WalletTransaction()
+        transaction.type = type
+        transaction.value = "\(y)"
+        transaction.from = sampleAddresses[randomIntFrom(0, to: 5)]
+        
+        return transaction
     }
     
     static func randomIntFrom(_ start: Int, to end: Int) -> Int {

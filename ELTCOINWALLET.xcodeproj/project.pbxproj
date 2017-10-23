@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4C7B80E7B1CACA161F232D64 /* Pods_ELTCOINWALLET.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6459B38DB322063EBCAA757D /* Pods_ELTCOINWALLET.framework */; };
 		AC9488FA3DDB2E745A337779 /* Pods_ELTCOINWALLETUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0660A24DA67E944B1042E255 /* Pods_ELTCOINWALLETUITests.framework */; };
+		D514ACA51F9E0AD200C591D1 /* ImportWalletPKViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D514ACA41F9E0AD200C591D1 /* ImportWalletPKViewController.swift */; };
 		D51504841F950BB0006013E2 /* WalletEncryptedJSAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51504831F950BB0006013E2 /* WalletEncryptedJSAPIResponse.swift */; };
 		D515048D1F9695E9006013E2 /* WalletTransactionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D515048C1F9695E9006013E2 /* WalletTransactionsManager.swift */; };
 		D515048F1F96963A006013E2 /* WalletSendTokensManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D515048E1F96963A006013E2 /* WalletSendTokensManager.swift */; };
@@ -43,6 +44,7 @@
 		D5A160D81F8FCD02007E3EB0 /* SendTokensViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A160D71F8FCD02007E3EB0 /* SendTokensViewController.swift */; };
 		D5A160DA1F8FD128007E3EB0 /* PopupNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A160D91F8FD128007E3EB0 /* PopupNavigationController.swift */; };
 		D5A160DD1F8FD357007E3EB0 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A160DC1F8FD357007E3EB0 /* Animator.swift */; };
+		D5BDE7051F9E5223002D43F8 /* WalletTransactionsReponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BDE7041F9E5223002D43F8 /* WalletTransactionsReponse.swift */; };
 		F29E53798D05C5C42BFD6FAA /* Pods_ELTCOINWALLETTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B41A0E7C40B9E6C64780F561 /* Pods_ELTCOINWALLETTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +75,7 @@
 		72EA67BCBE2808B7802C7D10 /* Pods-ELTCOINWALLETTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ELTCOINWALLETTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ELTCOINWALLETTests/Pods-ELTCOINWALLETTests.release.xcconfig"; sourceTree = "<group>"; };
 		9A98537D74FDC24F207E0813 /* Pods-ELTCOINWALLET.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ELTCOINWALLET.release.xcconfig"; path = "Pods/Target Support Files/Pods-ELTCOINWALLET/Pods-ELTCOINWALLET.release.xcconfig"; sourceTree = "<group>"; };
 		B41A0E7C40B9E6C64780F561 /* Pods_ELTCOINWALLETTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ELTCOINWALLETTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D514ACA41F9E0AD200C591D1 /* ImportWalletPKViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportWalletPKViewController.swift; sourceTree = "<group>"; };
 		D51504831F950BB0006013E2 /* WalletEncryptedJSAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletEncryptedJSAPIResponse.swift; sourceTree = "<group>"; };
 		D515048C1F9695E9006013E2 /* WalletTransactionsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTransactionsManager.swift; sourceTree = "<group>"; };
 		D515048E1F96963A006013E2 /* WalletSendTokensManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletSendTokensManager.swift; sourceTree = "<group>"; };
@@ -113,6 +116,7 @@
 		D5A160D71F8FCD02007E3EB0 /* SendTokensViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTokensViewController.swift; sourceTree = "<group>"; };
 		D5A160D91F8FD128007E3EB0 /* PopupNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupNavigationController.swift; sourceTree = "<group>"; };
 		D5A160DC1F8FD357007E3EB0 /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
+		D5BDE7041F9E5223002D43F8 /* WalletTransactionsReponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTransactionsReponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +188,7 @@
 				D594523A1F94C9F2005107A9 /* NetworkTaskReponse.swift */,
 				D59452451F94E45A005107A9 /* WalletUnEncryptedJSAPIResponse.swift */,
 				D51504831F950BB0006013E2 /* WalletEncryptedJSAPIResponse.swift */,
+				D5BDE7041F9E5223002D43F8 /* WalletTransactionsReponse.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -269,6 +274,7 @@
 				D59452291F920E38005107A9 /* NewWalletViewController.swift */,
 				D59452311F94BA1D005107A9 /* WalletCreatedViewController.swift */,
 				D51504901F9743B7006013E2 /* ImportWalletViewController.swift */,
+				D514ACA41F9E0AD200C591D1 /* ImportWalletPKViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -602,6 +608,7 @@
 			files = (
 				D59452441F94D1A8005107A9 /* WalletUnEncrypted.swift in Sources */,
 				D59452371F94C98E005107A9 /* WalletEncrypted.swift in Sources */,
+				D5BDE7051F9E5223002D43F8 /* WalletTransactionsReponse.swift in Sources */,
 				D59452461F94E45A005107A9 /* WalletUnEncryptedJSAPIResponse.swift in Sources */,
 				D59452351F94C947005107A9 /* WalletManager.swift in Sources */,
 				D5A160D81F8FCD02007E3EB0 /* SendTokensViewController.swift in Sources */,
@@ -620,6 +627,7 @@
 				D594523E1F94CD9C005107A9 /* WalletCrypto.swift in Sources */,
 				D51504841F950BB0006013E2 /* WalletEncryptedJSAPIResponse.swift in Sources */,
 				D5285C8C1F8FFFA300F46425 /* ScannerViewController.swift in Sources */,
+				D514ACA51F9E0AD200C591D1 /* ImportWalletPKViewController.swift in Sources */,
 				D51504931F9748EB006013E2 /* WalletImportManager.swift in Sources */,
 				D51504911F9743B7006013E2 /* ImportWalletViewController.swift in Sources */,
 				D5A160CF1F8FB656007E3EB0 /* WalletTransaction.swift in Sources */,

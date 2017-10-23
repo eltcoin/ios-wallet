@@ -11,6 +11,13 @@ import Foundation
 class WalletManager {
     static let sharedInstance = WalletManager()
     private init() {}
+    
+    enum WALLET_EVENTS : String {
+        case NEW_WALLET_ERR = "NEW_WALLET_ERR",
+        NEW_WALLET = "NEW_WALLET",
+        NEW_WALLET_ENC = "NEW_WALLET_ENC",
+        IMPORTED_WALLET_PK = "IMPORTED_WALLET_PK"
+    }
 }
 
 extension WalletManager {
