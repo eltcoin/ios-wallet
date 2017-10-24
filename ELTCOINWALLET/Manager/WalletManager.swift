@@ -47,14 +47,14 @@ extension WalletManager {
     
     func setWalletEncrypted(wallet: WalletEncrypted!) {
         let JSONString = wallet.toJSONString(prettyPrint: true)
-        UserDefaults.standard.setValue(JSONString, forKey: "wallet")
+        UserDefaults.standard.setValue(JSONString, forKey: "wallet_enc")
         UserDefaults.standard.synchronize()
     }
     
     func getWalletEncrypted() -> WalletEncrypted?{
         
         UserDefaults.standard.synchronize()
-        let JSONString = UserDefaults.standard.string(forKey: "wallet")
+        let JSONString = UserDefaults.standard.string(forKey: "wallet_enc")
         
         if JSONString != nil {
             let wallet = WalletEncrypted(JSONString: JSONString!)

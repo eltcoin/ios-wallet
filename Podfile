@@ -18,6 +18,7 @@ target 'ELTCOINWALLET' do
   pod 'ObjectMapper'
   
   pod 'Alamofire', '~> 4.5'
+  pod 'AlamofireObjectMapper', '~> 5.0'
 
   target 'ELTCOINWALLETTests' do
     inherit! :search_paths

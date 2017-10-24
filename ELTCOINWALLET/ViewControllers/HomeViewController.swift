@@ -14,7 +14,7 @@ class HomeViewController: UIViewController {
 
     // Member vars
     let reuseIdentifier = "TransactionCell"
-    var walletTransactions = TransactionsDataStub.transactions()
+    var walletTransactions = [WalletTransaction]()
     
     // TOP BAR
     var topBarBackgroundView = UIView()
@@ -28,11 +28,14 @@ class HomeViewController: UIViewController {
     var walletSummaryBackgroundLineView = UIView()
     var walletAvatarButton = UIButton()
     var walletAddressLabel = UILabel()
-    var walletBalanceLabel = UILabel()
-    var walletFiatBalanceLabel = UILabel()
+    var walletMainBalanceLabel = UILabel()
+    var walletSubBalanceLabel = UILabel()
 
     // Transaction List
     var transactionsTableView = UITableView()
+    
+    // Empty Transaction List Label
+    var emptyListLabel = UILabel()
 
     func checkIfWalletSetup(){
         if let wallet = WalletManager.sharedInstance.getWalletUnEncrypted(){
@@ -52,34 +55,35 @@ class HomeViewController: UIViewController {
     }()
     
     @objc func handleRefresh(refreshControl: UIRefreshControl) {
-        let walletManager = WalletTransactionsManager()
-
-        walletManager.getBalance(balanceImportCompleted: { (balanceValue) in
-            self.walletBalanceLabel.text = String(format:"%f ETH", balanceValue)
-        })
-        
-        walletManager.getTransactions(transactionsImportCompleted: { (transactions) in
-            self.walletTransactions = transactions
-            self.transactionsTableView.reloadData()
+        setupWalletUI {
             refreshControl.endRefreshing()
-        })
+        }
     }
     
-    func setupWalletUI(){
+    func setupWalletUI(_ completed: (()->Void)? = nil){
         if let wallet = WalletManager.sharedInstance.getWalletUnEncrypted(){
             walletAddressLabel.text = wallet.address
-            walletBalanceLabel.text = String(format:"%.8f ELT", wallet.getCurrentBalanceELTCOIN())
-            walletFiatBalanceLabel.text = String(format:"%.2f USD", wallet.getCurrentBalanceUSD())
-            
+
+            var completionCount = 0
             let walletManager = WalletTransactionsManager()
             
-            walletManager.getBalance(balanceImportCompleted: { (balanceValue) in
-                self.walletBalanceLabel.text = String(format:"%f ETH", balanceValue)
+            walletManager.getBalance(balanceImportCompleted: { (WalletBalance) in
+                self.walletMainBalanceLabel.text = String(format:"%0.f ELT", (WalletBalance.getELTCOINBalance()))
+                self.walletSubBalanceLabel.text = String(format:"%f ETH", (WalletBalance.ETH?.balance)!)
+                completionCount += 1
+                if completionCount == 2 && completed != nil {
+                    completed!()
+                }
             })
             
             walletManager.getTransactions(transactionsImportCompleted: { (transactions) in
                 self.walletTransactions = transactions
+                self.emptyListLabel.isHidden = self.walletTransactions.count > 0
                 self.transactionsTableView.reloadData()
+                completionCount += 1
+                if completionCount == 2 && completed != nil {
+                    completed!()
+                }
             })
         }
     }
@@ -179,24 +183,24 @@ class HomeViewController: UIViewController {
             make.centerX.equalTo(view)
         }
         
-        walletSummaryBackgroundView.addSubview(walletBalanceLabel)
-        walletBalanceLabel.textAlignment = .center
-        walletBalanceLabel.font = UIFont.systemFont(ofSize: 36, weight: UIFont.Weight.bold)
-        walletBalanceLabel.text = ""
-        walletBalanceLabel.textColor = UIColor.black
-        walletBalanceLabel.snp.makeConstraints { (make) in
+        walletSummaryBackgroundView.addSubview(walletMainBalanceLabel)
+        walletMainBalanceLabel.textAlignment = .center
+        walletMainBalanceLabel.font = UIFont.systemFont(ofSize: 36, weight: UIFont.Weight.bold)
+        walletMainBalanceLabel.text = ""
+        walletMainBalanceLabel.textColor = UIColor.black
+        walletMainBalanceLabel.snp.makeConstraints { (make) in
             make.top.equalTo(walletAddressLabel.snp.bottom).offset(5)
             make.width.equalTo(walletSummaryBackgroundView)
             make.centerX.equalTo(view)
         }
         
-        walletSummaryBackgroundView.addSubview(walletFiatBalanceLabel)
-        walletFiatBalanceLabel.textAlignment = .center
-        walletFiatBalanceLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.bold)
-        walletFiatBalanceLabel.text = "12.36 USD"
-        walletFiatBalanceLabel.textColor = UIColor.black
-        walletFiatBalanceLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(walletBalanceLabel.snp.bottom).offset(5)
+        walletSummaryBackgroundView.addSubview(walletSubBalanceLabel)
+        walletSubBalanceLabel.textAlignment = .center
+        walletSubBalanceLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.bold)
+        walletSubBalanceLabel.text = ""
+        walletSubBalanceLabel.textColor = UIColor.black
+        walletSubBalanceLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(walletMainBalanceLabel.snp.bottom).offset(5)
             make.width.equalTo(walletSummaryBackgroundView)
             make.centerX.equalTo(view)
         }
@@ -220,7 +224,17 @@ class HomeViewController: UIViewController {
         transactionsTableView.snp.makeConstraints { (make) in
             make.top.equalTo(walletSummaryBackgroundView.snp.bottom).offset(1)
             make.width.bottom.equalTo(view)
-            //make.centerX.equalTo(view)
+        }
+        
+        view.addSubview(emptyListLabel)
+        emptyListLabel.text = "There's no transactions to show\n😥"
+        emptyListLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)
+        emptyListLabel.numberOfLines = 0
+        emptyListLabel.isHidden = true
+        emptyListLabel.textAlignment = .center
+        emptyListLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(walletSummaryBackgroundView.snp.bottom).offset(1)
+            make.width.bottom.equalTo(view)
         }
     }
     

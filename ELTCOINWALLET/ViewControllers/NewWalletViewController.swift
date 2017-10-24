@@ -15,12 +15,6 @@ import WebKit
 
 class NewWalletViewController: UIViewController {
     
-    enum WALLET_EVENTS : String {
-        case NEW_WALLET_ERR = "NEW_WALLET_ERR",
-        NEW_WALLET = "NEW_WALLET",
-        NEW_WALLET_ENC = "NEW_WALLET_ENC"
-    }
-    
     // TOP BAR
     var topBarBackgroundView = UIView()
     var topBarTitleLabel = UILabel()
@@ -33,44 +27,12 @@ class NewWalletViewController: UIViewController {
     let createWalletButton = UIButton()
     let importWalletButton = UIButton()
     
-    // Webview for MyEtherWallet
-    var webView = WKWebView()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.CustomColor.White.offwhite
         setupViews()
-        setupWebView()
     }
     
-    func setupWebView(){
-        
-        let contentController = WKUserContentController();
-        let userScript = WKUserScript(
-            source: "redHeader()",
-            injectionTime: WKUserScriptInjectionTime.atDocumentEnd,
-            forMainFrameOnly: true
-        )
-        contentController.addUserScript(userScript)
-        contentController.add(
-            self,
-            name: "callbackHandler"
-        )
-        
-        let config = WKWebViewConfiguration()
-        config.userContentController = contentController
-        
-        webView = WKWebView(frame: CGRect(), configuration: config)
-        webView.navigationDelegate = self
-        webView.allowsBackForwardNavigationGestures = false
-        
-        // Disable UI until webview is ready:
-        createWalletButton.isEnabled = false
-        
-        let url = Bundle.main.url(forResource: "dist/index", withExtension: "html")
-        webView.load(URLRequest(url: url!))
-        
-    }
     
     func setupViews(){
         
@@ -116,7 +78,7 @@ class NewWalletViewController: UIViewController {
         
         view.addSubview(passwordTextView)
         passwordTextView.placeholder = "Password"
-        passwordTextView.title = "Secure Wallet With Password"
+        passwordTextView.title = "Secure New Wallet With Password"
         //passwordTextView.delegate = self
         passwordTextView.setTitleVisible(true)
         passwordTextView.returnKeyType = .go
@@ -136,6 +98,8 @@ class NewWalletViewController: UIViewController {
         
         view.addSubview(createWalletButton)
         createWalletButton.setTitle("Create Wallet", for: .normal)
+        createWalletButton.setTitle("Loading...", for: .disabled)
+
         createWalletButton.backgroundColor = UIColor.CustomColor.Black.DeepCharcoal
         createWalletButton.layer.cornerRadius = 4.0
         createWalletButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 23.0)
@@ -173,45 +137,6 @@ class NewWalletViewController: UIViewController {
 
 }
 
-extension NewWalletViewController: WKScriptMessageHandler {
-    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        if(message.name == "callbackHandler") {
-            
-            print("JavaScript is sending a message: \(message.body)")
-            let str =  message.body as? String ?? ""
-            
-            if let parsedData = try? JSONSerialization.jsonObject(with: str.data(using: .utf8)!) as! [String:Any] {
-                print(parsedData)
-                
-                if let tag: String = parsedData["tag"] as? String{
-                    switch tag {
-                    case WALLET_EVENTS.NEW_WALLET_ERR.rawValue: break
-                    case WALLET_EVENTS.NEW_WALLET.rawValue:
-                        
-                        if let walletUnEncryptedJSAPIResponse = WalletUnEncryptedJSAPIResponse(JSONString: str) {
-                            WalletManager.sharedInstance.setWalletUnEncrypted(wallet: walletUnEncryptedJSAPIResponse.payload)
-                        }
-
-                    case WALLET_EVENTS.NEW_WALLET_ENC.rawValue:
-                        
-                        if let walletEncryptedJSAPIResponse = WalletEncryptedJSAPIResponse(JSONString: str) {
-                            WalletManager.sharedInstance.setWalletEncrypted(wallet: walletEncryptedJSAPIResponse.payload)
-                        }
-                        
-                        self.navigationController?.pushViewController(WalletCreatedViewController(), animated: true)
-
-                    default:
-                        let alertController = UIAlertController(title: "New Wallet Error", message:
-                            "Sorry, there was a problem creating your wallet", preferredStyle: UIAlertControllerStyle.alert)
-                        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,handler: nil))
-                        
-                        self.present(alertController, animated: true, completion: nil)
-                    }
-                }
-            }
-        }
-    }
-}
 
 //MARK: Webview navigation
 
@@ -222,19 +147,26 @@ extension NewWalletViewController: WKNavigationDelegate {
     }
 }
 
-//MARK: Wallet Functions
-extension NewWalletViewController {
-    
-}
 
 //MARK: Actions
 extension NewWalletViewController {
     
     @objc func createWalletButtonPressed(){
         if let password = passwordTextView.text?.trimmingCharacters(in: .whitespacesAndNewlines){
-            if webView.url?.absoluteString.range(of:"index.html") != nil {
-                webView.evaluateJavaScript("externalGenerateWallet('\(password)')", completionHandler: nil)
-            }
+            
+            createWalletButton.isEnabled = false
+            WalletCreationManager(password: password, walletCreationCompleted: { (walletEncrypted, walletUnEncrypted) in
+                WalletManager.sharedInstance.setWalletUnEncrypted(wallet: walletUnEncrypted)
+                WalletManager.sharedInstance.setWalletEncrypted(wallet: walletEncrypted)
+                self.createWalletButton.isEnabled = true
+                self.navigationController?.pushViewController(WalletCreatedViewController(), animated: true)
+            }, errBlock: { (errorMessage) in
+                let errorPopup = UIAlertController(title: "🤕", message: errorMessage, preferredStyle: .alert)
+                errorPopup.addAction(UIAlertAction(title: "👍", style: .cancel, handler: nil))
+                self.present(errorPopup, animated: true, completion: nil)
+                self.createWalletButton.isEnabled = true
+            })
+            .createWallet()
         }
     }
     
@@ -245,4 +177,6 @@ extension NewWalletViewController {
     @objc func closeButtonPressed(){
         self.dismiss(animated: true, completion: nil)
     }
+    
+    
 }

@@ -8,22 +8,23 @@
 
 import Foundation
 import Alamofire
+import AlamofireObjectMapper
 
 class WalletTransactionsManager {
-    var baseAPI = "https://api.etherscan.io/api?"
-    var apiKey = ""
+    var baseAPI = "https://api.ethplorer.io/"
+    var apiKey = "freekey"
     
     public var transactionsImportCompleted: (([WalletTransaction])->Void)?
-    public var balanceImportCompleted: ((Int64)->Void)?
+    public var balanceImportCompleted: ((ETHTokenBalance)->Void)?
 }
 
 extension WalletTransactionsManager {
     fileprivate func getBalanceURL() -> String{
-        return baseAPI + "module=account&action=balance&address=\(WalletManager.sharedInstance.getWalletUnEncrypted()?.address ?? "")&tag=latest&apikey=\(apiKey)"
+        return baseAPI + "getAddressInfo/\(WalletManager.sharedInstance.getWalletUnEncrypted()?.address ?? "")?apiKey=\(apiKey)"
     }
     
     fileprivate func getTransactionsURL() -> String{
-        return baseAPI + "module=account&action=txlist&address=\(WalletManager.sharedInstance.getWalletUnEncrypted()?.address ?? "")&startblock=0&endblock=99999999&sort=asc&apikey=\(apiKey)"
+        return baseAPI + "getAddressTransactions/\(WalletManager.sharedInstance.getWalletUnEncrypted()?.address ?? "")?apiKey=\(apiKey)"
     }
 }
 
@@ -33,30 +34,36 @@ extension WalletTransactionsManager {
         self.transactionsImportCompleted = transactionsImportCompleted
         
         let urlStr = getTransactionsURL()
+        print(urlStr)
+        Alamofire.request(urlStr).responseArray { (response: DataResponse<[WalletTransaction]>) in
+            
+            if let result = response.result.value {
+                self.transactionsImportCompleted!(result)
+            } else if let error = response.result.error {
+                // Handle error
+                print("error")
+                print(error)
+            } else {
+                // Handle some other not networking error
+                print("some other not networking error")
+            }
+        }
+        
+    }
+    
+    func getBalance(balanceImportCompleted: ((ETHTokenBalance)->Void)?){
+        self.balanceImportCompleted = balanceImportCompleted
+        let urlStr = getBalanceURL()
+        print(urlStr)
+        
         Alamofire.request(urlStr).responseJSON { response in
             
             if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
                 print("Data: \(utf8Text)") // original server data as UTF8 string
                 
-                if let transactionResult = WalletTransactionsReponse().customInit(string: utf8Text) {
-                    print("transResult: \(transactionResult)") // serialized json response
-                    self.transactionsImportCompleted!(transactionResult.result!)
-                }
-            }
-        }
-    }
-    
-    
-    func getBalance(balanceImportCompleted: ((Int64)->Void)?){
-        self.balanceImportCompleted = balanceImportCompleted
-        let urlStr = getBalanceURL()
-        Alamofire.request(urlStr).responseJSON { response in
-            if let json = response.result.value as? [String: Any] {
-                print("JSON: \(json)") // serialized json response
-                if let myBalanceStr = json["result"] as? String {
-                    if let myBalance = Int64(myBalanceStr) {
-                        self.balanceImportCompleted!(myBalance)
-                    }
+                if let balanceResult = ETHTokenBalance().customInit(string: utf8Text) {
+                    print("balanceResult: \(balanceResult)") // serialized json response
+                    self.balanceImportCompleted!(balanceResult)
                 }
             }
         }

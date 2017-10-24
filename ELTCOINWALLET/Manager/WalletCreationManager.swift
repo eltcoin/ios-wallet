@@ -18,10 +18,17 @@ class WalletCreationManager : NSObject {
     private var walletUnEncrypted :WalletUnEncrypted?
 
     public var walletCreationCompleted: ((WalletEncrypted, WalletUnEncrypted)->Void)?
+    public var errBlock: ((String)->Void)?
 
-    init(walletCreationCompleted: @escaping ((WalletEncrypted, WalletUnEncrypted)->Void)) {
+    init(password: String, walletCreationCompleted: @escaping ((WalletEncrypted, WalletUnEncrypted)->Void), errBlock: @escaping ((String)->Void)) {
         super.init()
+        self.walletPassword = password
         self.walletCreationCompleted = walletCreationCompleted
+        self.errBlock = errBlock
+    }
+    
+    func createWallet(){
+        initiateNewWalletWebview()
     }
     
     func initiateNewWalletWebview(){
@@ -83,28 +90,32 @@ extension WalletCreationManager: WKScriptMessageHandler {
                 
                 if let tag: String = parsedData["tag"] as? String{
                     switch tag {
-                    case WalletManager.WALLET_EVENTS.NEW_WALLET_ERR.rawValue: break
+                    case WalletManager.WALLET_EVENTS.NEW_WALLET_ERR.rawValue:
+                        if errBlock != nil {
+                            if let errorMessage: String = parsedData["payload"] as? String{
+                                self.errBlock!(errorMessage)
+                            }else{
+                                self.errBlock!("There was a problem creating your wallet")
+                            }
+                        }
                     case WalletManager.WALLET_EVENTS.NEW_WALLET.rawValue:
                         
                         if let walletUnEncryptedJSAPIResponse = WalletUnEncryptedJSAPIResponse(JSONString: str) {
                             self.walletUnEncrypted = walletUnEncryptedJSAPIResponse.payload
-                            WalletManager.sharedInstance.setWalletUnEncrypted(wallet: walletUnEncryptedJSAPIResponse.payload)
                         }
                         
                     case WalletManager.WALLET_EVENTS.NEW_WALLET_ENC.rawValue:
                         
                         if let walletEncryptedJSAPIResponse = WalletEncryptedJSAPIResponse(JSONString: str) {
                             self.walletEncrypted = walletEncryptedJSAPIResponse.payload
-                            WalletManager.sharedInstance.setWalletEncrypted(wallet: walletEncryptedJSAPIResponse.payload)
                         }
                         
-                    // TODO: Callback to code block
                     default:
                         let alertController = UIAlertController(title: "New Wallet Error", message:
                             "Sorry, there was a problem creating your wallet", preferredStyle: UIAlertControllerStyle.alert)
                         alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,handler: nil))
                         
-                        // TODO: Callback to code block
+                        // TODO: Error Callback to code block
                     }
                 }
                 

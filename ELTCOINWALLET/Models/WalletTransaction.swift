@@ -16,28 +16,24 @@ class WalletTransaction: NetworkTaskResponse {
         case recieved
     }
 
-    var blockNumber: String = ""
     var timeStamp: String = ""
-    var hash: String = ""
-    var nonce: String = ""
-    var blockHash: String = ""
-    var transactionIndex: String = ""
     var from: String = ""
     var to: String = ""
+    var hash: String = ""
     var value: String = ""
-    var gas: String = ""
-    var gasPrice: String = ""
-    var isError: String = ""
-    var input: String = ""
-    var contractAddress: String = ""
-    var cumulativeGasUsed: String = ""
-    var gasUsed: String = ""
-    var confirmations: String = ""
+    var success: Bool = false
     
-    var type: TRANSACTION_TYPE = TRANSACTION_TYPE.recieved
-    //var value: Int64 = 0
-    //var walletAddress: String = ""
-
+    var type: TRANSACTION_TYPE {
+        get {
+            if (to == WalletManager.sharedInstance.getWalletEncrypted()?.address && to.characters.count > 0) {
+                return TRANSACTION_TYPE.recieved
+            }else{
+                return TRANSACTION_TYPE.sent
+            }
+        }
+        set {}
+    }
+    
     
     override func customInit(string: String) -> WalletTransaction? {
         return WalletTransaction(JSONString: string)
@@ -51,39 +47,19 @@ class WalletTransaction: NetworkTaskResponse {
         super.mapping(map: map)
         
         if map.mappingType == .fromJSON {
-            blockNumber         <-  map["blockNumber"]
             timeStamp         <-  map["timeStamp"]
             hash         <-  map["hash"]
-            nonce         <-  map["nonce"]
-            blockHash         <-  map["blockHash"]
-            transactionIndex         <-  map["transactionIndex"]
             from         <-  map["from"]
             to         <-  map["to"]
             value         <-  map["value"]
-            gas         <-  map["gas"]
-            gasPrice         <-  map["gasPrice"]
-            isError         <-  map["isError"]
-            contractAddress         <-  map["contractAddress"]
-            cumulativeGasUsed         <-  map["cumulativeGasUsed"]
-            gasUsed         <-  map["gasUsed"]
-            confirmations         <-  map["confirmations"]
+            success         <-  map["success"]
         }else{
-            blockNumber >>> map["blockNumber"]
             timeStamp         >>>  map["timeStamp"]
             hash         >>>  map["hash"]
-            nonce         >>>  map["nonce"]
-            blockHash         >>>  map["blockHash"]
-            transactionIndex        >>>  map["transactionIndex"]
             from        >>>  map["from"]
             to        >>>  map["to"]
             value         >>> map["value"]
-            gas        >>>  map["gas"]
-            gasPrice        >>>  map["gasPrice"]
-            isError        >>>  map["isError"]
-            contractAddress        >>>  map["contractAddress"]
-            cumulativeGasUsed        >>>  map["cumulativeGasUsed"]
-            gasUsed       >>>  map["gasUsed"]
-            confirmations       >>>  map["confirmations"]
+            success        >>>  map["success"]
         }
     }
 }
