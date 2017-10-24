@@ -1,38 +1,35 @@
-
 //
-//  WalletCreationManager.swift
+//  WalletImportFileManager.swift
 //  ELTCOINWALLET
 //
-//  Created by Oliver Mahoney on 18/10/2017.
+//  Created by Oliver Mahoney on 24/10/2017.
 //  Copyright © 2017 ELTCOIN. All rights reserved.
 //
+
 
 import Foundation
 import WebKit
 
-class WalletCreationManager : NSObject {
+class WalletImportFileManager: NSObject {
     
     private var webView = WKWebView()
-    private var walletPassword = ""
-    private var walletEncrypted :WalletEncrypted?
+    private var fileContent = ""
+    private var password = ""
+    
     private var walletUnEncrypted :WalletUnEncrypted?
-
-    public var walletCreationCompleted: ((WalletEncrypted, WalletUnEncrypted)->Void)?
+    
+    public var walletImportCompleted: ((WalletUnEncrypted)->Void)?
     public var errBlock: ((String)->Void)?
 
-    init(password: String, walletCreationCompleted: @escaping ((WalletEncrypted, WalletUnEncrypted)->Void), errBlock: @escaping ((String)->Void)) {
+    init(password: String, fileContent: String, walletImportCompleted: @escaping ((WalletUnEncrypted)->Void), errBlock: @escaping ((String)->Void)) {
         super.init()
-        self.walletPassword = password
-        self.walletCreationCompleted = walletCreationCompleted
+        self.walletImportCompleted = walletImportCompleted
         self.errBlock = errBlock
+        self.password = password
+        self.fileContent = fileContent
     }
     
-    func createWallet(){
-        initiateNewWalletWebview()
-    }
-    
-    func initiateNewWalletWebview(){
-        
+    func startImport(){
         let contentController = WKUserContentController();
         let userScript = WKUserScript(
             source: "redHeader()",
@@ -51,34 +48,31 @@ class WalletCreationManager : NSObject {
         webView = WKWebView(frame: CGRect(), configuration: config)
         webView.navigationDelegate = self
         webView.allowsBackForwardNavigationGestures = false
-    
+        
         let url = Bundle.main.url(forResource: "dist/index", withExtension: "html")
-        webView.load(URLRequest(url: url!))
+        
+        let urlstr = (url?.absoluteString)! + "#view-wallet-info"
+        
+        print("urlstr: \(urlstr)")
+        
+        let url2 = URL(string: urlstr)
+        
+        webView.load(URLRequest(url: url2!))
     }
 }
 
-
-//MARK: Actions
-extension WalletCreationManager {
-    @objc func createWallet(password: String){
-        initiateNewWalletWebview();
-        self.walletPassword = password.trimmingCharacters(in: .whitespacesAndNewlines)
-    }
-}
-
-//MARK: Webview navigation
-
-extension WalletCreationManager: WKNavigationDelegate {
+extension WalletImportFileManager: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         print("Navigated to: " + (webView.url?.absoluteString)!)
         
-        if webView.url?.absoluteString.range(of:"index.html") != nil {
-            webView.evaluateJavaScript("externalGenerateWallet('\(self.walletPassword)')", completionHandler: nil)
+        if webView.url?.absoluteString.range(of:"index.html#view-wallet-info") != nil {
+            webView.evaluateJavaScript("importWalletWithKeyStoreFile('\(self.password)', '\(self.fileContent)')", completionHandler: nil)
         }
     }
 }
 
-extension WalletCreationManager: WKScriptMessageHandler {
+extension WalletImportFileManager: WKScriptMessageHandler {
+    
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         if(message.name == "callbackHandler") {
             
@@ -98,30 +92,21 @@ extension WalletCreationManager: WKScriptMessageHandler {
                                 self.errBlock!("There was a problem creating your wallet")
                             }
                         }
-                    case WalletManager.WALLET_EVENTS.NEW_WALLET.rawValue:
+                    case WalletManager.WALLET_EVENTS.IMPORTED_WALLET_FILE.rawValue:
                         
                         if let walletUnEncryptedJSAPIResponse = WalletUnEncryptedJSAPIResponse(JSONString: str) {
                             self.walletUnEncrypted = walletUnEncryptedJSAPIResponse.payload
-                        }
-                        
-                    case WalletManager.WALLET_EVENTS.NEW_WALLET_ENC.rawValue:
-                        
-                        if let walletEncryptedJSAPIResponse = WalletEncryptedJSAPIResponse(JSONString: str) {
-                            self.walletEncrypted = walletEncryptedJSAPIResponse.payload
+                            walletImportCompleted!(self.walletUnEncrypted!)
                         }
                         
                     default:
                         if errBlock != nil {
-                            self.errBlock!("There was a problem creating your wallet")
+                            self.errBlock!("There was a problem decrypting your keystore file")
                         }
                     }
                 }
                 
-                if self.walletUnEncrypted != nil && self.walletEncrypted  != nil {
-                    self.walletCreationCompleted!(self.walletEncrypted!, self.walletUnEncrypted!)
-                }
             }
         }
     }
 }
-

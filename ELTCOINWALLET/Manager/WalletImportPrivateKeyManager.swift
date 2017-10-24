@@ -1,5 +1,5 @@
 //
-//  WalletImportManager.swift
+//  WalletImportPrivateKeyManager.swift
 //  ELTCOINWALLET
 //
 //  Created by Oliver Mahoney on 18/10/2017.
@@ -9,7 +9,7 @@
 import Foundation
 import WebKit
 
-class WalletImportManager: NSObject {
+class WalletImportPrivateKeyManager: NSObject {
     
     private var webView = WKWebView()
     private var privateKey = ""
@@ -58,7 +58,7 @@ class WalletImportManager: NSObject {
     }
 }
 
-extension WalletImportManager: WKNavigationDelegate {
+extension WalletImportPrivateKeyManager: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         print("Navigated to: " + (webView.url?.absoluteString)!)
         
@@ -72,7 +72,7 @@ extension WalletImportManager: WKNavigationDelegate {
     }
 }
 
-extension WalletImportManager: WKScriptMessageHandler {
+extension WalletImportPrivateKeyManager: WKScriptMessageHandler {
     
         func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
             if(message.name == "callbackHandler") {

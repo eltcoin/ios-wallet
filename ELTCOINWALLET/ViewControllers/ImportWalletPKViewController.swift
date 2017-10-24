@@ -128,7 +128,7 @@ extension ImportWalletPKViewController {
     
     @objc func doneButtonPressed(){
         if let privateKay = self.privateKeyTextView.text {
-            WalletImportManager.init(privateKey: privateKay, walletImportCompleted: { (wallet) in
+            WalletImportPrivateKeyManager.init(privateKey: privateKay, walletImportCompleted: { (wallet) in
                 print("imported wallet with a Private key")
                 self.navigationController?.dismiss(animated: true, completion: nil)
             })

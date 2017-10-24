@@ -14,7 +14,7 @@
 		D515048D1F9695E9006013E2 /* WalletTransactionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D515048C1F9695E9006013E2 /* WalletTransactionsManager.swift */; };
 		D515048F1F96963A006013E2 /* WalletSendTokensManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D515048E1F96963A006013E2 /* WalletSendTokensManager.swift */; };
 		D51504911F9743B7006013E2 /* ImportWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51504901F9743B7006013E2 /* ImportWalletViewController.swift */; };
-		D51504931F9748EB006013E2 /* WalletImportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51504921F9748EB006013E2 /* WalletImportManager.swift */; };
+		D51504931F9748EB006013E2 /* WalletImportPrivateKeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51504921F9748EB006013E2 /* WalletImportPrivateKeyManager.swift */; };
 		D515049E1F97F0BC006013E2 /* WalletCreationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D515049D1F97F0BC006013E2 /* WalletCreationManager.swift */; };
 		D5285C8C1F8FFFA300F46425 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5285C8B1F8FFFA300F46425 /* ScannerViewController.swift */; };
 		D594522A1F920E38005107A9 /* NewWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59452291F920E38005107A9 /* NewWalletViewController.swift */; };
@@ -47,6 +47,7 @@
 		D5A6EC031F9F2C7200840A7F /* ETHTokenBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A6EC021F9F2C7200840A7F /* ETHTokenBalance.swift */; };
 		D5A6EC051F9F2E5700840A7F /* ETHToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A6EC041F9F2E5700840A7F /* ETHToken.swift */; };
 		D5A6EC071F9F339700840A7F /* ETHBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A6EC061F9F339700840A7F /* ETHBalance.swift */; };
+		D5AAEC9A1F9F852900827267 /* WalletImportFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AAEC991F9F852900827267 /* WalletImportFileManager.swift */; };
 		D5BDE7051F9E5223002D43F8 /* WalletTransactionsReponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BDE7041F9E5223002D43F8 /* WalletTransactionsReponse.swift */; };
 		F29E53798D05C5C42BFD6FAA /* Pods_ELTCOINWALLETTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B41A0E7C40B9E6C64780F561 /* Pods_ELTCOINWALLETTests.framework */; };
 /* End PBXBuildFile section */
@@ -83,7 +84,7 @@
 		D515048C1F9695E9006013E2 /* WalletTransactionsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTransactionsManager.swift; sourceTree = "<group>"; };
 		D515048E1F96963A006013E2 /* WalletSendTokensManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletSendTokensManager.swift; sourceTree = "<group>"; };
 		D51504901F9743B7006013E2 /* ImportWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportWalletViewController.swift; sourceTree = "<group>"; };
-		D51504921F9748EB006013E2 /* WalletImportManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletImportManager.swift; sourceTree = "<group>"; };
+		D51504921F9748EB006013E2 /* WalletImportPrivateKeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletImportPrivateKeyManager.swift; sourceTree = "<group>"; };
 		D515049D1F97F0BC006013E2 /* WalletCreationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCreationManager.swift; sourceTree = "<group>"; };
 		D5285C8B1F8FFFA300F46425 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		D59452291F920E38005107A9 /* NewWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWalletViewController.swift; sourceTree = "<group>"; };
@@ -122,7 +123,9 @@
 		D5A6EC021F9F2C7200840A7F /* ETHTokenBalance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETHTokenBalance.swift; sourceTree = "<group>"; };
 		D5A6EC041F9F2E5700840A7F /* ETHToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETHToken.swift; sourceTree = "<group>"; };
 		D5A6EC061F9F339700840A7F /* ETHBalance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETHBalance.swift; sourceTree = "<group>"; };
+		D5AAEC991F9F852900827267 /* WalletImportFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletImportFileManager.swift; sourceTree = "<group>"; };
 		D5BDE7041F9E5223002D43F8 /* WalletTransactionsReponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTransactionsReponse.swift; sourceTree = "<group>"; };
+		D5EC5EBC1F9F5CB000B89D06 /* ELTCOINWALLET.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ELTCOINWALLET.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,8 +185,9 @@
 				D59452341F94C947005107A9 /* WalletManager.swift */,
 				D515048C1F9695E9006013E2 /* WalletTransactionsManager.swift */,
 				D515048E1F96963A006013E2 /* WalletSendTokensManager.swift */,
-				D51504921F9748EB006013E2 /* WalletImportManager.swift */,
+				D51504921F9748EB006013E2 /* WalletImportPrivateKeyManager.swift */,
 				D515049D1F97F0BC006013E2 /* WalletCreationManager.swift */,
+				D5AAEC991F9F852900827267 /* WalletImportFileManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -235,6 +239,7 @@
 		D5A160951F8F93D7007E3EB0 /* ELTCOINWALLET */ = {
 			isa = PBXGroup;
 			children = (
+				D5EC5EBC1F9F5CB000B89D06 /* ELTCOINWALLET.entitlements */,
 				D59452381F94C9AF005107A9 /* Networking */,
 				D59452331F94C93B005107A9 /* Manager */,
 				D5A160DB1F8FD34D007E3EB0 /* Views */,
@@ -403,6 +408,11 @@
 					D5A160921F8F93D7007E3EB0 = {
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					D5A160A61F8F93D8007E3EB0 = {
 						CreatedOnToolsVersion = 9.0;
@@ -628,9 +638,10 @@
 				D5A160D61F8FC527007E3EB0 /* UIImage+ex.swift in Sources */,
 				D594523E1F94CD9C005107A9 /* WalletCrypto.swift in Sources */,
 				D51504841F950BB0006013E2 /* WalletEncryptedJSAPIResponse.swift in Sources */,
+				D5AAEC9A1F9F852900827267 /* WalletImportFileManager.swift in Sources */,
 				D5285C8C1F8FFFA300F46425 /* ScannerViewController.swift in Sources */,
 				D514ACA51F9E0AD200C591D1 /* ImportWalletPKViewController.swift in Sources */,
-				D51504931F9748EB006013E2 /* WalletImportManager.swift in Sources */,
+				D51504931F9748EB006013E2 /* WalletImportPrivateKeyManager.swift in Sources */,
 				D51504911F9743B7006013E2 /* ImportWalletViewController.swift in Sources */,
 				D5A160CF1F8FB656007E3EB0 /* WalletTransaction.swift in Sources */,
 				D5A160CA1F8FA373007E3EB0 /* UIColor+ex.swift in Sources */,
@@ -806,6 +817,7 @@
 			baseConfigurationReference = 3059D7A06A014083014AA722 /* Pods-ELTCOINWALLET.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ELTCOINWALLET/ELTCOINWALLET.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DFS786VR7V;
@@ -825,6 +837,7 @@
 			baseConfigurationReference = 9A98537D74FDC24F207E0813 /* Pods-ELTCOINWALLET.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ELTCOINWALLET/ELTCOINWALLET.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DFS786VR7V;

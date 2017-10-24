@@ -98,6 +98,35 @@ class ImportWalletViewController: UIViewController {
     }
 }
 
+extension ImportWalletViewController : UIDocumentMenuDelegate, UIDocumentPickerDelegate, UINavigationControllerDelegate {
+    
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
+        
+        let cico = url as URL
+        print("The Url is : \(cico)")
+        
+        if let jsonString = try? String(contentsOf: url, encoding: String.Encoding.utf8){
+            print("Read JSON file:")
+            print(jsonString)
+            
+        }
+        
+        //optional, case PDF -> render
+        //displayPDFweb.loadRequest(NSURLRequest(url: cico) as URLRequest)
+    }
+    func documentMenu(_ documentMenu:     UIDocumentMenuViewController, didPickDocumentPicker documentPicker: UIDocumentPickerViewController) {
+        
+        documentPicker.delegate = self
+        present(documentPicker, animated: true, completion: nil)
+    }
+    
+    func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+        
+        print("we cancelled")
+        dismiss(animated: true, completion: nil)
+    }
+}
+
 extension ImportWalletViewController {
     
     @objc func inputPrivateKeyButtonPressed(){
@@ -105,7 +134,10 @@ extension ImportWalletViewController {
     }
     
     @objc func selectKeystoreButtonPressed(){
-        
+        let importMenu = UIDocumentMenuViewController(documentTypes: ["public.data"], in: .import)
+        importMenu.delegate = self
+        importMenu.modalPresentationStyle = .formSheet
+        self.present(importMenu, animated: true, completion: nil)
     }
     
     @objc func closeButtonPressed(){
