@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import SnapKit
+import MobileCoreServices
 
 class ImportWalletViewController: UIViewController {
     
@@ -109,13 +110,22 @@ extension ImportWalletViewController : UIDocumentMenuDelegate, UIDocumentPickerD
             print("Read JSON file:")
             print(jsonString)
             
+            let password = "TobiasMahoney!23"
+            
+            WalletImportFileManager(password: password, fileContent: jsonString, walletImportCompleted: { (walletUnEncrypted) in
+                print("Wallet decrypted!!")
+                print(walletUnEncrypted)
+                WalletManager.sharedInstance.setWalletUnEncrypted(wallet: walletUnEncrypted)
+            }, errBlock: { (errorMessage) in
+                let errorPopup = UIAlertController(title: "🤕", message: errorMessage, preferredStyle: .alert)
+                errorPopup.addAction(UIAlertAction(title: "👍", style: .cancel, handler: nil))
+                self.present(errorPopup, animated: true, completion: nil)
+            })
+            .startImport()
         }
-        
-        //optional, case PDF -> render
-        //displayPDFweb.loadRequest(NSURLRequest(url: cico) as URLRequest)
     }
+    
     func documentMenu(_ documentMenu:     UIDocumentMenuViewController, didPickDocumentPicker documentPicker: UIDocumentPickerViewController) {
-        
         documentPicker.delegate = self
         present(documentPicker, animated: true, completion: nil)
     }
@@ -134,7 +144,7 @@ extension ImportWalletViewController {
     }
     
     @objc func selectKeystoreButtonPressed(){
-        let importMenu = UIDocumentMenuViewController(documentTypes: ["public.data"], in: .import)
+        let importMenu = UIDocumentMenuViewController(documentTypes: ["public.data", kUTTypeText as String, kUTTypeItem as String], in: .import)
         importMenu.delegate = self
         importMenu.modalPresentationStyle = .formSheet
         self.present(importMenu, animated: true, completion: nil)

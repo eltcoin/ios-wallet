@@ -66,7 +66,7 @@ extension WalletImportFileManager: WKNavigationDelegate {
         print("Navigated to: " + (webView.url?.absoluteString)!)
         
         if webView.url?.absoluteString.range(of:"index.html#view-wallet-info") != nil {
-            webView.evaluateJavaScript("importWalletWithKeyStoreFile('\(self.password)', '\(self.fileContent)')", completionHandler: nil)
+            webView.evaluateJavaScript("importWalletWithKeyStoreFile('\(self.fileContent)', '\(self.password)')", completionHandler: nil)
         }
     }
 }
