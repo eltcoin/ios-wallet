@@ -49,6 +49,7 @@
 		D5A6EC071F9F339700840A7F /* ETHBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A6EC061F9F339700840A7F /* ETHBalance.swift */; };
 		D5AAEC9A1F9F852900827267 /* WalletImportFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AAEC991F9F852900827267 /* WalletImportFileManager.swift */; };
 		D5AAEC9C1FA0943700827267 /* SelectCurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AAEC9B1FA0943700827267 /* SelectCurrencyViewController.swift */; };
+		D5AAECA11FA0F1C300827267 /* CurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AAECA01FA0F1C300827267 /* CurrencyTableViewCell.swift */; };
 		D5BDE7051F9E5223002D43F8 /* WalletTransactionsReponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BDE7041F9E5223002D43F8 /* WalletTransactionsReponse.swift */; };
 		F29E53798D05C5C42BFD6FAA /* Pods_ELTCOINWALLETTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B41A0E7C40B9E6C64780F561 /* Pods_ELTCOINWALLETTests.framework */; };
 /* End PBXBuildFile section */
@@ -126,6 +127,7 @@
 		D5A6EC061F9F339700840A7F /* ETHBalance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETHBalance.swift; sourceTree = "<group>"; };
 		D5AAEC991F9F852900827267 /* WalletImportFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletImportFileManager.swift; sourceTree = "<group>"; };
 		D5AAEC9B1FA0943700827267 /* SelectCurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCurrencyViewController.swift; sourceTree = "<group>"; };
+		D5AAECA01FA0F1C300827267 /* CurrencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewCell.swift; sourceTree = "<group>"; };
 		D5BDE7041F9E5223002D43F8 /* WalletTransactionsReponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTransactionsReponse.swift; sourceTree = "<group>"; };
 		D5EC5EBC1F9F5CB000B89D06 /* ELTCOINWALLET.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ELTCOINWALLET.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -197,6 +199,7 @@
 		D59452381F94C9AF005107A9 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				D5AAEC9D1FA0DC7B00827267 /* Mapping */,
 				D594523A1F94C9F2005107A9 /* NetworkTaskReponse.swift */,
 				D59452451F94E45A005107A9 /* WalletUnEncryptedJSAPIResponse.swift */,
 				D51504831F950BB0006013E2 /* WalletEncryptedJSAPIResponse.swift */,
@@ -321,6 +324,7 @@
 			isa = PBXGroup;
 			children = (
 				D5A160CC1F8FB085007E3EB0 /* TransactionTableViewCell.swift */,
+				D5AAECA01FA0F1C300827267 /* CurrencyTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -331,6 +335,13 @@
 				D5A160DC1F8FD357007E3EB0 /* Animator.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		D5AAEC9D1FA0DC7B00827267 /* Mapping */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Mapping;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -636,6 +647,7 @@
 				D5A6EC071F9F339700840A7F /* ETHBalance.swift in Sources */,
 				D5A160C71F8F9677007E3EB0 /* HomeViewController.swift in Sources */,
 				D515048D1F9695E9006013E2 /* WalletTransactionsManager.swift in Sources */,
+				D5AAECA11FA0F1C300827267 /* CurrencyTableViewCell.swift in Sources */,
 				D5A160CD1F8FB085007E3EB0 /* TransactionTableViewCell.swift in Sources */,
 				D594522A1F920E38005107A9 /* NewWalletViewController.swift in Sources */,
 				D5A160D61F8FC527007E3EB0 /* UIImage+ex.swift in Sources */,

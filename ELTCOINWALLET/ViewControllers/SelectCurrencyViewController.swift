@@ -111,7 +111,7 @@ class SelectCurrencyViewController: UIViewController {
         tableView.backgroundColor = UIColor.clear
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(CurrencyTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.snp.makeConstraints { (make) in
             make.left.right.bottom.equalTo(view)
             make.top.equalTo(topBarBackgroundView.snp.bottom)
@@ -138,12 +138,11 @@ extension SelectCurrencyViewController : UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
+        let cell: CurrencyTableViewCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! CurrencyTableViewCell
         
         let token = self.tokens[indexPath.row]
         
-        cell.textLabel?.text = token.tokenInfo?.symbol
-        cell.detailTextLabel?.text = token.tokenInfo?.name
+        cell.setupCell(token: token)
         
         return cell
     }

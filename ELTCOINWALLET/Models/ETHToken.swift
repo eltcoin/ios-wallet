@@ -39,4 +39,10 @@ class ETHToken : NetworkTaskResponse {
             totalOut >>> map["totalOut"]
         }
     }
+    
+    func getBalance() -> Double {
+        let decimals = (Int((self.tokenInfo?.decimals)!))!
+        let divisable = pow(10, decimals)
+        return self.balance / NSDecimalNumber(decimal: divisable).doubleValue
+    }
 }

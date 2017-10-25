@@ -16,16 +16,17 @@ class WalletTransaction: NetworkTaskResponse {
         case recieved
     }
 
-    var timeStamp: String = ""
+    var timestamp: Int64 = 0
     var from: String = ""
     var to: String = ""
     var hash: String = ""
-    var value: String = ""
+    var input: String = ""
+    var value: Double = 0.0
     var success: Bool = false
     
     var type: TRANSACTION_TYPE {
         get {
-            if (to == WalletManager.sharedInstance.getWalletEncrypted()?.address && to.characters.count > 0) {
+            if (to == WalletManager.sharedInstance.getWalletUnEncrypted()?.address && to.characters.count > 0) {
                 return TRANSACTION_TYPE.recieved
             }else{
                 return TRANSACTION_TYPE.sent
@@ -33,7 +34,6 @@ class WalletTransaction: NetworkTaskResponse {
         }
         set {}
     }
-    
     
     override func customInit(string: String) -> WalletTransaction? {
         return WalletTransaction(JSONString: string)
@@ -47,14 +47,14 @@ class WalletTransaction: NetworkTaskResponse {
         super.mapping(map: map)
         
         if map.mappingType == .fromJSON {
-            timeStamp         <-  map["timeStamp"]
+            timestamp         <-  map["timestamp"]
             hash         <-  map["hash"]
             from         <-  map["from"]
             to         <-  map["to"]
             value         <-  map["value"]
             success         <-  map["success"]
         }else{
-            timeStamp         >>>  map["timeStamp"]
+            timestamp         >>>  map["timestamp"]
             hash         >>>  map["hash"]
             from        >>>  map["from"]
             to        >>>  map["to"]
@@ -65,6 +65,16 @@ class WalletTransaction: NetworkTaskResponse {
 }
 
 extension WalletTransaction {
+    
+    func transactionDate() -> String {
+        let date = Date(timeIntervalSince1970: Double(self.timestamp))
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = NSLocale.current
+        dateFormatter.dateFormat = "MMM d, HH:mm a" //Specify your format that you want
+        let strDate = dateFormatter.string(from: date)
+        
+        return strDate
+    }
     
     func description() -> String {
         switch self.type {

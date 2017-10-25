@@ -13,7 +13,7 @@ class ETHTokenInfo : NetworkTaskResponse {
     
     var address = ""
     var name = ""
-    var decimals = ""
+    var decimals: String = ""
     var symbol = ""
     var totalSupply = ""
     var owner = ""

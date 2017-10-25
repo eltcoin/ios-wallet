@@ -6,7 +6,6 @@
 //  Copyright © 2017 ELTCOIN. All rights reserved.
 //
 
-
 import Foundation
 import UIKit
 import SnapKit
@@ -32,7 +31,7 @@ class TransactionTableViewCell: UITableViewCell {
     
     func setupCell(transaction: WalletTransaction){
         
-        cellTitleLabel.text = transaction.description()
+        cellTitleLabel.text = transaction.transactionDate()
         cellTimeLabel.text = transaction.from
         cellAmountLabel.text = "\(transaction.value)"
         
@@ -91,7 +90,7 @@ class TransactionTableViewCell: UITableViewCell {
         cellImageView.layer.borderWidth =  0 //1
         cellImageView.layer.cornerRadius = 4
         cellImageView.layer.masksToBounds = true
-        cellImageView.backgroundColor = UIColor.CustomColor.White.offwhite
+        cellImageView.backgroundColor = UIColor.clear
         cellImageView.contentMode = .scaleAspectFit
         cellImageView.snp.makeConstraints { (make) in
             make.left.equalTo(subContentView).offset(10)
@@ -122,9 +121,5 @@ class TransactionTableViewCell: UITableViewCell {
             make.right.equalTo(cellAmountLabel.snp.rightMargin)
             make.top.equalTo(cellTitleLabel.snp.bottom).offset(5)
         }
-        
-        
-        
     }
 }
-
