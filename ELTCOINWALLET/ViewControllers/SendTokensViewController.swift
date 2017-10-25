@@ -164,7 +164,7 @@ class SendTokensViewController: UIViewController {
         sendButton.addTarget(self, action: #selector(SendTokensViewController.sendButtonPressed), for: .touchUpInside)
 
         coinVolumeTextField.inputAccessoryView = sendButton
-        desitnationWalletAddressTextField.inputAccessoryView = sendButton
+        destinationWalletAddressTextField.inputAccessoryView = sendButton
         gasLimitTextField.inputAccessoryView = sendButton
 
         coinVolumeTextField.becomeFirstResponder()
@@ -198,12 +198,20 @@ extension SendTokensViewController {
                 return
             }
             
-            sendTokens(volume: coinVolume, gasLimit: gasLimit, destinationAddress: destinationAddress)
+            sendTokens(coinVolume: coinVolume, gasLimit: gasLimit, destinationAddress: destinationAddress)
         }
     }
     
-    func sendTokens(volume: Double, gasLimit: Double, destinationAddress: String){
+    func sendTokens(coinVolume: Double, gasLimit: Double, destinationAddress: String){
+        let sendTokensManager = WalletSendTokensManager(token: currentToken!, coinVolume: coinVolume, gasLimit: gasLimit, destinationAddress: destinationAddress, sendCompleted: {
+            print("token transaction has been uploaded!")
+        }) { (errorMessage) in
+            let errorPopup = UIAlertController(title: "🤕", message: errorMessage, preferredStyle: .alert)
+            errorPopup.addAction(UIAlertAction(title: "👍", style: .cancel, handler: nil))
+            self.present(errorPopup, animated: true, completion: nil)
+        }
         
+        sendTokensManager.startSending()
     }
     
     @objc func currencyButtonPressed(){

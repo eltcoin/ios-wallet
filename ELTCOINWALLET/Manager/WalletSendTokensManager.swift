@@ -60,10 +60,6 @@ class WalletSendTokensManager: NSObject {
     
 }
 
-// Step 1 - Enter Private Key
-// Step 2 - Create Transaction
-// Step 3 - Upload Transaction
-
 extension WalletSendTokensManager: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         print("Navigated to: " + (webView.url?.absoluteString)!)
@@ -73,7 +69,11 @@ extension WalletSendTokensManager: WKNavigationDelegate {
             // Step1 - Enter Private Key
             
             if let privateKey = WalletManager.sharedInstance.getWalletUnEncrypted()?.privKey {
-                webView.evaluateJavaScript("step1WithPrivateKey('\(privateKey)')", completionHandler: nil)
+                
+                let jsStr = "step1WithPrivateKey('\(privateKey)', '\(coinVolume)', '\(gasLimit)', '\(destinationAddress)')";
+                
+                print(jsStr)
+                webView.evaluateJavaScript(jsStr, completionHandler: nil)
             }
             
             //webView.evaluateJavaScript("importWalletWithKeyStoreFile('\(self.fileContent)', '\(self.password)')", completionHandler: nil)

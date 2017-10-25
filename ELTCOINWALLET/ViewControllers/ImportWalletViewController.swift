@@ -110,7 +110,7 @@ extension ImportWalletViewController : UIDocumentMenuDelegate, UIDocumentPickerD
             print("Read JSON file:")
             print(jsonString)
             
-            let password = "Password123"
+            let password = ""
             
             WalletImportFileManager(password: password, fileContent: jsonString, walletImportCompleted: { (walletUnEncrypted) in
                 WalletManager.sharedInstance.setWalletUnEncrypted(wallet: walletUnEncrypted)
