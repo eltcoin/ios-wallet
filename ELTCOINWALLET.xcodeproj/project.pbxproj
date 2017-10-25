@@ -48,6 +48,7 @@
 		D5A6EC051F9F2E5700840A7F /* ETHToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A6EC041F9F2E5700840A7F /* ETHToken.swift */; };
 		D5A6EC071F9F339700840A7F /* ETHBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A6EC061F9F339700840A7F /* ETHBalance.swift */; };
 		D5AAEC9A1F9F852900827267 /* WalletImportFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AAEC991F9F852900827267 /* WalletImportFileManager.swift */; };
+		D5AAEC9C1FA0943700827267 /* SelectCurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AAEC9B1FA0943700827267 /* SelectCurrencyViewController.swift */; };
 		D5BDE7051F9E5223002D43F8 /* WalletTransactionsReponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BDE7041F9E5223002D43F8 /* WalletTransactionsReponse.swift */; };
 		F29E53798D05C5C42BFD6FAA /* Pods_ELTCOINWALLETTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B41A0E7C40B9E6C64780F561 /* Pods_ELTCOINWALLETTests.framework */; };
 /* End PBXBuildFile section */
@@ -124,6 +125,7 @@
 		D5A6EC041F9F2E5700840A7F /* ETHToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETHToken.swift; sourceTree = "<group>"; };
 		D5A6EC061F9F339700840A7F /* ETHBalance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETHBalance.swift; sourceTree = "<group>"; };
 		D5AAEC991F9F852900827267 /* WalletImportFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletImportFileManager.swift; sourceTree = "<group>"; };
+		D5AAEC9B1FA0943700827267 /* SelectCurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCurrencyViewController.swift; sourceTree = "<group>"; };
 		D5BDE7041F9E5223002D43F8 /* WalletTransactionsReponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTransactionsReponse.swift; sourceTree = "<group>"; };
 		D5EC5EBC1F9F5CB000B89D06 /* ELTCOINWALLET.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ELTCOINWALLET.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -285,6 +287,7 @@
 				D59452311F94BA1D005107A9 /* WalletCreatedViewController.swift */,
 				D51504901F9743B7006013E2 /* ImportWalletViewController.swift */,
 				D514ACA41F9E0AD200C591D1 /* ImportWalletPKViewController.swift */,
+				D5AAEC9B1FA0943700827267 /* SelectCurrencyViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -642,6 +645,7 @@
 				D5285C8C1F8FFFA300F46425 /* ScannerViewController.swift in Sources */,
 				D514ACA51F9E0AD200C591D1 /* ImportWalletPKViewController.swift in Sources */,
 				D51504931F9748EB006013E2 /* WalletImportPrivateKeyManager.swift in Sources */,
+				D5AAEC9C1FA0943700827267 /* SelectCurrencyViewController.swift in Sources */,
 				D51504911F9743B7006013E2 /* ImportWalletViewController.swift in Sources */,
 				D5A160CF1F8FB656007E3EB0 /* WalletTransaction.swift in Sources */,
 				D5A160CA1F8FA373007E3EB0 /* UIColor+ex.swift in Sources */,

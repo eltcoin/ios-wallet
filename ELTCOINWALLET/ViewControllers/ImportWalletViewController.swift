@@ -110,12 +110,11 @@ extension ImportWalletViewController : UIDocumentMenuDelegate, UIDocumentPickerD
             print("Read JSON file:")
             print(jsonString)
             
-            let password = "TobiasMahoney!23"
+            let password = "Password123"
             
             WalletImportFileManager(password: password, fileContent: jsonString, walletImportCompleted: { (walletUnEncrypted) in
-                print("Wallet decrypted!!")
-                print(walletUnEncrypted)
                 WalletManager.sharedInstance.setWalletUnEncrypted(wallet: walletUnEncrypted)
+                self.navigationController?.dismiss(animated: true, completion: nil)
             }, errBlock: { (errorMessage) in
                 let errorPopup = UIAlertController(title: "🤕", message: errorMessage, preferredStyle: .alert)
                 errorPopup.addAction(UIAlertAction(title: "👍", style: .cancel, handler: nil))

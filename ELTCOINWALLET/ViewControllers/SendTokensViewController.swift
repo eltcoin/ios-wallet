@@ -13,16 +13,19 @@ import SkyFloatingLabelTextField
 
 class SendTokensViewController: UIViewController {
     
+    var currentToken: ETHToken?
+    
     // TOP BAR
     var topBarBackgroundView = UIView()
     var topBarTitleLabel = UILabel()
     var topBarBackgroundLineView = UIView()
     var topBarCloseButton = UIButton()
+    var topBarCurrencyButton = UIButton()
 
     // Form Elements
     let coinVolumeTextField = SkyFloatingLabelTextField()
     let gasLimitTextField = SkyFloatingLabelTextField()
-    let desitnationWalletAddressTextField = SkyFloatingLabelTextField()
+    let destinationWalletAddressTextField = SkyFloatingLabelTextField()
     var sendButton = UIButton()
     
     var scanQRCodeButton = UIButton()
@@ -33,6 +36,7 @@ class SendTokensViewController: UIViewController {
         
         sendButton = UIButton(frame: CGRect(x: 0, y: 0, width: view.bounds.width , height: 60)) // Keyboard accessory button
         setupViews()
+        setupDefaultToken()
     }
     
     func setupViews(){
@@ -75,42 +79,46 @@ class SendTokensViewController: UIViewController {
             make.left.equalTo(topBarBackgroundView.snp.left).offset(10)
         }
         
-        // Form Elements
-        
-        view.addSubview(coinVolumeTextField)
-        coinVolumeTextField.placeholder = "0.00000000"
-        coinVolumeTextField.title = "ELT Volume"
-        coinVolumeTextField.returnKeyType = .next
-        coinVolumeTextField.tintColor = UIColor.CustomColor.Black.DeepCharcoal
-        coinVolumeTextField.selectedTitleColor = UIColor.CustomColor.Grey.midGrey
-        coinVolumeTextField.selectedLineColor = UIColor.CustomColor.Grey.midGrey
-        coinVolumeTextField.autocapitalizationType = .none
-        coinVolumeTextField.keyboardType = UIKeyboardType.decimalPad
-        coinVolumeTextField.font = UIFont(name: "HelveticaNeue-Light", size: 23.0)
-        coinVolumeTextField.keyboardAppearance = .dark
-        coinVolumeTextField.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(view.snp.leftMargin).offset(30)
-            make.right.equalTo(view.snp.rightMargin).offset(-30)
-            make.centerX.equalTo(view)
-            make.top.equalTo(topBarBackgroundLineView.snp.bottom).offset(50)
+        topBarBackgroundView.addSubview(topBarCurrencyButton)
+        topBarCurrencyButton.contentHorizontalAlignment = .right
+        topBarCurrencyButton.setTitleColor(UIColor.black, for: .normal)
+        topBarCurrencyButton.setTitle("", for: .normal)
+        topBarCurrencyButton.addTarget(self, action: #selector(SendTokensViewController.currencyButtonPressed), for: .touchUpInside)
+        topBarCurrencyButton.snp.makeConstraints { (make) in
+            make.width.equalTo(120)
+            make.height.equalTo(28)
+            make.top.equalTo(topBarBackgroundView).offset(25)
+            make.right.equalTo(topBarBackgroundView.snp.right).offset(-10)
         }
         
-        view.addSubview(desitnationWalletAddressTextField)
-        desitnationWalletAddressTextField.placeholder = "0x93a408E47dBD8F1566316BFdE3BCC7DFe5FD8224"
-        desitnationWalletAddressTextField.title = "Wallet Addres"
-        desitnationWalletAddressTextField.returnKeyType = .next
-        coinVolumeTextField.tintColor = UIColor.CustomColor.Black.DeepCharcoal
-        desitnationWalletAddressTextField.selectedTitleColor = UIColor.CustomColor.Grey.midGrey
-        desitnationWalletAddressTextField.selectedLineColor = UIColor.CustomColor.Grey.midGrey
-        desitnationWalletAddressTextField.autocapitalizationType = .none
-        desitnationWalletAddressTextField.keyboardAppearance = .dark
-        desitnationWalletAddressTextField.keyboardType = UIKeyboardType.default
-        desitnationWalletAddressTextField.font = UIFont(name: "HelveticaNeue-Light", size: 14.0)
-        desitnationWalletAddressTextField.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(view.snp.leftMargin).offset(30)
-            make.right.equalTo(view.snp.rightMargin).offset(-30-60)
+        // Form Elements
+        
+        view.addSubview(scanQRCodeButton)
+        scanQRCodeButton.addTarget(self, action: #selector(SendTokensViewController.scanButtonPressed), for: .touchUpInside)
+        scanQRCodeButton.setBackgroundImage(UIImage(imageLiteralResourceName: "qrCodeIcon"), for: UIControlState.normal);
+        scanQRCodeButton.snp.makeConstraints { (make) in
+            make.top.equalTo(topBarBackgroundLineView.snp.bottom).offset(10)
+            make.centerX.equalTo(topBarBackgroundLineView)
+            make.width.height.equalTo(50)
+        }
+        
+        view.addSubview(destinationWalletAddressTextField)
+        destinationWalletAddressTextField.placeholder = "Destination Address"
+        destinationWalletAddressTextField.title = "Wallet Addres"
+        destinationWalletAddressTextField.text = "0x77Ea29731140c0eDeb2D4871Ecdf7fbee0728Da0"
+        destinationWalletAddressTextField.returnKeyType = .next
+        destinationWalletAddressTextField.tintColor = UIColor.CustomColor.Black.DeepCharcoal
+        destinationWalletAddressTextField.selectedTitleColor = UIColor.CustomColor.Grey.midGrey
+        destinationWalletAddressTextField.selectedLineColor = UIColor.CustomColor.Grey.midGrey
+        destinationWalletAddressTextField.autocapitalizationType = .none
+        destinationWalletAddressTextField.keyboardAppearance = .dark
+        destinationWalletAddressTextField.keyboardType = UIKeyboardType.default
+        destinationWalletAddressTextField.font = UIFont(name: "HelveticaNeue-Light", size: 12.0)
+        destinationWalletAddressTextField.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(view.snp.leftMargin).offset(20)
+            make.right.equalTo(view.snp.rightMargin).offset(-20)
             make.centerX.equalTo(view)
-            make.top.equalTo(coinVolumeTextField.snp.bottom).offset(10)
+            make.top.equalTo(scanQRCodeButton.snp.bottom).offset(10)
         }
         
         view.addSubview(gasLimitTextField)
@@ -126,30 +134,82 @@ class SendTokensViewController: UIViewController {
         gasLimitTextField.font = UIFont(name: "HelveticaNeue-Light", size: 23.0)
         gasLimitTextField.keyboardAppearance = .dark
         gasLimitTextField.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(view.snp.leftMargin).offset(30)
-            make.right.equalTo(view.snp.rightMargin).offset(-30)
+            make.left.equalTo(view.snp.leftMargin).offset(20)
+            make.right.equalTo(view.snp.rightMargin).offset(-20)
             make.centerX.equalTo(view)
-            make.top.equalTo(desitnationWalletAddressTextField.snp.bottom).offset(10)
+            make.top.equalTo(destinationWalletAddressTextField.snp.bottom).offset(10)
         }
         
-        view.addSubview(scanQRCodeButton)
-        scanQRCodeButton.addTarget(self, action: #selector(SendTokensViewController.scanButtonPressed), for: .touchUpInside)
-        scanQRCodeButton.setBackgroundImage(UIImage(imageLiteralResourceName: "qrCodeIcon"), for: UIControlState.normal);
-        scanQRCodeButton.snp.makeConstraints { (make) in
-            make.centerY.equalTo(desitnationWalletAddressTextField)
-            make.right.equalTo(view.snp.rightMargin).offset(-30)
-            make.width.height.equalTo(50)
+        view.addSubview(coinVolumeTextField)
+        coinVolumeTextField.placeholder = "0.0"
+        coinVolumeTextField.title = "Amount to send"
+        coinVolumeTextField.returnKeyType = .next
+        coinVolumeTextField.tintColor = UIColor.CustomColor.Black.DeepCharcoal
+        coinVolumeTextField.selectedTitleColor = UIColor.CustomColor.Grey.midGrey
+        coinVolumeTextField.selectedLineColor = UIColor.CustomColor.Grey.midGrey
+        coinVolumeTextField.autocapitalizationType = .none
+        coinVolumeTextField.keyboardType = UIKeyboardType.decimalPad
+        coinVolumeTextField.font = UIFont(name: "HelveticaNeue-Light", size: 23.0)
+        coinVolumeTextField.keyboardAppearance = .dark
+        coinVolumeTextField.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(view.snp.leftMargin).offset(20)
+            make.right.equalTo(view.snp.rightMargin).offset(-20)
+            make.centerX.equalTo(view)
+            make.top.equalTo(gasLimitTextField.snp.bottom).offset(10)
         }
         
         sendButton.backgroundColor = UIColor.black
         sendButton.setTitle("SEND", for: .normal)
         sendButton.setTitleColor(UIColor.white, for: .normal)
-        
+        sendButton.addTarget(self, action: #selector(SendTokensViewController.sendButtonPressed), for: .touchUpInside)
+
         coinVolumeTextField.inputAccessoryView = sendButton
         desitnationWalletAddressTextField.inputAccessoryView = sendButton
         gasLimitTextField.inputAccessoryView = sendButton
 
         coinVolumeTextField.becomeFirstResponder()
+    }
+}
+
+extension SendTokensViewController {
+    
+    @objc func sendButtonPressed(){
+    
+        if let coinVolume = Double(coinVolumeTextField.text!), let gasLimit = Double(gasLimitTextField.text!) {
+            if coinVolume == 0.0 {
+                let errorPopup = UIAlertController(title: "🚨", message: "Enter a number of tokens above zero", preferredStyle: .alert)
+                errorPopup.addAction(UIAlertAction(title: "👍", style: .cancel, handler: nil))
+                self.present(errorPopup, animated: true, completion: nil)
+                return
+            }
+            
+            if gasLimit == 0.0 {
+                let errorPopup = UIAlertController(title: "🚨", message: "Enter a gas limit above zero", preferredStyle: .alert)
+                errorPopup.addAction(UIAlertAction(title: "👍", style: .cancel, handler: nil))
+                self.present(errorPopup, animated: true, completion: nil)
+                return
+            }
+            
+            let destinationAddress = destinationWalletAddressTextField.text ?? ""
+            if destinationAddress.characters.count == 0 {
+                let errorPopup = UIAlertController(title: "🚨", message: "Enter a destination address", preferredStyle: .alert)
+                errorPopup.addAction(UIAlertAction(title: "👍", style: .cancel, handler: nil))
+                self.present(errorPopup, animated: true, completion: nil)
+                return
+            }
+            
+            sendTokens(volume: coinVolume, gasLimit: gasLimit, destinationAddress: destinationAddress)
+        }
+    }
+    
+    func sendTokens(volume: Double, gasLimit: Double, destinationAddress: String){
+        
+    }
+    
+    @objc func currencyButtonPressed(){
+        let selectCurrencyVC = SelectCurrencyViewController()
+        selectCurrencyVC.delegate = self
+        self.navigationController?.pushViewController(selectCurrencyVC, animated: true)
     }
     
     @objc func scanButtonPressed(){
@@ -160,4 +220,25 @@ class SendTokensViewController: UIViewController {
     @objc func closeButtonPressed(){
         self.dismiss(animated: true, completion: nil)
     }
+    
+    func setToken(_ token: ETHToken){
+        currentToken = token
+        topBarCurrencyButton.setTitle(currentToken?.tokenInfo?.symbol, for: .normal)
+    }
+    
+    func setupDefaultToken(){
+        let token = ETHToken()
+        token.tokenInfo = ETHTokenInfo()
+        token.tokenInfo?.symbol = "ETH"
+        token.tokenInfo?.name = "Ethereum"
+        
+        setToken(token)
+    }
 }
+
+extension SendTokensViewController: SelectCurrenyProtocol {
+    func currencySelected(_ token: ETHToken) {
+        setToken(token)
+    }
+}
+
