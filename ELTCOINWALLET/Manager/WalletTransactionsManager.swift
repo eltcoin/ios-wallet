@@ -24,7 +24,7 @@ extension WalletTransactionsManager {
     }
     
     fileprivate func getTransactionsURL() -> String{
-        return baseAPI + "getAddressTransactions/\(WalletManager.sharedInstance.getWalletUnEncrypted()?.address ?? "")?apiKey=\(apiKey)"
+        return baseAPI + "getAddressTransactions/\(WalletManager.sharedInstance.getWalletUnEncrypted()?.address ?? "")?showZeroValues=1&apiKey=\(apiKey)"
     }
 }
 
@@ -67,6 +67,7 @@ extension WalletTransactionsManager {
                 
                 if let balanceResult = ETHTokenBalance().customInit(string: utf8Text) {
                     print("balanceResult: \(balanceResult)") // serialized json response
+                   
                     self.balanceImportCompleted!(balanceResult)
                 }
             }

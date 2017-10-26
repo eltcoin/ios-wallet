@@ -1,8 +1,8 @@
 //
-//  SelectCurrencyViewController.swift
+//  TransactionsViewController.swift
 //  ELTCOINWALLET
 //
-//  Created by Oliver Mahoney on 25/10/2017.
+//  Created by Oliver Mahoney on 26/10/2017.
 //  Copyright © 2017 ELTCOIN. All rights reserved.
 //
 
@@ -10,25 +10,25 @@ import Foundation
 import UIKit
 import SnapKit
 
-protocol SelectCurrenyProtocol {
-    func currencySelected(_ token: ETHToken)
-}
+class TransactionsViewController: UIViewController {
+    
+    var token: ETHToken?
+    
+    // Table Data
+    let reuseIdentifier = "TransactionCell"
+    var walletTransactions = [WalletTransaction]()
 
-class SelectCurrencyViewController: UIViewController {
-    
-    var delegate: SelectCurrenyProtocol?
-    var tokens = [ETHToken]()
-    let reuseIdentifier = "CURRENCY_CELL_IDENTIFIER"
-    
     // TOP BAR
     var topBarBackgroundView = UIView()
     var topBarTitleLabel = UILabel()
     var topBarBackgroundLineView = UIView()
     var topBarCancelButton = UIButton()
-    var topBarETHButton = UIButton()
-
+    
     // Form Elements
     let tableView = UITableView()
+    
+    // Empty Transaction List Label
+    var emptyListLabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,11 +39,12 @@ class SelectCurrencyViewController: UIViewController {
     }
     
     func setupTableData(){
-
+        
         let walletManager = WalletTransactionsManager()
         
-        walletManager.getBalance(balanceImportCompleted: { (walletBalance) in
-            self.tokens = walletBalance.tokens ?? [ETHToken]()
+        walletManager.getTransactions(transactionsImportCompleted: { (transactions) in
+            self.walletTransactions = transactions
+            self.emptyListLabel.isHidden = self.walletTransactions.count > 0
             self.tableView.reloadData()
         })
     }
@@ -62,7 +63,7 @@ class SelectCurrencyViewController: UIViewController {
         topBarTitleLabel.textAlignment = .center
         topBarTitleLabel.numberOfLines = 0
         topBarTitleLabel.textColor = UIColor.CustomColor.Black.DeepCharcoal
-        topBarTitleLabel.text = "Select Currency"
+        topBarTitleLabel.text = "Transactions"
         topBarTitleLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 18.0)
         topBarTitleLabel.snp.makeConstraints { (make) -> Void in
             make.centerX.equalTo(topBarBackgroundView)
@@ -91,18 +92,6 @@ class SelectCurrencyViewController: UIViewController {
             make.left.equalTo(topBarBackgroundView.snp.left).offset(10)
         }
         
-        topBarBackgroundView.addSubview(topBarETHButton)
-        topBarETHButton.contentHorizontalAlignment = .right
-        topBarETHButton.setTitleColor(UIColor.black, for: .normal)
-        topBarETHButton.setTitle("ETH", for: .normal)
-        topBarETHButton.addTarget(self, action: #selector(SelectCurrencyViewController.ETHButtonPressed), for: .touchUpInside)
-        topBarETHButton.snp.makeConstraints { (make) in
-            make.width.equalTo(120)
-            make.height.equalTo(28)
-            make.top.equalTo(topBarBackgroundView).offset(25)
-            make.right.equalTo(topBarBackgroundView.snp.right).offset(-10)
-        }
-        
         // Table View
         
         view.addSubview(tableView)
@@ -110,51 +99,41 @@ class SelectCurrencyViewController: UIViewController {
         tableView.backgroundColor = UIColor.clear
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(CurrencyTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(TransactionTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.snp.makeConstraints { (make) in
             make.left.right.bottom.equalTo(view)
             make.top.equalTo(topBarBackgroundView.snp.bottom)
+        }
+        
+        view.addSubview(emptyListLabel)
+        emptyListLabel.text = "There's no transactions to show\n😥"
+        emptyListLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)
+        emptyListLabel.numberOfLines = 0
+        emptyListLabel.isHidden = true
+        emptyListLabel.textAlignment = .center
+        emptyListLabel.snp.makeConstraints { (make) in
+            make.margins.equalTo(tableView)
         }
     }
     
     @objc func cancelButtonPressed(){
         self.navigationController?.popViewController(animated: true)
     }
-    
-    @objc func ETHButtonPressed(){
-        let token = ETHToken()
-        token.tokenInfo = ETHTokenInfo()
-        token.tokenInfo?.symbol = "ETH"
-        token.tokenInfo?.name = "Ethereum"
-        
-        if delegate != nil {
-            delegate?.currencySelected(token)
-            self.navigationController?.popViewController(animated: true)
-        }    }
 }
 
-extension SelectCurrencyViewController : UITableViewDelegate, UITableViewDataSource {
+extension TransactionsViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell: CurrencyTableViewCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! CurrencyTableViewCell
+        let cell: TransactionTableViewCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! TransactionTableViewCell
         
-        let token = self.tokens[indexPath.row]
-        
-        cell.setupCell(token: token)
+        cell.setupCell(transaction: walletTransactions[indexPath.row])
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        let token = self.tokens[indexPath.row]
-        
-        if delegate != nil {
-            delegate?.currencySelected(token)
-            self.navigationController?.popViewController(animated: true)
-        }
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -162,7 +141,6 @@ extension SelectCurrencyViewController : UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tokens.count;
+        return walletTransactions.count;
     }
 }
-

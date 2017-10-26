@@ -14,7 +14,7 @@ class HomeViewController: UIViewController {
 
     // Member vars
     let reuseIdentifier = "TransactionCell"
-    var walletTransactions = [WalletTransaction]()
+    var walletTokens = [ETHToken]()
     
     // TOP BAR
     var topBarBackgroundView = UIView()
@@ -31,8 +31,8 @@ class HomeViewController: UIViewController {
     var walletMainBalanceLabel = UILabel()
     var walletSubBalanceLabel = UILabel()
 
-    // Transaction List
-    var transactionsTableView = UITableView()
+    // Tokens List
+    var tableView = UITableView()
     
     // Empty Transaction List Label
     var emptyListLabel = UILabel()
@@ -56,6 +56,7 @@ class HomeViewController: UIViewController {
     
     @objc func handleRefresh(refreshControl: UIRefreshControl) {
         setupWalletUI {
+            self.tableView.reloadData()
             refreshControl.endRefreshing()
         }
     }
@@ -64,27 +65,19 @@ class HomeViewController: UIViewController {
         if let wallet = WalletManager.sharedInstance.getWalletUnEncrypted(){
             walletAddressLabel.text = wallet.address
 
-            var completionCount = 0
             let walletManager = WalletTransactionsManager()
             
-            walletManager.getBalance(balanceImportCompleted: { (WalletBalance) in
-                self.walletMainBalanceLabel.text = String(format:"%0.f ELT", (WalletBalance.getELTCOINBalance()))
-                self.walletSubBalanceLabel.text = String(format:"%f ETH", (WalletBalance.ETH?.balance)!)
-                completionCount += 1
-                if completionCount == 2 && completed != nil {
+            walletManager.getBalance(balanceImportCompleted: { (walletBalance) in
+                self.walletMainBalanceLabel.text = String(format:"%f ETH", (walletBalance.ETH?.balance)!)
+                //self.walletSubBalanceLabel.text = String(format:"%0.f ELT", (walletBalance.getELTCOINBalance()))
+                
+                self.walletTokens = walletBalance.tokens!
+                
+                if completed != nil {
                     completed!()
                 }
             })
             
-            walletManager.getTransactions(transactionsImportCompleted: { (transactions) in
-                self.walletTransactions = transactions
-                self.emptyListLabel.isHidden = self.walletTransactions.count > 0
-                self.transactionsTableView.reloadData()
-                completionCount += 1
-                if completionCount == 2 && completed != nil {
-                    completed!()
-                }
-            })
         }
     }
     
@@ -95,15 +88,17 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupWalletUI()
+        setupWalletUI {
+            self.tableView.reloadData()
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.transactionsTableView.addSubview(self.refreshControl)
+        self.tableView.addSubview(self.refreshControl)
         
-        self.transactionsTableView.refreshControl?.addTarget(self, action: #selector(HomeViewController.handleRefresh), for: UIControlEvents.valueChanged)
+        self.tableView.refreshControl?.addTarget(self, action: #selector(HomeViewController.handleRefresh), for: UIControlEvents.valueChanged)
         
         self.navigationController?.isNavigationBarHidden = true
 
@@ -214,20 +209,20 @@ class HomeViewController: UIViewController {
             make.height.equalTo(1)
         }
         
-        // Transaction List
-        view.addSubview(transactionsTableView)
-        transactionsTableView.separatorStyle = .none
-        transactionsTableView.backgroundColor = UIColor.clear
-        transactionsTableView.delegate = self
-        transactionsTableView.dataSource = self
-        transactionsTableView.register(TransactionTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
-        transactionsTableView.snp.makeConstraints { (make) in
+        // Tableview
+        view.addSubview(tableView)
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = UIColor.clear
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(TokenTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.snp.makeConstraints { (make) in
             make.top.equalTo(walletSummaryBackgroundView.snp.bottom).offset(1)
             make.width.bottom.equalTo(view)
         }
         
         view.addSubview(emptyListLabel)
-        emptyListLabel.text = "There's no transactions to show\n😥"
+        emptyListLabel.text = "There's no tokens to show\n😥"
         emptyListLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)
         emptyListLabel.numberOfLines = 0
         emptyListLabel.isHidden = true
@@ -293,21 +288,22 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell: TransactionTableViewCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! TransactionTableViewCell
+        let cell: TokenTableViewCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! TokenTableViewCell
         
-        cell.setupCell(transaction: walletTransactions[indexPath.row])
+        cell.setupCell(token: walletTokens[indexPath.row])
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        
+        let transactionsViewController = TransactionsViewController()
+        transactionsViewController.token = walletTokens[indexPath.row]
+        self.navigationController?.pushViewController(transactionsViewController, animated: true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return walletTransactions.count;
+        return walletTokens.count;
     }
 }

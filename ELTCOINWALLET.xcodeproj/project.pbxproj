@@ -17,6 +17,8 @@
 		D51504931F9748EB006013E2 /* WalletImportPrivateKeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51504921F9748EB006013E2 /* WalletImportPrivateKeyManager.swift */; };
 		D515049E1F97F0BC006013E2 /* WalletCreationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D515049D1F97F0BC006013E2 /* WalletCreationManager.swift */; };
 		D5285C8C1F8FFFA300F46425 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5285C8B1F8FFFA300F46425 /* ScannerViewController.swift */; };
+		D54ABABD1FA1E641005570E4 /* TransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54ABABC1FA1E641005570E4 /* TransactionsViewController.swift */; };
+		D54ABABF1FA1E907005570E4 /* TokenTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54ABABE1FA1E907005570E4 /* TokenTableViewCell.swift */; };
 		D594522A1F920E38005107A9 /* NewWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59452291F920E38005107A9 /* NewWalletViewController.swift */; };
 		D59452301F936DBD005107A9 /* dist in Resources */ = {isa = PBXBuildFile; fileRef = D594522F1F936DB8005107A9 /* dist */; };
 		D59452321F94BA1D005107A9 /* WalletCreatedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59452311F94BA1D005107A9 /* WalletCreatedViewController.swift */; };
@@ -89,6 +91,8 @@
 		D51504921F9748EB006013E2 /* WalletImportPrivateKeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletImportPrivateKeyManager.swift; sourceTree = "<group>"; };
 		D515049D1F97F0BC006013E2 /* WalletCreationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCreationManager.swift; sourceTree = "<group>"; };
 		D5285C8B1F8FFFA300F46425 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
+		D54ABABC1FA1E641005570E4 /* TransactionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewController.swift; sourceTree = "<group>"; };
+		D54ABABE1FA1E907005570E4 /* TokenTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenTableViewCell.swift; sourceTree = "<group>"; };
 		D59452291F920E38005107A9 /* NewWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWalletViewController.swift; sourceTree = "<group>"; };
 		D594522F1F936DB8005107A9 /* dist */ = {isa = PBXFileReference; lastKnownFileType = folder; name = dist; path = etherwallet/dist; sourceTree = "<group>"; };
 		D59452311F94BA1D005107A9 /* WalletCreatedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCreatedViewController.swift; sourceTree = "<group>"; };
@@ -291,6 +295,7 @@
 				D51504901F9743B7006013E2 /* ImportWalletViewController.swift */,
 				D514ACA41F9E0AD200C591D1 /* ImportWalletPKViewController.swift */,
 				D5AAEC9B1FA0943700827267 /* SelectCurrencyViewController.swift */,
+				D54ABABC1FA1E641005570E4 /* TransactionsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -325,6 +330,7 @@
 			children = (
 				D5A160CC1F8FB085007E3EB0 /* TransactionTableViewCell.swift */,
 				D5AAECA01FA0F1C300827267 /* CurrencyTableViewCell.swift */,
+				D54ABABE1FA1E907005570E4 /* TokenTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -635,6 +641,7 @@
 				D59452371F94C98E005107A9 /* WalletEncrypted.swift in Sources */,
 				D5BDE7051F9E5223002D43F8 /* WalletTransactionsReponse.swift in Sources */,
 				D59452461F94E45A005107A9 /* WalletUnEncryptedJSAPIResponse.swift in Sources */,
+				D54ABABD1FA1E641005570E4 /* TransactionsViewController.swift in Sources */,
 				D59452351F94C947005107A9 /* WalletManager.swift in Sources */,
 				D5A160D81F8FCD02007E3EB0 /* SendTokensViewController.swift in Sources */,
 				D5A160971F8F93D7007E3EB0 /* AppDelegate.swift in Sources */,
@@ -653,6 +660,7 @@
 				D5A160D61F8FC527007E3EB0 /* UIImage+ex.swift in Sources */,
 				D594523E1F94CD9C005107A9 /* WalletCrypto.swift in Sources */,
 				D51504841F950BB0006013E2 /* WalletEncryptedJSAPIResponse.swift in Sources */,
+				D54ABABF1FA1E907005570E4 /* TokenTableViewCell.swift in Sources */,
 				D5AAEC9A1F9F852900827267 /* WalletImportFileManager.swift in Sources */,
 				D5285C8C1F8FFFA300F46425 /* ScannerViewController.swift in Sources */,
 				D514ACA51F9E0AD200C591D1 /* ImportWalletPKViewController.swift in Sources */,
