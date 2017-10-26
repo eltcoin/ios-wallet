@@ -124,7 +124,7 @@ class SendTokensViewController: UIViewController {
         view.addSubview(gasLimitTextField)
         gasLimitTextField.placeholder = "0"
         gasLimitTextField.title = "Gas Limit"
-        gasLimitTextField.text = "21000"
+        gasLimitTextField.text = "25000"
         gasLimitTextField.returnKeyType = .next
         gasLimitTextField.tintColor = UIColor.CustomColor.Black.DeepCharcoal
         gasLimitTextField.selectedTitleColor = UIColor.CustomColor.Grey.midGrey
@@ -203,7 +203,10 @@ extension SendTokensViewController {
     }
     
     func sendTokens(coinVolume: Double, gasLimit: Double, destinationAddress: String){
-        let sendTokensManager = WalletSendTokensManager(token: currentToken!, coinVolume: coinVolume, gasLimit: gasLimit, destinationAddress: destinationAddress, sendCompleted: {
+        
+        let isEther = currentToken?.tokenInfo?.symbol == "ETH"
+        
+        let sendTokensManager = WalletSendTokensManager(isEther: isEther, token: currentToken!, coinVolume: coinVolume, gasLimit: gasLimit, destinationAddress: destinationAddress, sendCompleted: {
             print("token transaction has been uploaded!")
         }) { (errorMessage) in
             let errorPopup = UIAlertController(title: "🤕", message: errorMessage, preferredStyle: .alert)

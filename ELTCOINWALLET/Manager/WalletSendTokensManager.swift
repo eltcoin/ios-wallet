@@ -12,7 +12,8 @@ import WebKit
 class WalletSendTokensManager: NSObject {
 
     private var webView = WKWebView()
-    
+
+    private var isEther = true
     private var token: ETHToken?
     private var coinVolume: Double = 0.0
     private var gasLimit: Double = 0.0
@@ -21,8 +22,9 @@ class WalletSendTokensManager: NSObject {
     public var sendCompleted: (()->Void)?
     public var errBlock: ((String)->Void)?
     
-    init(token: ETHToken, coinVolume: Double, gasLimit: Double, destinationAddress: String, sendCompleted: @escaping (()->Void), errBlock: @escaping ((String)->Void)) {
+    init(isEther: Bool, token: ETHToken, coinVolume: Double, gasLimit: Double, destinationAddress: String, sendCompleted: @escaping (()->Void), errBlock: @escaping ((String)->Void)) {
         super.init()
+        self.isEther = isEther
         self.token = token
         self.coinVolume = coinVolume
         self.gasLimit = gasLimit
@@ -70,7 +72,7 @@ extension WalletSendTokensManager: WKNavigationDelegate {
             
             if let privateKey = WalletManager.sharedInstance.getWalletUnEncrypted()?.privKey {
                 
-                let jsStr = "step1WithPrivateKey('\(privateKey)', '\(coinVolume)', '\(gasLimit)', '\(destinationAddress)')";
+                let jsStr = "step1WithPrivateKey('\(privateKey)', '\(coinVolume)', '\(gasLimit)', '\(destinationAddress)', \(isEther.description), '\(token?.tokenInfo?.address ?? "" )', '\(token?.tokenInfo?.symbol ?? "")', '\(token?.tokenInfo?.decimals ?? "")')";
                 
                 print(jsStr)
                 webView.evaluateJavaScript(jsStr, completionHandler: nil)
@@ -94,7 +96,8 @@ extension WalletSendTokensManager: WKScriptMessageHandler {
                 
                 if let tag: String = parsedData["tag"] as? String{
                     switch tag {
-                    case WalletManager.WALLET_EVENTS.NEW_WALLET_ERR.rawValue:
+                    case WalletManager.WALLET_EVENTS.SEND_TOKEN_ERR.rawValue:
+                        
                         if errBlock != nil {
                             if let errorMessage: String = parsedData["payload"] as? String{
                                 self.errBlock!(errorMessage)
@@ -102,7 +105,16 @@ extension WalletSendTokensManager: WKScriptMessageHandler {
                                 self.errBlock!("There was a problem creating your wallet")
                             }
                         }
-                    
+                        
+                    case WalletManager.WALLET_EVENTS.SEND_TOKEN_COMPLETE.rawValue:
+                        
+                        if let message: String = parsedData["payload"] as? String{
+                            print(message)
+                        }
+                        if sendCompleted != nil {
+                            self.sendCompleted!()
+                        }
+                        
                     // TODO: case...
                         
                     default:
