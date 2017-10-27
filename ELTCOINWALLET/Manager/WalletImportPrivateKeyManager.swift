@@ -17,10 +17,13 @@ class WalletImportPrivateKeyManager: NSObject {
     private var walletUnEncrypted :WalletUnEncrypted?
     
     public var walletImportCompleted: ((WalletUnEncrypted)->Void)?
+    public var errBlock: ((String)->Void)?
 
-    init(privateKey: String, walletImportCompleted: @escaping ((WalletUnEncrypted)->Void)) {
+
+    init(privateKey: String, walletImportCompleted: @escaping ((WalletUnEncrypted)->Void), errBlock: @escaping ((String)->Void)) {
         super.init()
         self.walletImportCompleted = walletImportCompleted
+        self.errBlock = errBlock
         self.privateKey = privateKey
         initiateNewWalletWebview()
     }
@@ -91,6 +94,16 @@ extension WalletImportPrivateKeyManager: WKScriptMessageHandler {
                                 self.walletUnEncrypted = walletUnEncryptedJSAPIResponse.payload
                                 WalletManager.sharedInstance.setWalletUnEncrypted(wallet: walletUnEncryptedJSAPIResponse.payload)
                                 walletImportCompleted!(self.walletUnEncrypted!)
+                            }
+                            
+                        case WalletManager.WALLET_EVENTS.NEW_WALLET_ERR.rawValue:
+                            
+                            if errBlock != nil {
+                                if let errorMessage: String = parsedData["payload"] as? String{
+                                    self.errBlock!(errorMessage)
+                                }else{
+                                    self.errBlock!("There was a problem decrypting your wallet")
+                                }
                             }
                             
                         // TODO: Callback to code block

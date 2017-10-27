@@ -1,8 +1,8 @@
 //
-//  NewWalletViewController.swift
+//  ImportWalletFileViewController.swift
 //  ELTCOINWALLET
 //
-//  Created by Oliver Mahoney on 14/10/2017.
+//  Created by Oliver Mahoney on 27/10/2017.
 //  Copyright © 2017 ELTCOIN. All rights reserved.
 //
 
@@ -12,36 +12,37 @@ import SnapKit
 import SkyFloatingLabelTextField
 import NVActivityIndicatorView
 
-class NewWalletViewController: UIViewController {
+class ImportWalletFileViewController: UIViewController {
     
     let loadingView = UIView()
-    
+
     // TOP BAR
     var topBarBackgroundView = UIView()
     var topBarTitleLabel = UILabel()
     var topBarBackgroundLineView = UIView()
-    var topBarCloseButton = UIButton()
     
     // Form Items
     let passwordTextView = SkyFloatingLabelTextField()
-    let orLabel = UILabel()
-    let createWalletButton = UIButton()
-    let importWalletButton = UIButton()
+    
+    // Import Wallet Options - Buttons
+    let doneButton = UIButton()
+    let cancelButton = UIButton()
+    
+    // Imported File:
+    var jsonString = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.CustomColor.White.offwhite
         setupViews()
     }
     
-    
     func setupViews(){
+        self.view.backgroundColor = UIColor.white
         
         view.addSubview(loadingView)
         loadingView.isHidden = true
         
         // TOP VIEWS
-        
         self.view.addSubview(topBarBackgroundView)
         topBarBackgroundView.snp.makeConstraints { (make) in
             make.height.equalTo(64)
@@ -52,7 +53,7 @@ class NewWalletViewController: UIViewController {
         topBarTitleLabel.textAlignment = .center
         topBarTitleLabel.numberOfLines = 0
         topBarTitleLabel.textColor = UIColor.CustomColor.Black.DeepCharcoal
-        topBarTitleLabel.text = "New Wallet"
+        topBarTitleLabel.text = "Enter KeyStore Password"
         topBarTitleLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 18.0)
         topBarTitleLabel.snp.makeConstraints { (make) -> Void in
             make.centerX.equalTo(topBarBackgroundView)
@@ -69,21 +70,10 @@ class NewWalletViewController: UIViewController {
             make.height.equalTo(1)
         }
         
-        topBarBackgroundView.addSubview(topBarCloseButton)
-        topBarCloseButton.setBackgroundImage(UIImage(imageLiteralResourceName: "closeIcon"), for: UIControlState.normal);
-        topBarCloseButton.addTarget(self, action: #selector(SendTokensViewController.closeButtonPressed), for: .touchUpInside)
-        topBarCloseButton.snp.makeConstraints { (make) in
-            make.width.height.equalTo(28)
-            make.top.equalTo(topBarBackgroundView).offset(25)
-            make.left.equalTo(topBarBackgroundView.snp.left).offset(10)
-        }
-        
-        // Form inputs
-        
         view.addSubview(passwordTextView)
-        passwordTextView.placeholder = "Password"
-        passwordTextView.title = "Secure New Wallet With Password"
-        //passwordTextView.delegate = self
+        passwordTextView.placeholder = "Enter Password"
+        passwordTextView.title = "KeyStore Password"
+        passwordTextView.text = ""
         passwordTextView.setTitleVisible(true)
         passwordTextView.returnKeyType = .go
         passwordTextView.tintColor = UIColor.CustomColor.Black.DeepCharcoal
@@ -100,80 +90,60 @@ class NewWalletViewController: UIViewController {
             make.top.equalTo(topBarBackgroundView.snp.bottom).offset(20)
         }
         
-        view.addSubview(createWalletButton)
-        createWalletButton.setTitle("Create Wallet", for: .normal)
-        createWalletButton.setTitle("Loading...", for: .disabled)
-
-        createWalletButton.backgroundColor = UIColor.CustomColor.Black.DeepCharcoal
-        createWalletButton.layer.cornerRadius = 4.0
-        createWalletButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 23.0)
-        createWalletButton.snp.makeConstraints { (make) -> Void in
-            make.width.equalTo(200)
+        // Button Options
+        
+        view.addSubview(doneButton)
+        doneButton.setTitle("Import", for: .normal)
+        doneButton.backgroundColor = UIColor.CustomColor.Black.DeepCharcoal
+        doneButton.layer.cornerRadius = 4.0
+        doneButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 23.0)
+        doneButton.snp.makeConstraints { (make) -> Void in
+            make.width.equalTo(250)
             make.height.equalTo(40)
             make.centerX.equalTo(view)
-            make.top.equalTo(passwordTextView.snp.bottom).offset(20)
+            make.top.equalTo(passwordTextView.snp.bottom).offset(50)
         }
-        createWalletButton.addTarget(self, action: #selector(NewWalletViewController.createWalletButtonPressed), for: .touchUpInside)
+        doneButton.addTarget(self, action: #selector(ImportWalletFileViewController.doneButtonPressed), for: .touchUpInside)
         
-        view.addSubview(orLabel)
-        orLabel.text = "-or-"
-        orLabel.font = UIFont(name: "HelveticaNeue-Light", size: 14.0)
-        orLabel.snp.makeConstraints { (make) -> Void in
-            make.centerX.equalTo(view)
-            make.top.equalTo(createWalletButton.snp.bottom).offset(10)
-        }
-        
-        view.addSubview(importWalletButton)
-        importWalletButton.setTitle("Import Wallet", for: .normal)
-        importWalletButton.setTitleColor(UIColor.CustomColor.Black.DeepCharcoal, for: .normal)
-        importWalletButton.layer.cornerRadius = 4.0
-        importWalletButton.titleLabel?.textColor = UIColor.CustomColor.Black.DeepCharcoal
-        importWalletButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 23.0)
-        importWalletButton.snp.makeConstraints { (make) -> Void in
-            make.width.equalTo(200)
+        view.addSubview(cancelButton)
+        cancelButton.setTitle("Cancel", for: .normal)
+        cancelButton.setTitleColor(UIColor.black, for: .normal)
+        cancelButton.backgroundColor = UIColor.white
+        cancelButton.layer.cornerRadius = 4.0
+        cancelButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 23.0)
+        cancelButton.snp.makeConstraints { (make) -> Void in
+            make.width.equalTo(250)
             make.height.equalTo(40)
             make.centerX.equalTo(view)
-            make.top.equalTo(orLabel.snp.bottom).offset(10)
+            make.top.equalTo(doneButton.snp.bottom).offset(20)
         }
-        importWalletButton.addTarget(self, action: #selector(NewWalletViewController.importWalletButtonPressed), for: .touchUpInside)
-
+        cancelButton.addTarget(self, action: #selector(ImportWalletFileViewController.cancelButtonPressed), for: .touchUpInside)
+        
     }
-
 }
 
-//MARK: Actions
-extension NewWalletViewController {
+extension ImportWalletFileViewController {
     
-    @objc func createWalletButtonPressed(){
-        if let password = passwordTextView.text?.trimmingCharacters(in: .whitespacesAndNewlines){
+    @objc func doneButtonPressed(){
+        if let password = self.passwordTextView.text {
             
-            createWalletButton.isEnabled = false
-            self.toggleLoadingState(true)
-            self.view.endEditing(true)
-            
-            WalletCreationManager(password: password, walletCreationCompleted: { (walletEncrypted, walletUnEncrypted) in
+            toggleLoadingState(true)
+            WalletImportFileManager(password: password, fileContent: jsonString, walletImportCompleted: { (walletUnEncrypted) in
                 WalletManager.sharedInstance.setWalletUnEncrypted(wallet: walletUnEncrypted)
-                WalletManager.sharedInstance.setWalletEncrypted(wallet: walletEncrypted)
                 self.toggleLoadingState(false)
-                self.createWalletButton.isEnabled = true
-                self.navigationController?.pushViewController(WalletCreatedViewController(), animated: true)
+                self.navigationController?.dismiss(animated: true, completion: nil)
             }, errBlock: { (errorMessage) in
                 self.toggleLoadingState(false)
                 let errorPopup = UIAlertController(title: "🤕", message: errorMessage, preferredStyle: .alert)
                 errorPopup.addAction(UIAlertAction(title: "👍", style: .cancel, handler: nil))
                 self.present(errorPopup, animated: true, completion: nil)
-                self.createWalletButton.isEnabled = true
             })
-            .createWallet()
+                .startImport()
         }
     }
     
-    @objc func importWalletButtonPressed(){
-        self.navigationController?.pushViewController(ImportWalletViewController(), animated: true)
-    }
-    
-    @objc func closeButtonPressed(){
-        self.dismiss(animated: true, completion: nil)
+    @objc func cancelButtonPressed(){
+        self.navigationController?.popViewController(animated: true)
     }
     
     func toggleLoadingState(_ isLoading: Bool) {

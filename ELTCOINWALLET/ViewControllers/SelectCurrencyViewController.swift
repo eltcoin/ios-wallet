@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import SnapKit
+import NVActivityIndicatorView
 
 protocol SelectCurrenyProtocol {
     func currencySelected(_ token: ETHToken)
@@ -16,9 +17,16 @@ protocol SelectCurrenyProtocol {
 
 class SelectCurrencyViewController: UIViewController {
     
+    let loadingView = UIView()
+
     var delegate: SelectCurrenyProtocol?
     var tokens = [ETHToken]()
     let reuseIdentifier = "CURRENCY_CELL_IDENTIFIER"
+    
+    var walletBalance: ETHTokenBalance?
+
+    // Empty Transaction List Label
+    var emptyListLabel = UILabel()
     
     // TOP BAR
     var topBarBackgroundView = UIView()
@@ -42,13 +50,20 @@ class SelectCurrencyViewController: UIViewController {
 
         let walletManager = WalletTransactionsManager()
         
+        self.toggleLoadingState(true)
         walletManager.getBalance(balanceImportCompleted: { (walletBalance) in
             self.tokens = walletBalance.tokens ?? [ETHToken]()
+            self.walletBalance = walletBalance
+            self.emptyListLabel.isHidden = !(self.tokens.count == 0)
+            self.toggleLoadingState(false)
             self.tableView.reloadData()
         })
     }
     
     func setupViews(){
+        
+        view.addSubview(loadingView)
+        loadingView.isHidden = true
         
         // TOP VIEWS
         
@@ -115,6 +130,16 @@ class SelectCurrencyViewController: UIViewController {
             make.left.right.bottom.equalTo(view)
             make.top.equalTo(topBarBackgroundView.snp.bottom)
         }
+        
+        view.addSubview(emptyListLabel)
+        emptyListLabel.text = "No tokens with balances to show\n😥"
+        emptyListLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)
+        emptyListLabel.numberOfLines = 0
+        emptyListLabel.isHidden = true
+        emptyListLabel.textAlignment = .center
+        emptyListLabel.snp.makeConstraints { (make) in
+            make.edges.equalTo(tableView)
+        }
     }
     
     @objc func cancelButtonPressed(){
@@ -126,11 +151,37 @@ class SelectCurrencyViewController: UIViewController {
         token.tokenInfo = ETHTokenInfo()
         token.tokenInfo?.symbol = "ETH"
         token.tokenInfo?.name = "Ethereum"
+        token.tokenInfo?.decimals = "0"
+        token.balance = walletBalance?.ETH?.balance ?? 0.0
         
         if delegate != nil {
             delegate?.currencySelected(token)
             self.navigationController?.popViewController(animated: true)
-        }    }
+        }
+    }
+    
+    func toggleLoadingState(_ isLoading: Bool) {
+        
+        loadingView.isHidden = true
+        
+        if(isLoading){
+            loadingView.isHidden = false
+            loadingView.backgroundColor = UIColor.CustomColor.White.offwhite
+            loadingView.snp.makeConstraints({ (make) in
+                make.center.height.width.equalTo(self.view)
+            })
+            
+            let frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+            let loadingIndicator = NVActivityIndicatorView(frame: frame, type: .ballBeat, color: UIColor.CustomColor.Black.DeepCharcoal, padding: 1)
+            
+            loadingView.addSubview(loadingIndicator)
+            loadingIndicator.snp.makeConstraints({ (make) in
+                make.height.width.equalTo(50)
+                make.center.equalTo(loadingView)
+            })
+            loadingIndicator.startAnimating()
+        }
+    }
 }
 
 extension SelectCurrencyViewController : UITableViewDelegate, UITableViewDataSource {

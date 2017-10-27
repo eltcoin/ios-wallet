@@ -15,6 +15,7 @@ class HomeViewController: UIViewController {
     // Member vars
     let reuseIdentifier = "TransactionCell"
     var walletTokens = [ETHToken]()
+    var walletBalance: ETHTokenBalance?
     
     // TOP BAR
     var topBarBackgroundView = UIView()
@@ -62,6 +63,8 @@ class HomeViewController: UIViewController {
     }
     
     func setupWalletUI(_ completed: (()->Void)? = nil){
+        
+        topBarSendButton.isEnabled = false
         if let wallet = WalletManager.sharedInstance.getWalletUnEncrypted(){
             walletAddressLabel.text = wallet.address
 
@@ -71,8 +74,13 @@ class HomeViewController: UIViewController {
                 self.walletMainBalanceLabel.text = String(format:"%f ETH", (walletBalance.ETH?.balance)!)
                 //self.walletSubBalanceLabel.text = String(format:"%0.f ELT", (walletBalance.getELTCOINBalance()))
                 
-                self.walletTokens = walletBalance.tokens!
+                self.walletBalance = walletBalance
+                self.walletTokens = walletBalance.tokens ?? [ETHToken]()
                 
+                self.emptyListLabel.isHidden = !(self.walletTokens.count == 0)
+                
+                self.topBarSendButton.isEnabled = true
+
                 if completed != nil {
                     completed!()
                 }
@@ -88,6 +96,12 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupWalletUI {
+            self.tableView.reloadData()
+        }
+    }
+    
+    @objc func walletUpdated(){
         setupWalletUI {
             self.tableView.reloadData()
         }
@@ -231,6 +245,8 @@ class HomeViewController: UIViewController {
             make.top.equalTo(walletSummaryBackgroundView.snp.bottom).offset(1)
             make.width.bottom.equalTo(view)
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(walletUpdated), name: NSNotification.Name(rawValue: "NEW_WALLET"), object: nil)
     }
     
     @objc func attachWallet(){
@@ -249,6 +265,16 @@ class HomeViewController: UIViewController {
     @objc func openSendModel(){
         
         let sendCoinViewController = SendTokensViewController()
+        
+        // Default to ether
+        let token = ETHToken()
+        token.tokenInfo = ETHTokenInfo()
+        token.tokenInfo?.symbol = "ETH"
+        token.tokenInfo?.name = "Ethereum"
+        token.tokenInfo?.decimals = "0"
+        token.balance = walletBalance?.ETH?.balance ?? 0.0
+
+        sendCoinViewController.setToken(token)
         sendCoinViewController.hidesBottomBarWhenPushed = true
 
         let navController = PopupNavigationController(rootViewController: sendCoinViewController)

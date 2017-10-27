@@ -51,6 +51,7 @@ class WalletTransaction: NetworkTaskResponse {
             hash         <-  map["hash"]
             from         <-  map["from"]
             to         <-  map["to"]
+            input         <-  map["input"]
             value         <-  map["value"]
             success         <-  map["success"]
         }else{
@@ -58,6 +59,7 @@ class WalletTransaction: NetworkTaskResponse {
             hash         >>>  map["hash"]
             from        >>>  map["from"]
             to        >>>  map["to"]
+            input         >>> map["input"]
             value         >>> map["value"]
             success        >>>  map["success"]
         }

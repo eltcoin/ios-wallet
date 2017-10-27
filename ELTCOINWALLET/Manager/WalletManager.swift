@@ -29,6 +29,8 @@ extension WalletManager {
         let JSONString = wallet.toJSONString(prettyPrint: true)
         UserDefaults.standard.setValue(JSONString, forKey: "wallet")
         UserDefaults.standard.synchronize()
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NEW_WALLET"), object: self, userInfo: nil)
     }
     
     func getWalletUnEncrypted() -> WalletUnEncrypted?{

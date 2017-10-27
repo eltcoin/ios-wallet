@@ -101,7 +101,7 @@ extension WalletImportFileManager: WKScriptMessageHandler {
                         
                     default:
                         if errBlock != nil {
-                            self.errBlock!("There was a problem decrypting your keystore file")
+                            self.errBlock!("There was a problem decrypting your wallet")
                         }
                     }
                 }

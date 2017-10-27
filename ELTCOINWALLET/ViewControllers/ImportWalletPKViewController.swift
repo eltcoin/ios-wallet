@@ -6,14 +6,16 @@
 //  Copyright © 2017 ELTCOIN. All rights reserved.
 //
 
-
 import Foundation
 import UIKit
 import SnapKit
 import SkyFloatingLabelTextField
+import NVActivityIndicatorView
 
 class ImportWalletPKViewController: UIViewController {
     
+    let loadingView = UIView()
+
     // TOP BAR
     var topBarBackgroundView = UIView()
     var topBarTitleLabel = UILabel()
@@ -34,6 +36,9 @@ class ImportWalletPKViewController: UIViewController {
     
     func setupViews(){
         self.view.backgroundColor = UIColor.white
+        
+        view.addSubview(loadingView)
+        loadingView.isHidden = true
         
         // TOP VIEWS
         self.view.addSubview(topBarBackgroundView)
@@ -128,14 +133,47 @@ extension ImportWalletPKViewController {
     
     @objc func doneButtonPressed(){
         if let privateKay = self.privateKeyTextView.text {
+            
+            self.toggleLoadingState(true)
+            self.view.endEditing(true)
+            
             WalletImportPrivateKeyManager.init(privateKey: privateKay, walletImportCompleted: { (wallet) in
                 print("imported wallet with a Private key")
+                self.toggleLoadingState(false)
                 self.navigationController?.dismiss(animated: true, completion: nil)
+            }, errBlock: { (errorMessage) in
+                self.toggleLoadingState(false)
+                let errorPopup = UIAlertController(title: "🤕", message: errorMessage, preferredStyle: .alert)
+                errorPopup.addAction(UIAlertAction(title: "👍", style: .cancel, handler: nil))
+                self.present(errorPopup, animated: true, completion: nil)
             })
         }
     }
     
     @objc func closeButtonPressed(){
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func toggleLoadingState(_ isLoading: Bool) {
+        
+        loadingView.isHidden = true
+        
+        if(isLoading){
+            loadingView.isHidden = false
+            loadingView.backgroundColor = UIColor.CustomColor.White.offwhite
+            loadingView.snp.makeConstraints({ (make) in
+                make.center.height.width.equalTo(self.view)
+            })
+            
+            let frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+            let loadingIndicator = NVActivityIndicatorView(frame: frame, type: .ballBeat, color: UIColor.CustomColor.Black.DeepCharcoal, padding: 1)
+            
+            loadingView.addSubview(loadingIndicator)
+            loadingIndicator.snp.makeConstraints({ (make) in
+                make.height.width.equalTo(50)
+                make.center.equalTo(loadingView)
+            })
+            loadingIndicator.startAnimating()
+        }
     }
 }

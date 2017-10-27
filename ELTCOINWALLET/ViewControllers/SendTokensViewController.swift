@@ -26,6 +26,8 @@ class SendTokensViewController: UIViewController {
     let coinVolumeTextField = SkyFloatingLabelTextField()
     let gasLimitTextField = SkyFloatingLabelTextField()
     let destinationWalletAddressTextField = SkyFloatingLabelTextField()
+    
+    var currentBalanceLabel = UILabel()
     var sendButton = UIButton()
     
     var scanQRCodeButton = UIButton()
@@ -36,7 +38,6 @@ class SendTokensViewController: UIViewController {
         
         sendButton = UIButton(frame: CGRect(x: 0, y: 0, width: view.bounds.width , height: 60)) // Keyboard accessory button
         setupViews()
-        setupDefaultToken()
     }
     
     func setupViews(){
@@ -159,15 +160,26 @@ class SendTokensViewController: UIViewController {
         }
         
         sendButton.backgroundColor = UIColor.black
-        sendButton.setTitle("SEND", for: .normal)
+        sendButton.setTitle("Next", for: .normal)
         sendButton.setTitleColor(UIColor.white, for: .normal)
         sendButton.addTarget(self, action: #selector(SendTokensViewController.sendButtonPressed), for: .touchUpInside)
 
+        sendButton.addSubview(currentBalanceLabel)
+        currentBalanceLabel.text = "Loading balance..."
+        currentBalanceLabel.font = UIFont(name: "HelveticaNeue-Light", size: 14.0)
+        currentBalanceLabel.snp.makeConstraints { (make) -> Void in
+            make.centerX.equalTo(sendButton)
+            make.bottom.equalTo(sendButton.snp.top).offset(-5)
+        }
+        
         coinVolumeTextField.inputAccessoryView = sendButton
         destinationWalletAddressTextField.inputAccessoryView = sendButton
         gasLimitTextField.inputAccessoryView = sendButton
 
         coinVolumeTextField.becomeFirstResponder()
+        
+        topBarCurrencyButton.setTitle(currentToken?.tokenInfo?.symbol, for: .normal)
+        currentBalanceLabel.text = "Current Balance: \(currentToken?.getBalance() ?? 0.0) \(currentToken!.tokenInfo?.symbol ?? "")"
     }
 }
 
@@ -206,15 +218,11 @@ extension SendTokensViewController {
         
         let isEther = currentToken?.tokenInfo?.symbol == "ETH"
         
-        let sendTokensManager = WalletSendTokensManager(isEther: isEther, token: currentToken!, coinVolume: coinVolume, gasLimit: gasLimit, destinationAddress: destinationAddress, sendCompleted: {
-            print("token transaction has been uploaded!")
-        }) { (errorMessage) in
-            let errorPopup = UIAlertController(title: "🤕", message: errorMessage, preferredStyle: .alert)
-            errorPopup.addAction(UIAlertAction(title: "👍", style: .cancel, handler: nil))
-            self.present(errorPopup, animated: true, completion: nil)
-        }
+        let sendTokensConfrimationViewController = SendTokensConfrimationViewController()
         
-        sendTokensManager.startSending()
+        sendTokensConfrimationViewController.setTransactionDetails(isEther: isEther, currentToken: currentToken!, coinVolume: coinVolume, gasLimit: gasLimit, destinationAddress: destinationAddress)
+
+        self.navigationController?.pushViewController(sendTokensConfrimationViewController, animated: true);
     }
     
     @objc func currencyButtonPressed(){
@@ -235,15 +243,7 @@ extension SendTokensViewController {
     func setToken(_ token: ETHToken){
         currentToken = token
         topBarCurrencyButton.setTitle(currentToken?.tokenInfo?.symbol, for: .normal)
-    }
-    
-    func setupDefaultToken(){
-        let token = ETHToken()
-        token.tokenInfo = ETHTokenInfo()
-        token.tokenInfo?.symbol = "ETH"
-        token.tokenInfo?.name = "Ethereum"
-        
-        setToken(token)
+        currentBalanceLabel.text = "Your balance: \(currentToken?.getBalance() ?? 0.0) \(currentToken!.tokenInfo?.symbol ?? "")"
     }
 }
 
@@ -252,4 +252,3 @@ extension SendTokensViewController: SelectCurrenyProtocol {
         setToken(token)
     }
 }
-
