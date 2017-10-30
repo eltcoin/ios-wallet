@@ -9,9 +9,15 @@
 import AVFoundation
 import UIKit
 
+protocol EtherQRScannerProtocol {
+    func qrCodeFoundAddress(walletAddress: String);
+}
+
 class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
+    
+    var delegate: EtherQRScannerProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +51,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             captureSession.addOutput(metadataOutput)
             
             metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-            metadataOutput.metadataObjectTypes = [.qr]
+            metadataOutput.metadataObjectTypes = [AVMetadataObject.ObjectType.qr]
         } else {
             failed()
             return
@@ -82,7 +88,8 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         }
     }
     
-    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
+    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+        
         captureSession.stopRunning()
         
         if let metadataObject = metadataObjects.first {
@@ -100,7 +107,15 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     }
     
     func found(code: String) {
+        print("QR scanner found:")
         print(code)
+        
+        //TODO (V2) VALIDATE ADDRESS:
+        
+        if delegate != nil {
+            delegate?.qrCodeFoundAddress(walletAddress: code)
+        }
+        
     }
     
     override var prefersStatusBarHidden: Bool {

@@ -106,7 +106,7 @@ class SendTokensViewController: UIViewController {
         view.addSubview(destinationWalletAddressTextField)
         destinationWalletAddressTextField.placeholder = "Destination Address"
         destinationWalletAddressTextField.title = "Wallet Addres"
-        destinationWalletAddressTextField.text = "0x77Ea29731140c0eDeb2D4871Ecdf7fbee0728Da0"
+        destinationWalletAddressTextField.text = "" //"0x77Ea29731140c0eDeb2D4871Ecdf7fbee0728Da0"
         destinationWalletAddressTextField.returnKeyType = .next
         destinationWalletAddressTextField.tintColor = UIColor.CustomColor.Black.DeepCharcoal
         destinationWalletAddressTextField.selectedTitleColor = UIColor.CustomColor.Grey.midGrey
@@ -232,7 +232,9 @@ extension SendTokensViewController {
     }
     
     @objc func scanButtonPressed(){
-        let nv = UINavigationController(rootViewController: ScannerViewController())
+        let scannerVC = ScannerViewController()
+        scannerVC.delegate = self
+        let nv = UINavigationController(rootViewController: scannerVC)
         self.present( nv, animated: true, completion: nil)
     }
     
@@ -244,6 +246,11 @@ extension SendTokensViewController {
         currentToken = token
         topBarCurrencyButton.setTitle(currentToken?.tokenInfo?.symbol, for: .normal)
         currentBalanceLabel.text = "Your balance: \(currentToken?.getBalance() ?? 0.0) \(currentToken!.tokenInfo?.symbol ?? "")"
+    }
+}
+extension SendTokensViewController: EtherQRScannerProtocol {
+    func qrCodeFoundAddress(walletAddress: String) {
+        self.destinationWalletAddressTextField.text = walletAddress
     }
 }
 

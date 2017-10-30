@@ -32,6 +32,17 @@ class NewWalletViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.CustomColor.White.offwhite
         setupViews()
+        checkIfWalletSetup()
+    }
+    
+    func checkIfWalletSetup(){
+        if let wallet = WalletManager.sharedInstance.getWalletUnEncrypted(){
+            if wallet.address.count == 0 {
+                topBarCloseButton.isHidden = true
+            }
+        }else{
+            topBarCloseButton.isHidden = true
+        }
     }
     
     

@@ -17,7 +17,7 @@ class ImportWalletViewController: UIViewController {
     var topBarBackgroundView = UIView()
     var topBarTitleLabel = UILabel()
     var topBarBackgroundLineView = UIView()
-    var topBarCloseButton = UIButton()
+    var topBarBackButton = UIButton()
     
     // Import Wallet Options - Buttons
     let selectKeystoreFileButton = UIButton()
@@ -59,10 +59,12 @@ class ImportWalletViewController: UIViewController {
             make.height.equalTo(1)
         }
         
-        topBarBackgroundView.addSubview(topBarCloseButton)
-        topBarCloseButton.setBackgroundImage(UIImage(imageLiteralResourceName: "closeIcon"), for: UIControlState.normal);
-        topBarCloseButton.addTarget(self, action: #selector(ImportWalletViewController.closeButtonPressed), for: .touchUpInside)
-        topBarCloseButton.snp.makeConstraints { (make) in
+        topBarBackgroundView.addSubview(topBarBackButton)
+        //topBarBackButton.setTitle("Back", for: .normal)
+        //topBarBackButton.setTitleColor(UIColor.black, for: .normal)
+        topBarBackButton.setBackgroundImage(UIImage(imageLiteralResourceName: "closeIcon"), for: UIControlState.normal);
+        topBarBackButton.addTarget(self, action: #selector(ImportWalletViewController.backButtonPressed), for: .touchUpInside)
+        topBarBackButton.snp.makeConstraints { (make) in
             make.width.height.equalTo(28)
             make.top.equalTo(topBarBackgroundView).offset(25)
             make.left.equalTo(topBarBackgroundView.snp.left).offset(10)
@@ -141,7 +143,8 @@ extension ImportWalletViewController {
         self.present(importMenu, animated: true, completion: nil)
     }
     
-    @objc func closeButtonPressed(){
-        self.dismiss(animated: true, completion: nil)
+    @objc func backButtonPressed(){
+        self.navigationController?.popViewController(animated: true)
+        //self.dismiss(animated: true, completion: nil)
     }
 }

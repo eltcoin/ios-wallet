@@ -151,7 +151,8 @@ extension ImportWalletPKViewController {
     }
     
     @objc func closeButtonPressed(){
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
+        //self.dismiss(animated: true, completion: nil)
     }
     
     func toggleLoadingState(_ isLoading: Bool) {
