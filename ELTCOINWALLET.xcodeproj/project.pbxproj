@@ -10,6 +10,9 @@
 		4C7B80E7B1CACA161F232D64 /* Pods_ELTCOINWALLET.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6459B38DB322063EBCAA757D /* Pods_ELTCOINWALLET.framework */; };
 		AC9488FA3DDB2E745A337779 /* Pods_ELTCOINWALLETUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0660A24DA67E944B1042E255 /* Pods_ELTCOINWALLETUITests.framework */; };
 		D502BBA81FA7653500F4D4DD /* EthereumCyrptoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D502BBA71FA7653500F4D4DD /* EthereumCyrptoManager.swift */; };
+		D502BBAA1FA76AB700F4D4DD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D502BBA91FA76AB600F4D4DD /* GoogleService-Info.plist */; };
+		D502BBAC1FA7701A00F4D4DD /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D502BBAB1FA7701A00F4D4DD /* NotificationManager.swift */; };
+		D502BBB11FA8A01600F4D4DD /* PINLockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D502BBB01FA8A01600F4D4DD /* PINLockViewController.swift */; };
 		D514ACA51F9E0AD200C591D1 /* ImportWalletPKViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D514ACA41F9E0AD200C591D1 /* ImportWalletPKViewController.swift */; };
 		D51504841F950BB0006013E2 /* WalletEncryptedJSAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51504831F950BB0006013E2 /* WalletEncryptedJSAPIResponse.swift */; };
 		D515048D1F9695E9006013E2 /* WalletTransactionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D515048C1F9695E9006013E2 /* WalletTransactionsManager.swift */; };
@@ -87,6 +90,9 @@
 		9A98537D74FDC24F207E0813 /* Pods-ELTCOINWALLET.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ELTCOINWALLET.release.xcconfig"; path = "Pods/Target Support Files/Pods-ELTCOINWALLET/Pods-ELTCOINWALLET.release.xcconfig"; sourceTree = "<group>"; };
 		B41A0E7C40B9E6C64780F561 /* Pods_ELTCOINWALLETTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ELTCOINWALLETTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D502BBA71FA7653500F4D4DD /* EthereumCyrptoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumCyrptoManager.swift; sourceTree = "<group>"; };
+		D502BBA91FA76AB600F4D4DD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D502BBAB1FA7701A00F4D4DD /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		D502BBB01FA8A01600F4D4DD /* PINLockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINLockViewController.swift; sourceTree = "<group>"; };
 		D514ACA41F9E0AD200C591D1 /* ImportWalletPKViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportWalletPKViewController.swift; sourceTree = "<group>"; };
 		D51504831F950BB0006013E2 /* WalletEncryptedJSAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletEncryptedJSAPIResponse.swift; sourceTree = "<group>"; };
 		D515048C1F9695E9006013E2 /* WalletTransactionsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTransactionsManager.swift; sourceTree = "<group>"; };
@@ -203,6 +209,7 @@
 				D515049D1F97F0BC006013E2 /* WalletCreationManager.swift */,
 				D5AAEC991F9F852900827267 /* WalletImportFileManager.swift */,
 				D502BBA71FA7653500F4D4DD /* EthereumCyrptoManager.swift */,
+				D502BBAB1FA7701A00F4D4DD /* NotificationManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -210,7 +217,6 @@
 		D59452381F94C9AF005107A9 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				D5AAEC9D1FA0DC7B00827267 /* Mapping */,
 				D594523A1F94C9F2005107A9 /* NetworkTaskReponse.swift */,
 				D59452451F94E45A005107A9 /* WalletUnEncryptedJSAPIResponse.swift */,
 				D51504831F950BB0006013E2 /* WalletEncryptedJSAPIResponse.swift */,
@@ -255,6 +261,7 @@
 		D5A160951F8F93D7007E3EB0 /* ELTCOINWALLET */ = {
 			isa = PBXGroup;
 			children = (
+				D502BBA91FA76AB600F4D4DD /* GoogleService-Info.plist */,
 				D5EC5EBC1F9F5CB000B89D06 /* ELTCOINWALLET.entitlements */,
 				D59452381F94C9AF005107A9 /* Networking */,
 				D59452331F94C93B005107A9 /* Manager */,
@@ -305,6 +312,7 @@
 				D54ABABC1FA1E641005570E4 /* TransactionsViewController.swift */,
 				D59452311F94BA1D005107A9 /* WalletCreatedViewController.swift */,
 				D52E3C871FA33D2500A80822 /* SendTokensConfrimationViewController.swift */,
+				D502BBB01FA8A01600F4D4DD /* PINLockViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -350,13 +358,6 @@
 				D5A160DC1F8FD357007E3EB0 /* Animator.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		D5AAEC9D1FA0DC7B00827267 /* Mapping */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Mapping;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -438,6 +439,9 @@
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
 							com.apple.iCloud = {
 								enabled = 1;
 							};
@@ -482,6 +486,7 @@
 			files = (
 				D59452301F936DBD005107A9 /* dist in Resources */,
 				D5A160A11F8F93D8007E3EB0 /* LaunchScreen.storyboard in Resources */,
+				D502BBAA1FA76AB700F4D4DD /* GoogleService-Info.plist in Resources */,
 				D5A1609E1F8F93D8007E3EB0 /* Assets.xcassets in Resources */,
 				D5A1609C1F8F93D8007E3EB0 /* Main.storyboard in Resources */,
 			);
@@ -610,28 +615,34 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/FCAlertView/FCAlertView.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/InputMask/InputMask.framework",
 				"${BUILT_PRODUCTS_DIR}/Material/Material.framework",
 				"${BUILT_PRODUCTS_DIR}/Motion/Motion.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/ReachabilitySwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FCAlertView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/InputMask.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Material.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Motion.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReachabilitySwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkyFloatingLabelTextField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -696,6 +707,8 @@
 				D594523B1F94C9F2005107A9 /* NetworkTaskReponse.swift in Sources */,
 				D5A6EC071F9F339700840A7F /* ETHBalance.swift in Sources */,
 				D5A160C71F8F9677007E3EB0 /* HomeViewController.swift in Sources */,
+				D502BBB11FA8A01600F4D4DD /* PINLockViewController.swift in Sources */,
+				D502BBAC1FA7701A00F4D4DD /* NotificationManager.swift in Sources */,
 				D515048D1F9695E9006013E2 /* WalletTransactionsManager.swift in Sources */,
 				D5AAECA11FA0F1C300827267 /* CurrencyTableViewCell.swift in Sources */,
 				D5A160CD1F8FB085007E3EB0 /* TransactionTableViewCell.swift in Sources */,

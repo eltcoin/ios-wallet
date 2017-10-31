@@ -33,7 +33,7 @@ class TransactionTableViewCell: UITableViewCell {
         
         cellTitleLabel.text = transaction.transactionDate()
         cellTimeLabel.text = transaction.from
-        cellAmountLabel.text = "\(transaction.value)"
+        cellAmountLabel.text = String(format:"%f", transaction.transactionValue())
         
         if transaction.type == .sent {
             let imageSent = UIImage(imageLiteralResourceName: "iconSent") //UIImage.resizeImage(UIImage(imageLiteralResourceName: "iconSent"), 30)
@@ -46,26 +46,6 @@ class TransactionTableViewCell: UITableViewCell {
             cellImageView.layer.borderColor = UIColor.CustomColor.Green.positiveGreen.cgColor
             cellAmountLabel.textColor = UIColor.CustomColor.Green.positiveGreen
         }
-        
-        print("strData1: " + transaction.input)
-        print("result1: " + hexToStr(text: transaction.input))
-    
-        var strData2 = String(transaction.input.dropFirst(2))
-        print("strData2: " + strData2)
-        print("result2: " + hexToStr(text: strData2))
-        
-    }
-    
-    func hexToStr(text: String) -> String {
-        
-        let regex = try! NSRegularExpression(pattern: "(0x)?([0-9A-Fa-f]{2})", options: .caseInsensitive)
-        let textNS = text as NSString
-        let matchesArray = regex.matches(in: textNS as String, options: [], range: NSMakeRange(0, textNS.length))
-        let characters = matchesArray.map {
-            Character(UnicodeScalar(UInt32(textNS.substring(with: $0.range(at: 2)), radix: 16)!)!)
-        }
-        
-        return String(characters)
     }
     
     func setupViews(){

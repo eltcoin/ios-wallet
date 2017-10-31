@@ -125,7 +125,7 @@ class SendTokensViewController: UIViewController {
         view.addSubview(gasLimitTextField)
         gasLimitTextField.placeholder = "0"
         gasLimitTextField.title = "Gas Limit"
-        gasLimitTextField.text = "25000"
+        gasLimitTextField.text = "27000"
         gasLimitTextField.returnKeyType = .next
         gasLimitTextField.tintColor = UIColor.CustomColor.Black.DeepCharcoal
         gasLimitTextField.selectedTitleColor = UIColor.CustomColor.Grey.midGrey
@@ -142,8 +142,9 @@ class SendTokensViewController: UIViewController {
         }
         
         view.addSubview(coinVolumeTextField)
-        coinVolumeTextField.placeholder = "0.0"
-        coinVolumeTextField.title = "Amount to send"
+        coinVolumeTextField.placeholder = "Number of tokens to send"
+        coinVolumeTextField.title = "Number to send"
+        coinVolumeTextField.text = ""
         coinVolumeTextField.returnKeyType = .next
         coinVolumeTextField.tintColor = UIColor.CustomColor.Black.DeepCharcoal
         coinVolumeTextField.selectedTitleColor = UIColor.CustomColor.Grey.midGrey
@@ -187,30 +188,46 @@ extension SendTokensViewController {
     
     @objc func sendButtonPressed(){
     
-        if let coinVolume = Double(coinVolumeTextField.text!), let gasLimit = Double(gasLimitTextField.text!) {
-            if coinVolume == 0.0 {
-                let errorPopup = UIAlertController(title: "🚨", message: "Enter a number of tokens above zero", preferredStyle: .alert)
-                errorPopup.addAction(UIAlertAction(title: "👍", style: .cancel, handler: nil))
-                self.present(errorPopup, animated: true, completion: nil)
-                return
+        var errorPopup: UIAlertController?;
+        var sendCoinVolume: Double = 0.0
+        var sendGasVolume: Double = 0.0
+        var sendDestinationAddress = ""
+        
+        if let coinVolume = Double(coinVolumeTextField.text!){
+            if coinVolume == 0.0{
+                errorPopup = UIAlertController(title: "🚨", message: "Enter a number of tokens above zero", preferredStyle: .alert)
+            }else{
+                sendCoinVolume = coinVolume
             }
-            
+        }else{
+            errorPopup = UIAlertController(title: "🚨", message: "Enter a number of tokens above zero", preferredStyle: .alert)
+        }
+        
+        if let gasLimit = Double(gasLimitTextField.text!){
             if gasLimit == 0.0 {
-                let errorPopup = UIAlertController(title: "🚨", message: "Enter a gas limit above zero", preferredStyle: .alert)
-                errorPopup.addAction(UIAlertAction(title: "👍", style: .cancel, handler: nil))
-                self.present(errorPopup, animated: true, completion: nil)
-                return
+                errorPopup = UIAlertController(title: "🚨", message: "Enter a gas limit above zero", preferredStyle: .alert)
+            }else{
+                sendGasVolume = 0.0
             }
-            
-            let destinationAddress = destinationWalletAddressTextField.text ?? ""
+        }else{
+            errorPopup = UIAlertController(title: "🚨", message: "Enter a gas limit above zero", preferredStyle: .alert)
+        }
+        
+        if let destinationAddress = destinationWalletAddressTextField.text{
             if destinationAddress.characters.count == 0 {
-                let errorPopup = UIAlertController(title: "🚨", message: "Enter a destination address", preferredStyle: .alert)
-                errorPopup.addAction(UIAlertAction(title: "👍", style: .cancel, handler: nil))
-                self.present(errorPopup, animated: true, completion: nil)
-                return
+                errorPopup = UIAlertController(title: "🚨", message: "Enter a destination address", preferredStyle: .alert)
+            }else{
+                sendDestinationAddress = destinationAddress
             }
-            
-            sendTokens(coinVolume: coinVolume, gasLimit: gasLimit, destinationAddress: destinationAddress)
+        }else{
+            errorPopup = UIAlertController(title: "🚨", message: "Enter a destination address", preferredStyle: .alert)
+        }
+        
+        if errorPopup != nil {
+            errorPopup?.addAction(UIAlertAction(title: "👍", style: .cancel, handler: nil))
+            self.present(errorPopup!, animated: true, completion: nil)
+        }else{
+            sendTokens(coinVolume: sendCoinVolume, gasLimit: sendGasVolume, destinationAddress: sendDestinationAddress)
         }
     }
     

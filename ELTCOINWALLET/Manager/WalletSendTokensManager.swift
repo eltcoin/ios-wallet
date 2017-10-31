@@ -68,17 +68,13 @@ extension WalletSendTokensManager: WKNavigationDelegate {
         
         if webView.url?.absoluteString.range(of:"index.html#send-transaction") != nil {
             
-            // Step1 - Enter Private Key
-            
             if let privateKey = WalletManager.sharedInstance.getWalletUnEncrypted()?.privKey {
                 
-                let jsStr = "step1WithPrivateKey('\(privateKey)', '\(coinVolume)', '\(gasLimit)', '\(destinationAddress)', \(isEther.description), '\(token?.tokenInfo?.address ?? "" )', '\(token?.tokenInfo?.symbol ?? "")', '\(token?.tokenInfo?.decimals ?? "")')";
+                let jsStr = "step1WithPrivateKey('\(privateKey)', '\(coinVolume)', '\(gasLimit)', '\(destinationAddress)', \(isEther.description), '\(token?.tokenInfo?.address ?? "" )', '\(token?.tokenInfo?.symbol ?? "")', '\(token?.tokenInfo?.decimals)')";
                 
                 print(jsStr)
                 webView.evaluateJavaScript(jsStr, completionHandler: nil)
             }
-            
-            //webView.evaluateJavaScript("importWalletWithKeyStoreFile('\(self.fileContent)', '\(self.password)')", completionHandler: nil)
         }
     }
 }

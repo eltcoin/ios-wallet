@@ -39,6 +39,11 @@ class HomeViewController: UIViewController {
     var emptyListLabel = UILabel()
 
     func checkIfWalletSetup(){
+        
+        // Tmp hack for debug viewcontroller:
+        self.present(PINLockViewController(), animated: true, completion: nil)
+        return;
+        
         if let wallet = WalletManager.sharedInstance.getWalletUnEncrypted(){
             if wallet.address.count == 0 {
                 attachWallet()
@@ -66,7 +71,9 @@ class HomeViewController: UIViewController {
         
         topBarSendButton.isEnabled = false
         if let wallet = WalletManager.sharedInstance.getWalletUnEncrypted(){
+            
             walletAddressLabel.text = wallet.address
+            walletAvatarButton.setBackgroundImage(UIImage.generateQRCode(from: wallet.address), for: .normal)
 
             let walletManager = WalletTransactionsManager()
             
@@ -92,6 +99,7 @@ class HomeViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         checkIfWalletSetup()
+        NotificationManager().registerForPushNotifications()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -173,7 +181,6 @@ class HomeViewController: UIViewController {
         }
         
         walletSummaryBackgroundView.addSubview(walletAvatarButton)
-        walletAvatarButton.setBackgroundImage(UIImage(imageLiteralResourceName: "exampleWalletAvatar"), for: .normal)
         walletAvatarButton.addTarget(self, action: #selector(HomeViewController.attachWallet), for: .touchUpInside)
         walletAvatarButton.snp.makeConstraints { (make) in
             make.width.height.equalTo(100)
@@ -197,6 +204,9 @@ class HomeViewController: UIViewController {
         walletMainBalanceLabel.font = UIFont.systemFont(ofSize: 36, weight: UIFont.Weight.bold)
         walletMainBalanceLabel.text = ""
         walletMainBalanceLabel.textColor = UIColor.black
+        walletMainBalanceLabel.isUserInteractionEnabled = true
+        walletMainBalanceLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(etherBalancePressed)))
+        
         walletMainBalanceLabel.snp.makeConstraints { (make) in
             make.top.equalTo(walletAddressLabel.snp.bottom).offset(5)
             make.width.equalTo(walletSummaryBackgroundView)
@@ -249,6 +259,12 @@ class HomeViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(walletUpdated), name: NSNotification.Name(rawValue: "NEW_WALLET"), object: nil)
     }
     
+    
+    @objc func etherBalancePressed(){
+        let transactionsViewController = TransactionsViewController()
+        self.navigationController?.pushViewController(transactionsViewController, animated: true)
+    }
+    
     @objc func attachWallet(){
         
         let newWalletViewController = NewWalletViewController()
@@ -271,7 +287,7 @@ class HomeViewController: UIViewController {
         token.tokenInfo = ETHTokenInfo()
         token.tokenInfo?.symbol = "ETH"
         token.tokenInfo?.name = "Ethereum"
-        token.tokenInfo?.decimals = "0"
+        token.tokenInfo?.decimals = 0.0
         token.balance = walletBalance?.ETH?.balance ?? 0.0
 
         sendCoinViewController.setToken(token)

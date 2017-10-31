@@ -42,11 +42,23 @@ class TransactionsViewController: UIViewController {
         
         let walletManager = WalletTransactionsManager()
         
-        walletManager.getTransactions(transactionsImportCompleted: { (transactions) in
-            self.walletTransactions = transactions
-            self.emptyListLabel.isHidden = self.walletTransactions.count > 0
-            self.tableView.reloadData()
-        })
+        if let currentToken = self.token {
+            topBarTitleLabel.text = "\(self.token?.tokenInfo?.symbol ?? "Token") Transactions"
+
+            walletManager.getTokenTransactions(token:(currentToken.tokenInfo)!, transactionsImportCompleted: { (transactions) in
+                self.walletTransactions = transactions
+                self.emptyListLabel.isHidden = self.walletTransactions.count > 0
+                self.tableView.reloadData()
+            })
+        }else{
+            topBarTitleLabel.text = "Ether Transactions"
+
+            walletManager.getEtherTransactions(transactionsImportCompleted: { (transactions) in
+                self.walletTransactions = transactions
+                self.emptyListLabel.isHidden = self.walletTransactions.count > 0
+                self.tableView.reloadData()
+            })
+        }
     }
     
     func setupViews(){

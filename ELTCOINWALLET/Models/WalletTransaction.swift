@@ -17,12 +17,15 @@ class WalletTransaction: NetworkTaskResponse {
     }
 
     var timestamp: Int64 = 0
+    var transactionHash: String = ""
     var from: String = ""
     var to: String = ""
     var hash: String = ""
     var input: String = ""
-    var value: Double = 0.0
+    var value: String = ""
+    var valueDouble: Double = 0.0
     var success: Bool = false
+    var tokenInfo: ETHTokenInfo?
     
     var type: TRANSACTION_TYPE {
         get {
@@ -47,26 +50,48 @@ class WalletTransaction: NetworkTaskResponse {
         super.mapping(map: map)
         
         if map.mappingType == .fromJSON {
-            timestamp         <-  map["timestamp"]
-            hash         <-  map["hash"]
-            from         <-  map["from"]
-            to         <-  map["to"]
-            input         <-  map["input"]
-            value         <-  map["value"]
-            success         <-  map["success"]
+            timestamp <- map["timestamp"]
+            transactionHash <- map["transactionHash"]
+            hash <- map["hash"]
+            from <- map["from"]
+            to <- map["to"]
+            input <- map["input"]
+            valueDouble <- map["value"]
+            value <- map["value"]
+            success <- map["success"]
+            tokenInfo <- map["tokenInfo"]
+            
+            if value.characters.count == 0 {
+                value = String(valueDouble)
+            }
         }else{
-            timestamp         >>>  map["timestamp"]
-            hash         >>>  map["hash"]
-            from        >>>  map["from"]
-            to        >>>  map["to"]
-            input         >>> map["input"]
-            value         >>> map["value"]
-            success        >>>  map["success"]
+            timestamp >>> map["timestamp"]
+            transactionHash >>> map["transactionHash"]
+            hash >>> map["hash"]
+            from >>> map["from"]
+            to >>> map["to"]
+            input >>> map["input"]
+            value >>> map["value"]
+            success >>> map["success"]
+            tokenInfo >>> map["tokenInfo"]
         }
     }
 }
 
 extension WalletTransaction {
+    
+    func transactionValue() -> Double{
+        let rawValue = Double(self.value) ?? 0.0
+        let decValue = self.tokenInfo?.decimals ?? 0.0
+        
+        if decValue == 0 {
+            return rawValue
+        }else{
+            let powValue = pow(10, decValue)
+            let transactionValue = rawValue / powValue
+            return transactionValue;
+        }
+    }
     
     func transactionDate() -> String {
         let date = Date(timeIntervalSince1970: Double(self.timestamp))

@@ -13,7 +13,8 @@ class ETHTokenInfo : NetworkTaskResponse {
     
     var address = ""
     var name = ""
-    var decimals: String = ""
+    var decimals: Double = 0.0
+    var decimalsString: String = ""
     var symbol = ""
     var totalSupply = ""
     var owner = ""
@@ -37,6 +38,7 @@ class ETHTokenInfo : NetworkTaskResponse {
             address <- map["address"]
             name <- map["name"]
             decimals <- map["decimals"]
+            decimalsString <- map["decimals"]
             symbol <- map["symbol"]
             totalSupply <- map["totalSupply"]
             owner <- map["owner"]
@@ -44,6 +46,10 @@ class ETHTokenInfo : NetworkTaskResponse {
             issuancesCount <- map["issuancesCount"]
             holdersCount <- map["holdersCount"]
             price <- map["price"]
+            
+            if decimals == 0 {
+                decimals = Double(decimalsString) ?? 0.0
+            }
         }else{
             address >>> map["address"]
             name >>> map["name"]

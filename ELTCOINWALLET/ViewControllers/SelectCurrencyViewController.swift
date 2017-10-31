@@ -151,7 +151,7 @@ class SelectCurrencyViewController: UIViewController {
         token.tokenInfo = ETHTokenInfo()
         token.tokenInfo?.symbol = "ETH"
         token.tokenInfo?.name = "Ethereum"
-        token.tokenInfo?.decimals = "0"
+        token.tokenInfo?.decimals = 0.0
         token.balance = walletBalance?.ETH?.balance ?? 0.0
         
         if delegate != nil {
