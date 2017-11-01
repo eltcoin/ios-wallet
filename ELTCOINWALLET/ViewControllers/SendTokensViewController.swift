@@ -29,7 +29,6 @@ class SendTokensViewController: UIViewController {
     
     var currentBalanceLabel = UILabel()
     var sendButton = UIButton()
-    
     var scanQRCodeButton = UIButton()
     
     override func viewDidLoad() {

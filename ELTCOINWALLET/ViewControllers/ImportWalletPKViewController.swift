@@ -29,6 +29,9 @@ class ImportWalletPKViewController: UIViewController {
     let doneButton = UIButton()
     let cancelButton = UIButton()
     
+    // QR code button
+    var scanQRCodeButton = UIButton()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -77,6 +80,17 @@ class ImportWalletPKViewController: UIViewController {
             make.left.equalTo(topBarBackgroundView.snp.left).offset(10)
         }
         
+        // Begin Form Items
+        
+        view.addSubview(scanQRCodeButton)
+        scanQRCodeButton.addTarget(self, action: #selector(ImportWalletPKViewController.scanButtonPressed), for: .touchUpInside)
+        scanQRCodeButton.setBackgroundImage(UIImage(imageLiteralResourceName: "qrCodeIcon"), for: UIControlState.normal);
+        scanQRCodeButton.snp.makeConstraints { (make) in
+            make.top.equalTo(topBarBackgroundLineView.snp.bottom).offset(10)
+            make.centerX.equalTo(topBarBackgroundLineView)
+            make.width.height.equalTo(50)
+        }
+        
         view.addSubview(privateKeyTextView)
         privateKeyTextView.placeholder = "Enter Private Key"
         privateKeyTextView.title = "Private Key"
@@ -94,7 +108,7 @@ class ImportWalletPKViewController: UIViewController {
             make.left.equalTo(view.snp.leftMargin).offset(20)
             make.right.equalTo(view.snp.rightMargin).offset(-20)
             make.centerX.equalTo(view)
-            make.top.equalTo(topBarBackgroundView.snp.bottom).offset(20)
+            make.top.equalTo(scanQRCodeButton.snp.bottom).offset(10)
         }
         
         // Button Options
@@ -155,6 +169,13 @@ extension ImportWalletPKViewController {
         //self.dismiss(animated: true, completion: nil)
     }
     
+    @objc func scanButtonPressed(){
+        let scannerVC = ScannerViewController()
+        scannerVC.delegate = self
+        let nv = UINavigationController(rootViewController: scannerVC)
+        self.present( nv, animated: true, completion: nil)
+    }
+    
     func toggleLoadingState(_ isLoading: Bool) {
         
         loadingView.isHidden = true
@@ -176,5 +197,11 @@ extension ImportWalletPKViewController {
             })
             loadingIndicator.startAnimating()
         }
+    }
+}
+
+extension ImportWalletPKViewController: EtherQRScannerProtocol {
+    func qrCodeFoundAddress(walletAddress: String) {
+        self.privateKeyTextView.text = walletAddress
     }
 }
