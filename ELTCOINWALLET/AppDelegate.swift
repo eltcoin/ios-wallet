@@ -18,11 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let gcmMessageIDKey = "gcm.message_id"
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+
         FirebaseApp.configure()
         
         // Push Notifications
-        //Push Notifications:
         Messaging.messaging().delegate = self
         
         if #available(iOS 10.0, *) {

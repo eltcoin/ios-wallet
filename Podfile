@@ -19,6 +19,7 @@ target 'ELTCOINWALLET' do
   
   pod 'Firebase/Core'
   pod 'Firebase/Messaging'
+  pod 'Firebase/Crash'
   
   pod 'Alamofire', '~> 4.5'
   pod 'AlamofireObjectMapper', '~> 5.0'
