@@ -40,10 +40,6 @@ class HomeViewController: UIViewController {
 
     func checkIfWalletSetup(){
         
-        // Tmp hack for debug viewcontroller:
-        self.present(PINLockViewController(), animated: true, completion: nil)
-        return;
-        
         if let wallet = WalletManager.sharedInstance.getWalletUnEncrypted(){
             if wallet.address.count == 0 {
                 attachWallet()
@@ -78,8 +74,11 @@ class HomeViewController: UIViewController {
             let walletManager = WalletTransactionsManager()
             
             walletManager.getBalance(balanceImportCompleted: { (walletBalance) in
-                self.walletMainBalanceLabel.text = String(format:"%f ETH", (walletBalance.ETH?.balance)!)
-                //self.walletSubBalanceLabel.text = String(format:"%0.f ELT", (walletBalance.getELTCOINBalance()))
+                if  walletBalance.ETH != nil {
+                    self.walletMainBalanceLabel.text = String(format:"%f ETH", (walletBalance.ETH?.balance)!)
+                }else{
+                    self.walletMainBalanceLabel.text = "Offline"
+                }
                 
                 self.walletBalance = walletBalance
                 self.walletTokens = walletBalance.tokens ?? [ETHToken]()

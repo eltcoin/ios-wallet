@@ -25,6 +25,8 @@
 		D52E3C881FA33D2500A80822 /* SendTokensConfrimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52E3C871FA33D2500A80822 /* SendTokensConfrimationViewController.swift */; };
 		D54ABABD1FA1E641005570E4 /* TransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54ABABC1FA1E641005570E4 /* TransactionsViewController.swift */; };
 		D54ABABF1FA1E907005570E4 /* TokenTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54ABABE1FA1E907005570E4 /* TokenTableViewCell.swift */; };
+		D56015901FA9FE3C00B37978 /* UIApplication+ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = D560158F1FA9FE3C00B37978 /* UIApplication+ex.swift */; };
+		D56015921FAA0DA300B37978 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56015911FAA0DA300B37978 /* MenuViewController.swift */; };
 		D594522A1F920E38005107A9 /* NewWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59452291F920E38005107A9 /* NewWalletViewController.swift */; };
 		D59452301F936DBD005107A9 /* dist in Resources */ = {isa = PBXBuildFile; fileRef = D594522F1F936DB8005107A9 /* dist */; };
 		D59452321F94BA1D005107A9 /* WalletCreatedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59452311F94BA1D005107A9 /* WalletCreatedViewController.swift */; };
@@ -105,6 +107,8 @@
 		D52E3C871FA33D2500A80822 /* SendTokensConfrimationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTokensConfrimationViewController.swift; sourceTree = "<group>"; };
 		D54ABABC1FA1E641005570E4 /* TransactionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewController.swift; sourceTree = "<group>"; };
 		D54ABABE1FA1E907005570E4 /* TokenTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenTableViewCell.swift; sourceTree = "<group>"; };
+		D560158F1FA9FE3C00B37978 /* UIApplication+ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+ex.swift"; sourceTree = "<group>"; };
+		D56015911FAA0DA300B37978 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		D59452291F920E38005107A9 /* NewWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWalletViewController.swift; sourceTree = "<group>"; };
 		D594522F1F936DB8005107A9 /* dist */ = {isa = PBXFileReference; lastKnownFileType = folder; name = dist; path = etherwallet/dist; sourceTree = "<group>"; };
 		D59452311F94BA1D005107A9 /* WalletCreatedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCreatedViewController.swift; sourceTree = "<group>"; };
@@ -313,6 +317,7 @@
 				D59452311F94BA1D005107A9 /* WalletCreatedViewController.swift */,
 				D52E3C871FA33D2500A80822 /* SendTokensConfrimationViewController.swift */,
 				D502BBB01FA8A01600F4D4DD /* PINLockViewController.swift */,
+				D56015911FAA0DA300B37978 /* MenuViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -338,6 +343,7 @@
 				D5A160C91F8FA373007E3EB0 /* UIColor+ex.swift */,
 				D5A160D31F8FBB07007E3EB0 /* Double+ex.swift */,
 				D5A160D51F8FC527007E3EB0 /* UIImage+ex.swift */,
+				D560158F1FA9FE3C00B37978 /* UIApplication+ex.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -720,6 +726,7 @@
 				D5AAEC9A1F9F852900827267 /* WalletImportFileManager.swift in Sources */,
 				D5285C8C1F8FFFA300F46425 /* ScannerViewController.swift in Sources */,
 				D514ACA51F9E0AD200C591D1 /* ImportWalletPKViewController.swift in Sources */,
+				D56015921FAA0DA300B37978 /* MenuViewController.swift in Sources */,
 				D51504931F9748EB006013E2 /* WalletImportPrivateKeyManager.swift in Sources */,
 				D52E3C861FA335EE00A80822 /* ImportWalletFileViewController.swift in Sources */,
 				D5AAEC9C1FA0943700827267 /* SelectCurrencyViewController.swift in Sources */,
@@ -732,6 +739,7 @@
 				D5A160D41F8FBB07007E3EB0 /* Double+ex.swift in Sources */,
 				D5A6EC051F9F2E5700840A7F /* ETHToken.swift in Sources */,
 				D515049E1F97F0BC006013E2 /* WalletCreationManager.swift in Sources */,
+				D56015901FA9FE3C00B37978 /* UIApplication+ex.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
