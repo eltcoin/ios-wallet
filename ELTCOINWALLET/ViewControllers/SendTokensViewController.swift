@@ -43,10 +43,13 @@ class SendTokensViewController: UIViewController {
         
         // TOP VIEWS
         
+        let topOffset = UIDevice.current.iPhoneX ? 20 : 0
+        
         self.view.addSubview(topBarBackgroundView)
         topBarBackgroundView.snp.makeConstraints { (make) in
             make.height.equalTo(64)
-            make.top.centerX.width.equalTo(view)
+            make.top.equalTo(view).offset(topOffset)
+            make.centerX.width.equalTo(view)
         }
         
         topBarBackgroundView.addSubview(topBarTitleLabel)
@@ -105,7 +108,7 @@ class SendTokensViewController: UIViewController {
         view.addSubview(destinationWalletAddressTextField)
         destinationWalletAddressTextField.placeholder = "Destination Address"
         destinationWalletAddressTextField.title = "Wallet Addres"
-        destinationWalletAddressTextField.text = "" //"0x77Ea29731140c0eDeb2D4871Ecdf7fbee0728Da0"
+        destinationWalletAddressTextField.text =  "" //0x0bab6699591974abb811461e6c2caa33d3a6a0a4" //"0x77Ea29731140c0eDeb2D4871Ecdf7fbee0728Da0"
         destinationWalletAddressTextField.returnKeyType = .next
         destinationWalletAddressTextField.tintColor = UIColor.CustomColor.Black.DeepCharcoal
         destinationWalletAddressTextField.selectedTitleColor = UIColor.CustomColor.Grey.midGrey
@@ -124,7 +127,7 @@ class SendTokensViewController: UIViewController {
         view.addSubview(gasLimitTextField)
         gasLimitTextField.placeholder = "0"
         gasLimitTextField.title = "Gas Limit"
-        gasLimitTextField.text = "27000"
+        gasLimitTextField.text = "50000"
         gasLimitTextField.returnKeyType = .next
         gasLimitTextField.tintColor = UIColor.CustomColor.Black.DeepCharcoal
         gasLimitTextField.selectedTitleColor = UIColor.CustomColor.Grey.midGrey
@@ -206,14 +209,14 @@ extension SendTokensViewController {
             if gasLimit == 0.0 {
                 errorPopup = UIAlertController(title: "🚨", message: "Enter a gas limit above zero", preferredStyle: .alert)
             }else{
-                sendGasVolume = 0.0
+                sendGasVolume = gasLimit
             }
         }else{
             errorPopup = UIAlertController(title: "🚨", message: "Enter a gas limit above zero", preferredStyle: .alert)
         }
         
         if let destinationAddress = destinationWalletAddressTextField.text{
-            if destinationAddress.characters.count == 0 {
+            if destinationAddress.count == 0 {
                 errorPopup = UIAlertController(title: "🚨", message: "Enter a destination address", preferredStyle: .alert)
             }else{
                 sendDestinationAddress = destinationAddress

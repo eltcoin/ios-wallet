@@ -43,10 +43,13 @@ class ImportWalletFileViewController: UIViewController {
         loadingView.isHidden = true
         
         // TOP VIEWS
+        let topOffset = UIDevice.current.iPhoneX ? 20 : 0
+        
         self.view.addSubview(topBarBackgroundView)
         topBarBackgroundView.snp.makeConstraints { (make) in
             make.height.equalTo(64)
-            make.top.centerX.width.equalTo(view)
+            make.top.equalTo(view).offset(topOffset)
+            make.centerX.width.equalTo(view)
         }
         
         topBarBackgroundView.addSubview(topBarTitleLabel)

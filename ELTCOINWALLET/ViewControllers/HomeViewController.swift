@@ -37,17 +37,6 @@ class HomeViewController: UIViewController {
     
     // Empty Transaction List Label
     var emptyListLabel = UILabel()
-
-    func checkIfWalletSetup(){
-        
-        if let wallet = WalletManager.sharedInstance.getWalletUnEncrypted(){
-            if wallet.address.count == 0 {
-                attachWallet()
-            }
-        }else{
-            attachWallet()
-        }
-    }
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -118,17 +107,18 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         self.tableView.addSubview(self.refreshControl)
-        
         self.tableView.refreshControl?.addTarget(self, action: #selector(HomeViewController.handleRefresh), for: UIControlEvents.valueChanged)
-        
         self.navigationController?.isNavigationBarHidden = true
 
         // TOP VIEWS
 
+        let topOffset = UIDevice.current.iPhoneX ? 20 : 0
+        
         self.view.addSubview(topBarBackgroundView)
         topBarBackgroundView.snp.makeConstraints { (make) in
             make.height.equalTo(64)
-            make.top.centerX.width.equalTo(view)
+            make.top.equalTo(view).offset(topOffset)
+            make.centerX.width.equalTo(view)
         }
         
         topBarBackgroundView.addSubview(topBarLogoImageView)
@@ -180,7 +170,7 @@ class HomeViewController: UIViewController {
         }
         
         walletSummaryBackgroundView.addSubview(walletAvatarButton)
-        walletAvatarButton.addTarget(self, action: #selector(HomeViewController.attachWallet), for: .touchUpInside)
+        walletAvatarButton.addTarget(self, action: #selector(HomeViewController.displayMenu), for: .touchUpInside)
         walletAvatarButton.snp.makeConstraints { (make) in
             make.width.height.equalTo(100)
             make.centerX.equalTo(view)
@@ -255,6 +245,7 @@ class HomeViewController: UIViewController {
             make.width.bottom.equalTo(view)
         }
         
+        NotificationCenter.default.addObserver(self, selector: #selector(checkIfWalletSetup), name: NSNotification.Name(rawValue: "LOGOUT"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(walletUpdated), name: NSNotification.Name(rawValue: "NEW_WALLET"), object: nil)
     }
     
@@ -264,12 +255,12 @@ class HomeViewController: UIViewController {
         self.navigationController?.pushViewController(transactionsViewController, animated: true)
     }
     
-    @objc func attachWallet(){
+    @objc func displayMenu(){
         
-        let newWalletViewController = NewWalletViewController()
-        newWalletViewController.hidesBottomBarWhenPushed = true
+        let menuViewController = MenuViewController()
+        menuViewController.hidesBottomBarWhenPushed = true
         
-        let navController = PopupNavigationController(rootViewController: newWalletViewController)
+        let navController = PopupNavigationController(rootViewController: menuViewController)
         navController.navigationBar.isTranslucent = true
         navController.navigationBar.isHidden = true
         navController.modalPresentationStyle = .custom
@@ -322,6 +313,30 @@ class HomeViewController: UIViewController {
             let activityVC = UIActivityViewController(activityItems: [activityItem], applicationActivities: nil)
             self.present(activityVC, animated: true, completion: nil)
         }
+    }
+    
+    @objc func checkIfWalletSetup(){
+        
+        if let wallet = WalletManager.sharedInstance.getWalletUnEncrypted(){
+            if wallet.address.count == 0 {
+                attachWallet()
+            }
+        }else{
+            attachWallet()
+        }
+    }
+    
+    func attachWallet(){
+        
+        let newWalletViewController = NewWalletViewController()
+        newWalletViewController.hidesBottomBarWhenPushed = true
+        
+        let navController = PopupNavigationController(rootViewController: newWalletViewController)
+        navController.navigationBar.isTranslucent = true
+        navController.navigationBar.isHidden = true
+        navController.modalPresentationStyle = .custom
+        
+        self.present(navController, animated: true)
     }
 }
 

@@ -142,6 +142,7 @@ class PINLockViewController: UIViewController {
         btnDelete.addTarget(self, action: #selector(deleteButtonPressed(_:)), for: .touchUpInside)
         btnTouchID.setImage(UIImage(imageLiteralResourceName:"touchIDIcon"), for: .normal)
         btnTouchID.addTarget(self, action: #selector(touchIDButtonPressed(_:)), for: .touchUpInside)
+        btnTouchID.isHidden = (currentAction == PIN_ACTION.SETUP)
         btnCancel.addTarget(self, action: #selector(cancelButtonPressed(_:)), for: .touchUpInside)
         
         // First Row
@@ -283,9 +284,12 @@ class PINLockViewController: UIViewController {
             
         }
         else if currentAction == PIN_ACTION.SETUP {
-            self.navigationController?.popViewController(animated: true)
+            if presentingViewController != nil{
+                self.dismiss(animated: true, completion: nil)
+            }else{
+                self.navigationController?.popViewController(animated: true)
+            }
         }
-        
     }
     
     @objc func deleteButtonPressed(_ sender: Any) {
@@ -480,7 +484,7 @@ class PINLockViewController: UIViewController {
     
     private func processTouchID() {
         // Start evaluation process with a callback that is executed when the user ends the process successfully or not
-        context.evaluatePolicy(self.policy!, localizedReason: "Access Secured Waller", reply: { (success, error) in
+        context.evaluatePolicy(self.policy!, localizedReason: "Access Secured Wallet", reply: { (success, error) in
             DispatchQueue.main.async {
                 
                 guard success else {

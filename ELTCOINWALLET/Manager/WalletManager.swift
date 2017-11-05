@@ -47,7 +47,7 @@ extension WalletManager {
     }
     
     func deleteWallet(){
-        UserDefaults.standard.removeObject(forKey: "waller")
+        UserDefaults.standard.removeObject(forKey: "wallet")
         UserDefaults.standard.removeObject(forKey: "wallet_enc")
         UserDefaults.standard.synchronize()
     }

@@ -35,10 +35,30 @@ class TransactionsViewController: UIViewController {
         self.view.backgroundColor = UIColor.CustomColor.White.offwhite
         
         setupViews()
-        setupTableData()
+        
+        self.tableView.addSubview(self.refreshControl)
+        self.tableView.refreshControl?.addTarget(self, action: #selector(TransactionsViewController.handleRefresh), for: UIControlEvents.valueChanged)
+        
+        setupTableData {
+            self.tableView.reloadData()
+        }
     }
     
-    func setupTableData(){
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(TransactionsViewController.handleRefresh), for: UIControlEvents.valueChanged)
+        
+        return refreshControl
+    }()
+    
+    @objc func handleRefresh(refreshControl: UIRefreshControl) {
+        setupTableData {
+            self.tableView.reloadData()
+            refreshControl.endRefreshing()
+        }
+    }
+    
+    func setupTableData(_ completed: (()->Void)? = nil){
         
         let walletManager = WalletTransactionsManager()
         
@@ -48,7 +68,10 @@ class TransactionsViewController: UIViewController {
             walletManager.getTokenTransactions(token:(currentToken.tokenInfo)!, transactionsImportCompleted: { (transactions) in
                 self.walletTransactions = transactions
                 self.emptyListLabel.isHidden = self.walletTransactions.count > 0
-                self.tableView.reloadData()
+                
+                if completed != nil {
+                    completed!()
+                }
             })
         }else{
             topBarTitleLabel.text = "Ether Transactions"
@@ -56,7 +79,10 @@ class TransactionsViewController: UIViewController {
             walletManager.getEtherTransactions(transactionsImportCompleted: { (transactions) in
                 self.walletTransactions = transactions
                 self.emptyListLabel.isHidden = self.walletTransactions.count > 0
-                self.tableView.reloadData()
+                
+                if completed != nil {
+                    completed!()
+                }
             })
         }
     }
@@ -65,10 +91,13 @@ class TransactionsViewController: UIViewController {
         
         // TOP VIEWS
         
+        let  topOffset = UIDevice.current.iPhoneX ? 20 : 0
+        
         self.view.addSubview(topBarBackgroundView)
         topBarBackgroundView.snp.makeConstraints { (make) in
             make.height.equalTo(64)
-            make.top.centerX.width.equalTo(view)
+            make.top.equalTo(view).offset(topOffset)
+            make.centerX.width.equalTo(view)
         }
         
         topBarBackgroundView.addSubview(topBarTitleLabel)
