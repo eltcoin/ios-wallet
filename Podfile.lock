@@ -63,6 +63,7 @@ PODS:
   - ReachabilitySwift (3)
   - SkyFloatingLabelTextField (3.2.1)
   - SnapKit (4.0.0)
+  - SwiftGifOrigin (1.6.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.5)
@@ -80,6 +81,7 @@ DEPENDENCIES:
   - ReachabilitySwift (~> 3)
   - SkyFloatingLabelTextField (~> 3.0)
   - SnapKit
+  - SwiftGifOrigin
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
@@ -104,7 +106,8 @@ SPEC CHECKSUMS:
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   SkyFloatingLabelTextField: 71d28906024e7d7e4460099b342f3ca7036a2e24
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  SwiftGifOrigin: d6679d3ebe9df2e049a84bc52582635107b581f6
 
-PODFILE CHECKSUM: 7a3432035d82968113efebc14a2064a3e3d88173
+PODFILE CHECKSUM: 30fb177f4f5ea58504bd59134d5b4bea58f68e2e
 
 COCOAPODS: 1.3.1

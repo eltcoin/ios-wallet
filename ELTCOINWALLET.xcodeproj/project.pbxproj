@@ -20,6 +20,8 @@
 		D51504911F9743B7006013E2 /* ImportWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51504901F9743B7006013E2 /* ImportWalletViewController.swift */; };
 		D51504931F9748EB006013E2 /* WalletImportPrivateKeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51504921F9748EB006013E2 /* WalletImportPrivateKeyManager.swift */; };
 		D515049E1F97F0BC006013E2 /* WalletCreationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D515049D1F97F0BC006013E2 /* WalletCreationManager.swift */; };
+		D515AAE81FB05EE800C300E7 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D515AAE71FB05EE800C300E7 /* LaunchScreenViewController.swift */; };
+		D515AAEA1FB0645900C300E7 /* eltcoin_splash_animation.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = D515AAE91FB0645900C300E7 /* eltcoin_splash_animation.mp4 */; };
 		D5285C8C1F8FFFA300F46425 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5285C8B1F8FFFA300F46425 /* ScannerViewController.swift */; };
 		D52E3C861FA335EE00A80822 /* ImportWalletFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52E3C851FA335EE00A80822 /* ImportWalletFileViewController.swift */; };
 		D52E3C881FA33D2500A80822 /* SendTokensConfrimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52E3C871FA33D2500A80822 /* SendTokensConfrimationViewController.swift */; };
@@ -104,6 +106,8 @@
 		D51504901F9743B7006013E2 /* ImportWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportWalletViewController.swift; sourceTree = "<group>"; };
 		D51504921F9748EB006013E2 /* WalletImportPrivateKeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletImportPrivateKeyManager.swift; sourceTree = "<group>"; };
 		D515049D1F97F0BC006013E2 /* WalletCreationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCreationManager.swift; sourceTree = "<group>"; };
+		D515AAE71FB05EE800C300E7 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
+		D515AAE91FB0645900C300E7 /* eltcoin_splash_animation.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = eltcoin_splash_animation.mp4; sourceTree = "<group>"; };
 		D5285C8B1F8FFFA300F46425 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		D52E3C851FA335EE00A80822 /* ImportWalletFileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportWalletFileViewController.swift; sourceTree = "<group>"; };
 		D52E3C871FA33D2500A80822 /* SendTokensConfrimationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTokensConfrimationViewController.swift; sourceTree = "<group>"; };
@@ -269,6 +273,7 @@
 		D5A160951F8F93D7007E3EB0 /* ELTCOINWALLET */ = {
 			isa = PBXGroup;
 			children = (
+				D515AAE91FB0645900C300E7 /* eltcoin_splash_animation.mp4 */,
 				D502BBA91FA76AB600F4D4DD /* GoogleService-Info.plist */,
 				D5EC5EBC1F9F5CB000B89D06 /* ELTCOINWALLET.entitlements */,
 				D59452381F94C9AF005107A9 /* Networking */,
@@ -322,6 +327,7 @@
 				D5A160D71F8FCD02007E3EB0 /* SendTokensViewController.swift */,
 				D54ABABC1FA1E641005570E4 /* TransactionsViewController.swift */,
 				D59452311F94BA1D005107A9 /* WalletCreatedViewController.swift */,
+				D515AAE71FB05EE800C300E7 /* LaunchScreenViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -496,6 +502,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D515AAEA1FB0645900C300E7 /* eltcoin_splash_animation.mp4 in Resources */,
 				D59452301F936DBD005107A9 /* dist in Resources */,
 				D5A160A11F8F93D8007E3EB0 /* LaunchScreen.storyboard in Resources */,
 				D502BBAA1FA76AB700F4D4DD /* GoogleService-Info.plist in Resources */,
@@ -637,6 +644,7 @@
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/ReachabilitySwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftGifOrigin/SwiftGifOrigin.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -654,6 +662,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReachabilitySwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkyFloatingLabelTextField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftGifOrigin.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -711,6 +720,7 @@
 				D59452351F94C947005107A9 /* WalletManager.swift in Sources */,
 				D5A160D81F8FCD02007E3EB0 /* SendTokensViewController.swift in Sources */,
 				D5A160971F8F93D7007E3EB0 /* AppDelegate.swift in Sources */,
+				D515AAE81FB05EE800C300E7 /* LaunchScreenViewController.swift in Sources */,
 				D515048F1F96963A006013E2 /* WalletSendTokensManager.swift in Sources */,
 				D59452321F94BA1D005107A9 /* WalletCreatedViewController.swift in Sources */,
 				D5A160DA1F8FD128007E3EB0 /* PopupNavigationController.swift in Sources */,
