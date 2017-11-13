@@ -33,6 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             application.registerUserNotificationSettings(settings)
         }
         
+        //LaunchScreenViewController().tryDisplay()
+
         return true
     }
 
@@ -63,8 +65,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         
         PINLockViewController().checkPINDisplay()
-        
-        LaunchScreenViewController().tryDisplay()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -164,6 +164,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         if let userInfoDictionary = userInfo as? [String : AnyObject]{
             // TODO: Customer notifications when receiving a push notification:
             //NotificationManager().handlePushNotificationAction(userInfo: userInfoDictionary)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NEW_WALLET"), object: self, userInfo: nil) // force refresh of data
         }
         
         completionHandler()

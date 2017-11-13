@@ -110,6 +110,8 @@ class HomeViewController: UIViewController {
         self.tableView.refreshControl?.addTarget(self, action: #selector(HomeViewController.handleRefresh), for: UIControlEvents.valueChanged)
         self.navigationController?.isNavigationBarHidden = true
 
+        NotificationManager().registerDeviceWithServer()
+        
         // TOP VIEWS
 
         let topOffset = UIDevice.current.iPhoneX ? 20 : 0
@@ -235,7 +237,7 @@ class HomeViewController: UIViewController {
         }
         
         view.addSubview(emptyListLabel)
-        emptyListLabel.text = "There's no tokens to show\n😥"
+        emptyListLabel.text = "There's no tokens to show\n"
         emptyListLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)
         emptyListLabel.numberOfLines = 0
         emptyListLabel.isHidden = true

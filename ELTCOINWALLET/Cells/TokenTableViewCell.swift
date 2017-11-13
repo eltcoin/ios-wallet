@@ -30,7 +30,7 @@ class TokenTableViewCell: UITableViewCell {
     
     func setupCell(token: ETHToken){
         cellTitleLabel.text = "" // token.tokenInfo?.name ?? "Unkown"
-        cellAmountLabel.text = String(format:"%0.f ELT", (token.getBalance()))
+        cellAmountLabel.text = String(format:"%0.f %@", (token.getBalance()), token.tokenInfo?.symbol ?? "")
         cellSymbolLabel.text = token.tokenInfo?.symbol ?? "Unkown"
     }
     

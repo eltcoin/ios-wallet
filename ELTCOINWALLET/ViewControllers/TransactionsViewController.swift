@@ -147,7 +147,7 @@ class TransactionsViewController: UIViewController {
         }
         
         view.addSubview(emptyListLabel)
-        emptyListLabel.text = "There's no transactions to show\n😥"
+        emptyListLabel.text = "There's no transactions to show\n"
         emptyListLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)
         emptyListLabel.numberOfLines = 0
         emptyListLabel.isHidden = true

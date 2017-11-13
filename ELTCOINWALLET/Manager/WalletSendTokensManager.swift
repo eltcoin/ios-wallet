@@ -73,7 +73,12 @@ extension WalletSendTokensManager: WKNavigationDelegate {
                 let jsStr = "step1WithPrivateKey('\(privateKey)', \(coinVolume), \(gasLimit), '\(destinationAddress)', \(isEther.description), '\(token?.tokenInfo?.address ?? "" )', '\(token?.tokenInfo?.symbol ?? "")', \(token?.tokenInfo?.decimals ?? 0.0))";
                 
                 print(jsStr)
-                webView.evaluateJavaScript(jsStr, completionHandler: nil)
+
+                webView.evaluateJavaScript(jsStr, completionHandler: { (any, err) in
+                    if err != nil && self.errBlock != nil {
+                        self.errBlock!("There was a problemsedning your transaction")
+                    }
+                })
             }
         }
     }

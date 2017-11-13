@@ -31,6 +31,7 @@
 		D56015921FAA0DA300B37978 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56015911FAA0DA300B37978 /* MenuViewController.swift */; };
 		D56015941FAB1C0B00B37978 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56015931FAB1C0B00B37978 /* MenuItem.swift */; };
 		D56015961FAC7F7700B37978 /* UIDevice+ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56015951FAC7F7700B37978 /* UIDevice+ex.swift */; };
+		D56348221FB46B5300B26E4A /* PushDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56348211FB46B5300B26E4A /* PushDevice.swift */; };
 		D594522A1F920E38005107A9 /* NewWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59452291F920E38005107A9 /* NewWalletViewController.swift */; };
 		D59452301F936DBD005107A9 /* dist in Resources */ = {isa = PBXBuildFile; fileRef = D594522F1F936DB8005107A9 /* dist */; };
 		D59452321F94BA1D005107A9 /* WalletCreatedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59452311F94BA1D005107A9 /* WalletCreatedViewController.swift */; };
@@ -57,6 +58,8 @@
 		D5A160D81F8FCD02007E3EB0 /* SendTokensViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A160D71F8FCD02007E3EB0 /* SendTokensViewController.swift */; };
 		D5A160DA1F8FD128007E3EB0 /* PopupNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A160D91F8FD128007E3EB0 /* PopupNavigationController.swift */; };
 		D5A160DD1F8FD357007E3EB0 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A160DC1F8FD357007E3EB0 /* Animator.swift */; };
+		D5A39EE41FB84BFC00217549 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5A39EE31FB84BFC00217549 /* PassKit.framework */; };
+		D5A39EE61FB84E1C00217549 /* pass.json in Resources */ = {isa = PBXBuildFile; fileRef = D5A39EE51FB84E1C00217549 /* pass.json */; };
 		D5A6EC011F9F2C6400840A7F /* ETHTokenInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A6EC001F9F2C6400840A7F /* ETHTokenInfo.swift */; };
 		D5A6EC031F9F2C7200840A7F /* ETHTokenBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A6EC021F9F2C7200840A7F /* ETHTokenBalance.swift */; };
 		D5A6EC051F9F2E5700840A7F /* ETHToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A6EC041F9F2E5700840A7F /* ETHToken.swift */; };
@@ -64,6 +67,7 @@
 		D5AAEC9A1F9F852900827267 /* WalletImportFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AAEC991F9F852900827267 /* WalletImportFileManager.swift */; };
 		D5AAEC9C1FA0943700827267 /* SelectCurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AAEC9B1FA0943700827267 /* SelectCurrencyViewController.swift */; };
 		D5AAECA11FA0F1C300827267 /* CurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AAECA01FA0F1C300827267 /* CurrencyTableViewCell.swift */; };
+		D5AE3B341FB48992003A3E20 /* NetworkWalletAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AE3B331FB48992003A3E20 /* NetworkWalletAPI.swift */; };
 		D5BDE7051F9E5223002D43F8 /* WalletTransactionsReponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BDE7041F9E5223002D43F8 /* WalletTransactionsReponse.swift */; };
 		F29E53798D05C5C42BFD6FAA /* Pods_ELTCOINWALLETTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B41A0E7C40B9E6C64780F561 /* Pods_ELTCOINWALLETTests.framework */; };
 /* End PBXBuildFile section */
@@ -117,6 +121,7 @@
 		D56015911FAA0DA300B37978 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		D56015931FAB1C0B00B37978 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		D56015951FAC7F7700B37978 /* UIDevice+ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+ex.swift"; sourceTree = "<group>"; };
+		D56348211FB46B5300B26E4A /* PushDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushDevice.swift; sourceTree = "<group>"; };
 		D59452291F920E38005107A9 /* NewWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWalletViewController.swift; sourceTree = "<group>"; };
 		D594522F1F936DB8005107A9 /* dist */ = {isa = PBXFileReference; lastKnownFileType = folder; name = dist; path = etherwallet/dist; sourceTree = "<group>"; };
 		D59452311F94BA1D005107A9 /* WalletCreatedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCreatedViewController.swift; sourceTree = "<group>"; };
@@ -149,6 +154,8 @@
 		D5A160D71F8FCD02007E3EB0 /* SendTokensViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTokensViewController.swift; sourceTree = "<group>"; };
 		D5A160D91F8FD128007E3EB0 /* PopupNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupNavigationController.swift; sourceTree = "<group>"; };
 		D5A160DC1F8FD357007E3EB0 /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
+		D5A39EE31FB84BFC00217549 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
+		D5A39EE51FB84E1C00217549 /* pass.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = pass.json; sourceTree = "<group>"; };
 		D5A6EC001F9F2C6400840A7F /* ETHTokenInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETHTokenInfo.swift; sourceTree = "<group>"; };
 		D5A6EC021F9F2C7200840A7F /* ETHTokenBalance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETHTokenBalance.swift; sourceTree = "<group>"; };
 		D5A6EC041F9F2E5700840A7F /* ETHToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETHToken.swift; sourceTree = "<group>"; };
@@ -156,6 +163,7 @@
 		D5AAEC991F9F852900827267 /* WalletImportFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletImportFileManager.swift; sourceTree = "<group>"; };
 		D5AAEC9B1FA0943700827267 /* SelectCurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCurrencyViewController.swift; sourceTree = "<group>"; };
 		D5AAECA01FA0F1C300827267 /* CurrencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewCell.swift; sourceTree = "<group>"; };
+		D5AE3B331FB48992003A3E20 /* NetworkWalletAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkWalletAPI.swift; sourceTree = "<group>"; };
 		D5BDE7041F9E5223002D43F8 /* WalletTransactionsReponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTransactionsReponse.swift; sourceTree = "<group>"; };
 		D5EC5EBC1F9F5CB000B89D06 /* ELTCOINWALLET.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ELTCOINWALLET.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -165,6 +173,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5A39EE41FB84BFC00217549 /* PassKit.framework in Frameworks */,
 				4C7B80E7B1CACA161F232D64 /* Pods_ELTCOINWALLET.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -204,6 +213,7 @@
 		8D6C093FD6131A65153A6F73 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D5A39EE31FB84BFC00217549 /* PassKit.framework */,
 				6459B38DB322063EBCAA757D /* Pods_ELTCOINWALLET.framework */,
 				B41A0E7C40B9E6C64780F561 /* Pods_ELTCOINWALLETTests.framework */,
 				0660A24DA67E944B1042E255 /* Pods_ELTCOINWALLETUITests.framework */,
@@ -233,6 +243,7 @@
 				D59452451F94E45A005107A9 /* WalletUnEncryptedJSAPIResponse.swift */,
 				D51504831F950BB0006013E2 /* WalletEncryptedJSAPIResponse.swift */,
 				D5BDE7041F9E5223002D43F8 /* WalletTransactionsReponse.swift */,
+				D5AE3B331FB48992003A3E20 /* NetworkWalletAPI.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -250,6 +261,7 @@
 		D5A1608A1F8F93D7007E3EB0 = {
 			isa = PBXGroup;
 			children = (
+				D5A39EE51FB84E1C00217549 /* pass.json */,
 				D594522F1F936DB8005107A9 /* dist */,
 				D5A160951F8F93D7007E3EB0 /* ELTCOINWALLET */,
 				D5A160AA1F8F93D8007E3EB0 /* ELTCOINWALLETTests */,
@@ -344,6 +356,7 @@
 				D5A6EC041F9F2E5700840A7F /* ETHToken.swift */,
 				D5A6EC061F9F339700840A7F /* ETHBalance.swift */,
 				D56015931FAB1C0B00B37978 /* MenuItem.swift */,
+				D56348211FB46B5300B26E4A /* PushDevice.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -391,6 +404,7 @@
 				D5A160911F8F93D7007E3EB0 /* Resources */,
 				ACAB41753691F77C627C7BC2 /* [CP] Embed Pods Frameworks */,
 				903ED9B70139A080552BD035 /* [CP] Copy Pods Resources */,
+				D515AAEB1FB0672A00C300E7 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -460,6 +474,9 @@
 							com.apple.Push = {
 								enabled = 1;
 							};
+							com.apple.Wallet = {
+								enabled = 1;
+							};
 							com.apple.iCloud = {
 								enabled = 1;
 							};
@@ -504,6 +521,7 @@
 			files = (
 				D515AAEA1FB0645900C300E7 /* eltcoin_splash_animation.mp4 in Resources */,
 				D59452301F936DBD005107A9 /* dist in Resources */,
+				D5A39EE61FB84E1C00217549 /* pass.json in Resources */,
 				D5A160A11F8F93D8007E3EB0 /* LaunchScreen.storyboard in Resources */,
 				D502BBAA1FA76AB700F4D4DD /* GoogleService-Info.plist in Resources */,
 				D5A1609E1F8F93D8007E3EB0 /* Assets.xcassets in Resources */,
@@ -644,7 +662,6 @@
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/ReachabilitySwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftGifOrigin/SwiftGifOrigin.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -662,7 +679,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReachabilitySwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkyFloatingLabelTextField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftGifOrigin.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -687,6 +703,19 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		D515AAEB1FB0672A00C300E7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\"";
 		};
 		EAE3026544DC98AD6F3734BC /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -736,6 +765,7 @@
 				D5AAECA11FA0F1C300827267 /* CurrencyTableViewCell.swift in Sources */,
 				D5A160CD1F8FB085007E3EB0 /* TransactionTableViewCell.swift in Sources */,
 				D56015941FAB1C0B00B37978 /* MenuItem.swift in Sources */,
+				D56348221FB46B5300B26E4A /* PushDevice.swift in Sources */,
 				D594522A1F920E38005107A9 /* NewWalletViewController.swift in Sources */,
 				D5A160D61F8FC527007E3EB0 /* UIImage+ex.swift in Sources */,
 				D594523E1F94CD9C005107A9 /* WalletCrypto.swift in Sources */,
@@ -750,6 +780,7 @@
 				D5AAEC9C1FA0943700827267 /* SelectCurrencyViewController.swift in Sources */,
 				D51504911F9743B7006013E2 /* ImportWalletViewController.swift in Sources */,
 				D5A160CF1F8FB656007E3EB0 /* WalletTransaction.swift in Sources */,
+				D5AE3B341FB48992003A3E20 /* NetworkWalletAPI.swift in Sources */,
 				D5A160CA1F8FA373007E3EB0 /* UIColor+ex.swift in Sources */,
 				D5A160DD1F8FD357007E3EB0 /* Animator.swift in Sources */,
 				D59452421F94CE5D005107A9 /* WalletKDFParams.swift in Sources */,
@@ -929,6 +960,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DFS786VR7V;
 				INFOPLIST_FILE = ELTCOINWALLET/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ELTCOIN.ELTCOINWALLET;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -949,6 +981,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DFS786VR7V;
 				INFOPLIST_FILE = ELTCOINWALLET/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ELTCOIN.ELTCOINWALLET;
 				PRODUCT_NAME = "$(TARGET_NAME)";

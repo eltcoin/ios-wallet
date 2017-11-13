@@ -108,7 +108,7 @@ class SendTokensViewController: UIViewController {
         view.addSubview(destinationWalletAddressTextField)
         destinationWalletAddressTextField.placeholder = "Destination Address"
         destinationWalletAddressTextField.title = "Wallet Addres"
-        destinationWalletAddressTextField.text =  "" //0x0bab6699591974abb811461e6c2caa33d3a6a0a4" //"0x77Ea29731140c0eDeb2D4871Ecdf7fbee0728Da0"
+        destinationWalletAddressTextField.text =  "" // "0x93a408e47dbd8f1566316bfde3bcc7dfe5fd8224" //0x0bab6699591974abb811461e6c2caa33d3a6a0a4" //"0x77Ea29731140c0eDeb2D4871Ecdf7fbee0728Da0"
         destinationWalletAddressTextField.returnKeyType = .next
         destinationWalletAddressTextField.tintColor = UIColor.CustomColor.Black.DeepCharcoal
         destinationWalletAddressTextField.selectedTitleColor = UIColor.CustomColor.Grey.midGrey
@@ -197,36 +197,36 @@ extension SendTokensViewController {
         
         if let coinVolume = Double(coinVolumeTextField.text!){
             if coinVolume == 0.0{
-                errorPopup = UIAlertController(title: "🚨", message: "Enter a number of tokens above zero", preferredStyle: .alert)
+                errorPopup = UIAlertController(title: "Error", message: "Enter a number of tokens above zero", preferredStyle: .alert)
             }else{
                 sendCoinVolume = coinVolume
             }
         }else{
-            errorPopup = UIAlertController(title: "🚨", message: "Enter a number of tokens above zero", preferredStyle: .alert)
+            errorPopup = UIAlertController(title: "Error", message: "Enter a number of tokens above zero", preferredStyle: .alert)
         }
         
         if let gasLimit = Double(gasLimitTextField.text!){
             if gasLimit == 0.0 {
-                errorPopup = UIAlertController(title: "🚨", message: "Enter a gas limit above zero", preferredStyle: .alert)
+                errorPopup = UIAlertController(title: "Error", message: "Enter a gas limit above zero", preferredStyle: .alert)
             }else{
                 sendGasVolume = gasLimit
             }
         }else{
-            errorPopup = UIAlertController(title: "🚨", message: "Enter a gas limit above zero", preferredStyle: .alert)
+            errorPopup = UIAlertController(title: "Error", message: "Enter a gas limit above zero", preferredStyle: .alert)
         }
         
         if let destinationAddress = destinationWalletAddressTextField.text{
             if destinationAddress.count == 0 {
-                errorPopup = UIAlertController(title: "🚨", message: "Enter a destination address", preferredStyle: .alert)
+                errorPopup = UIAlertController(title: "Error", message: "Enter a destination address", preferredStyle: .alert)
             }else{
                 sendDestinationAddress = destinationAddress
             }
         }else{
-            errorPopup = UIAlertController(title: "🚨", message: "Enter a destination address", preferredStyle: .alert)
+            errorPopup = UIAlertController(title: "Error", message: "Enter a destination address", preferredStyle: .alert)
         }
         
         if errorPopup != nil {
-            errorPopup?.addAction(UIAlertAction(title: "👍", style: .cancel, handler: nil))
+            errorPopup?.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             self.present(errorPopup!, animated: true, completion: nil)
         }else{
             sendTokens(coinVolume: sendCoinVolume, gasLimit: sendGasVolume, destinationAddress: sendDestinationAddress)

@@ -161,8 +161,8 @@ extension ImportWalletPKViewController {
                 self.navigationController?.dismiss(animated: true, completion: nil)
             }, errBlock: { (errorMessage) in
                 self.toggleLoadingState(false)
-                let errorPopup = UIAlertController(title: "🤕", message: errorMessage, preferredStyle: .alert)
-                errorPopup.addAction(UIAlertAction(title: "👍", style: .cancel, handler: nil))
+                let errorPopup = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
+                errorPopup.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
                 self.present(errorPopup, animated: true, completion: nil)
             })
         }
@@ -183,8 +183,9 @@ extension ImportWalletPKViewController {
     func toggleLoadingState(_ isLoading: Bool) {
         
         loadingView.isHidden = true
-        
+        doneButton.isHidden = false
         if(isLoading){
+            doneButton.isHidden = true
             loadingView.isHidden = false
             loadingView.backgroundColor = UIColor.CustomColor.White.offwhite
             loadingView.snp.makeConstraints({ (make) in
@@ -196,8 +197,7 @@ extension ImportWalletPKViewController {
             
             loadingView.addSubview(loadingIndicator)
             loadingIndicator.snp.makeConstraints({ (make) in
-                make.height.width.equalTo(50)
-                make.center.equalTo(loadingView)
+                make.center.equalTo(doneButton)
             })
             loadingIndicator.startAnimating()
         }

@@ -45,6 +45,32 @@ class LaunchScreenViewController: UIViewController {
         if rootVC.isKind(of: LaunchScreenViewController.self) {
             print("Launch screen already shoing")
         }else{
+            
+            let lastEntryDate: Date? = UserDefaults.standard.object(forKey:"UNLOCK_DATE") as? Date ?? nil
+            let lastExitDate: Date? = UserDefaults.standard.object(forKey:"EXIT_DATE") as? Date ?? nil
+            
+            if lastEntryDate != nil {
+                let elapsed = Date().timeIntervalSince(lastEntryDate!)
+                let duration = Int(elapsed)
+                
+                print ("Time elapsed since last PIN entry: \(duration)")
+                if( duration < 5){
+                    print("Hasn't been 5 seconds yet")
+                    return
+                }
+            }
+            
+            if lastExitDate != nil {
+                let elapsed = Date().timeIntervalSince(lastExitDate!)
+                let duration = Int(elapsed)
+                
+                print ("Time elapsed since last exiting app: \(duration)")
+                if( duration < 5){
+                    print("Hasn't been 5 seconds yet")
+                    return
+                }
+            }
+            
             rootVC.present(self, animated: false, completion: nil)
         }
     }

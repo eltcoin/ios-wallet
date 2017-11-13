@@ -29,7 +29,8 @@ class MenuViewController: UIViewController {
         EXPORT_WALLET = 2,
         LOGOUT = 3,
         LOCK = 4,
-        COPY_ADDRESS_CLIPBOARD = 5
+        COPY_ADDRESS_CLIPBOARD = 5,
+        ELTCOIN_WEBSITE = 6
     }
     
     override func viewDidLoad() {
@@ -64,6 +65,11 @@ class MenuViewController: UIViewController {
         menuItems.append(
             MenuItem(menuItemTitle: "Copy Wallet Address",
                      menuItemTag: MENU_ITEM_TAG.COPY_ADDRESS_CLIPBOARD.rawValue))
+        
+        menuItems.append(
+            MenuItem(menuItemTitle: "ELTCOIN Website",
+                     menuItemTag: MENU_ITEM_TAG.ELTCOIN_WEBSITE.rawValue))
+        
         menuItems.append(
             MenuItem(menuItemTitle: "Logout",
                      menuItemTag: MENU_ITEM_TAG.LOGOUT.rawValue))
@@ -150,7 +156,8 @@ extension MenuViewController : UITableViewDelegate, UITableViewDataSource {
             case MENU_ITEM_TAG.SWITCH_WALLET.rawValue:  attachWallet()
             case MENU_ITEM_TAG.EXPORT_WALLET.rawValue: exportWallet()
             case MENU_ITEM_TAG.LOGOUT.rawValue: logoutPrompt()
-        case MENU_ITEM_TAG.COPY_ADDRESS_CLIPBOARD.hashValue: copyAddressToClipboard()
+            case MENU_ITEM_TAG.ELTCOIN_WEBSITE.rawValue: openEltCoinWebsite();
+            case MENU_ITEM_TAG.COPY_ADDRESS_CLIPBOARD.hashValue: copyAddressToClipboard()
             default: break;
         }
     }
@@ -170,9 +177,13 @@ extension MenuViewController {
         }
     }
     
+    func openEltCoinWebsite(){
+        if let url = NSURL(string: "https://eltcoin.tech"){
+            UIApplication.shared.openURL(url as URL)
+        }
+    }
+    
     func copyAddressToClipboard(){
-        
-        
         if let wallet = WalletManager.sharedInstance.getWalletUnEncrypted(){
             if wallet.address.count > 0 {
                 let pasteboard = UIPasteboard.general
