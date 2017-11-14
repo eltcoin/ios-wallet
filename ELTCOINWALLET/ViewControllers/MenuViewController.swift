@@ -234,15 +234,26 @@ extension MenuViewController {
     
     func attachWallet(){
         
-        let newWalletViewController = NewWalletViewController()
-        newWalletViewController.hidesBottomBarWhenPushed = true
+        let alert = FCAlertView()
         
-        let navController = PopupNavigationController(rootViewController: newWalletViewController)
-        navController.navigationBar.isTranslucent = true
-        navController.navigationBar.isHidden = true
-        navController.modalPresentationStyle = .custom
+        alert.doneActionBlock {
+            let newWalletViewController = NewWalletViewController()
+            newWalletViewController.hidesBottomBarWhenPushed = true
+            
+            let navController = PopupNavigationController(rootViewController: newWalletViewController)
+            navController.navigationBar.isTranslucent = true
+            navController.navigationBar.isHidden = true
+            navController.modalPresentationStyle = .custom
+            
+            self.present(navController, animated: true)
+        }
         
-        self.present(navController, animated: true)
+        alert.showAlert(inView: self,
+                        withTitle: "Switch Wallet",
+                        withSubtitle: "Are you sure you want to remove your wallet from this device and to swap to another?",
+                        withCustomImage: nil,
+                        withDoneButtonTitle: "OK",
+                        andButtons: ["Cancel"])
     }
     
     func exportWallet(){

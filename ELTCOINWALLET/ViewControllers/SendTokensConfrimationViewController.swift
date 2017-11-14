@@ -221,15 +221,15 @@ extension SendTokensConfrimationViewController {
         let sendTokensManager = WalletSendTokensManager(isEther: isEther, token: currentToken!, coinVolume: coinVolume, gasLimit: gasLimit, destinationAddress: destinationAddress, sendCompleted: {
             self.toggleLoadingState(false)
             let confirmPopup = UIAlertController(title: "Transaction Sent", message: "Your transaction has been uploaded to the Ethereum network for processing", preferredStyle: .alert)
-            confirmPopup.addAction(UIAlertAction(title: "👍", style: .default, handler: { (action) in
+            confirmPopup.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
                 self.dismiss(animated: true, completion: nil)
             }))
             self.present(confirmPopup, animated: true, completion: nil)
             
         }) { (errorMessage) in
             self.toggleLoadingState(false)
-            let errorPopup = UIAlertController(title: "🤕", message: errorMessage, preferredStyle: .alert)
-            errorPopup.addAction(UIAlertAction(title: "👍", style: .cancel, handler: nil))
+            let errorPopup = UIAlertController(title: "Oops", message: errorMessage, preferredStyle: .alert)
+            errorPopup.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             self.present(errorPopup, animated: true, completion: nil)
         }
         

@@ -172,8 +172,8 @@ extension NewWalletViewController {
                 self.navigationController?.pushViewController(WalletCreatedViewController(), animated: true)
             }, errBlock: { (errorMessage) in
                 self.toggleLoadingState(false)
-                let errorPopup = UIAlertController(title: "🤕", message: errorMessage, preferredStyle: .alert)
-                errorPopup.addAction(UIAlertAction(title: "👍", style: .cancel, handler: nil))
+                let errorPopup = UIAlertController(title: "Oops", message: errorMessage, preferredStyle: .alert)
+                errorPopup.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                 self.present(errorPopup, animated: true, completion: nil)
                 self.createWalletButton.isEnabled = true
             })
